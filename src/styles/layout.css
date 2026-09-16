@@ -1,0 +1,94 @@
+.app-container {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: var(--z-content);
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width-content);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-6);
+  padding-right: var(--space-6);
+}
+
+.container-narrow {
+  max-width: var(--max-width-narrow);
+}
+
+.container-wide {
+  max-width: var(--max-width-wide);
+}
+
+/* Sections */
+.section {
+  padding-top: var(--space-20);
+  padding-bottom: var(--space-20);
+  position: relative;
+}
+
+.section-header {
+  margin-bottom: var(--space-12);
+}
+
+/* Architectural Grid & Asymmetry */
+.arch-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+}
+
+.arch-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+.arch-grid-split {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: var(--space-10);
+  align-items: start;
+}
+
+/* Neomorphic Raised Frame */
+.arch-frame {
+  position: relative;
+  background: var(--bg-card);
+  border: var(--nm-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-8);
+  box-shadow: var(--nm-shadow-md);
+  transition: all var(--transition-normal);
+  will-change: transform, box-shadow;
+}
+
+.arch-frame:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--nm-shadow-hover);
+}
+
+.arch-frame-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: var(--space-4);
+  margin-bottom: var(--space-6);
+  border-bottom: 1px solid rgba(195, 206, 222, 0.45);
+}
+
+.arch-tag {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--accent-teal);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}

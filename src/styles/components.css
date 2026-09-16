@@ -1,0 +1,1020 @@
+/* ==========================================================
+   NEOMORPHISM (SOFT UI) NAVBAR
+   ========================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky-nav);
+  padding: 14px 0;
+  transition: all var(--transition-normal);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(234, 240, 248, 0.75);
+}
+
+.liquid-glass-navbar,
+.neobrutal-navbar {
+  background: var(--bg-card);
+  border: var(--nm-border);
+  border-radius: var(--radius-pill);
+  padding: 0 var(--space-6);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--nm-shadow-sm);
+  transition: box-shadow var(--transition-normal), background var(--transition-normal);
+  /* Allow nav-link::after pseudo-elements to render outside clip */
+  overflow: visible;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: var(--text-lg);
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.brand-glyph {
+  width: 36px;
+  height: 36px;
+  background: var(--bg-card);
+  border: var(--nm-border);
+  box-shadow: var(--nm-shadow-xs);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-teal);
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: var(--text-base);
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  list-style: none;
+}
+
+.nav-link {
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  transition: color var(--transition-fast),
+    background var(--transition-fast),
+    box-shadow var(--transition-fast),
+    border-color var(--transition-fast);
+  position: relative;
+  font-weight: 600;
+  border: 1px solid transparent;
+  /* overflow: visible so inset shadows on active state render correctly */
+  overflow: visible;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: var(--nm-shadow-xs);
+  border: var(--nm-border);
+}
+
+.nav-link.active {
+  color: var(--accent-teal);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: var(--nm-inset-xs);
+  border: var(--nm-border-inset);
+  font-weight: 700;
+}
+
+/* Teal dot indicator under active link — no overflow:hidden needed */
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 2.5px;
+  background: var(--accent-teal);
+  border-radius: 9999px;
+  opacity: 1;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* ==========================================================
+   NEOMORPHIC SOFT BUTTONS
+   ========================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  padding: 10px 22px;
+  border-radius: var(--radius-sm);
+  border: var(--nm-border);
+  background: var(--bg-card);
+  box-shadow: var(--nm-shadow-sm);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--text-primary);
+  will-change: transform, box-shadow;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--nm-shadow-hover);
+  color: var(--accent-teal);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: var(--nm-shadow-active);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 4px 4px 14px rgba(14, 165, 233, 0.35), -3px -3px 8px #ffffff;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
+  color: #ffffff;
+  box-shadow: 6px 6px 18px rgba(14, 165, 233, 0.45), -4px -4px 10px #ffffff;
+  transform: translateY(-2px);
+}
+
+.btn-primary:active {
+  box-shadow: inset 3px 3px 6px rgba(2, 132, 199, 0.6);
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  box-shadow: var(--nm-shadow-sm);
+  border: var(--nm-border);
+}
+
+.btn-secondary:hover {
+  box-shadow: var(--nm-shadow-hover);
+  color: var(--accent-teal);
+}
+
+.btn-sm {
+  padding: 7px 16px;
+  font-size: var(--text-xs);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--nm-shadow-xs);
+}
+
+.btn-sm:hover {
+  box-shadow: var(--nm-shadow-sm);
+}
+
+.btn-external {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ==========================================================
+   HERO SECTION (Neomorphism)
+   ========================================================== */
+.hero-wrapper {
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-20);
+  min-height: calc(85vh - 70px);
+  display: flex;
+  align-items: center;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  max-width: 920px;
+}
+
+.hero-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  color: var(--text-primary);
+  background: var(--bg-card);
+  border: var(--nm-border);
+  box-shadow: var(--nm-shadow-xs);
+  padding: 7px 18px;
+  border-radius: var(--radius-pill);
+  width: fit-content;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-teal);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(14, 165, 233, 0.7);
+  position: relative;
+}
+
+.hero-title {
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-weight: 850;
+}
+
+.hero-title span {
+  display: block;
+  color: var(--text-secondary);
+  font-size: clamp(1.3rem, 2.7vw, 1.85rem);
+  font-weight: 650;
+  margin-top: var(--space-2);
+}
+
+.hero-lead {
+  font-size: clamp(1.125rem, 1.8vw, 1.25rem);
+  line-height: 1.7;
+  color: var(--text-muted);
+  max-width: 780px;
+  font-weight: 450;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-top: var(--space-2);
+}
+
+.hero-telemetry-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: var(--space-5);
+  margin-top: var(--space-8);
+  padding-top: var(--space-8);
+  border-top: 1px solid rgba(195, 206, 222, 0.45);
+}
+
+.telemetry-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  background: var(--bg-card);
+  border: var(--nm-border);
+  box-shadow: var(--nm-shadow-sm);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.telemetry-item:hover {
+  box-shadow: var(--nm-shadow-hover);
+  transform: translateY(-2px);
+}
+
+.telemetry-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+
+.telemetry-value {
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  font-weight: 750;
+}
+
+/* ==========================================================
+   NEOMORPHIC PROJECT CARDS
+   ========================================================== */
+.project-card {
+  background: var(--bg-card);
+  border: var(--nm-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  position: relative;
+  box-shadow: var(--nm-shadow-md);
+  transition: all var(--transition-normal);
+  will-change: transform, box-shadow;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--nm-shadow-hover);
+}
+
+.project-card.featured {
+  border-top: 3px solid var(--accent-teal);
+}
+
+.project-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.project-kicker {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.project-title {
+  font-size: clamp(1.35rem, 2.2vw, 1.65rem);
+  font-family: var(--font-heading);
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.project-subtitle {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+  font-weight: 550;
+}
+
+/* Recessed Inset Neomorphic Architecture Box */
+.project-architecture-box {
+  background: var(--bg-card);
+  border: var(--nm-border-inset);
+  border-radius: var(--radius-sm);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  box-shadow: var(--nm-inset-sm);
+}
+
+.box-title {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-teal);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 700;
+}
+
+.arch-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.arch-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.55;
+  font-weight: 450;
+}
+
+.arch-list-bullet {
+  color: var(--accent-teal);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.project-tech-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* ==========================================================
+   NEOMORPHIC ECOSYSTEM SECTION
+   ========================================================== */
+.ecosystem-diagram-container {
+  background: var(--bg-card);
+  border: var(--nm-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  box-shadow: var(--nm-shadow-lg);
+}
+
+.ecosystem-nav-tabs {
+  display: flex;
+  gap: var(--space-3);
+  overflow-x: auto;
+  padding: 4px;
+  padding-bottom: var(--space-3);
+}
+
+.app-tab-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 10px 20px;
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  color: var(--text-secondary);
+  border: var(--nm-border);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--nm-shadow-xs);
+  background: var(--bg-card);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.app-tab-btn:hover {
+  color: var(--text-primary);
+  box-shadow: var(--nm-shadow-sm);
+  transform: translateY(-1px);
+}
+
+.app-tab-btn.active {
+  color: var(--accent-teal);
+  box-shadow: var(--nm-inset-sm);
+  border: var(--nm-border-inset);
+  font-weight: 750;
+  transform: translateY(0);
+}
+
+.tab-indicator-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+}
+
+.ecosystem-details-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-8);
+}
+
+.ecosystem-meta-pane {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.ecosystem-flow-pane {
+  background: var(--bg-card);
+  border: var(--nm-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  box-shadow: var(--nm-shadow-md);
+}
+
+.flow-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  padding: var(--space-2);
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  border: var(--nm-border-inset);
+  box-shadow: var(--nm-inset-xs);
+}
+
+.step-chip {
+  flex: 1;
+  text-align: center;
+  padding: 8px 6px;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 650;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  border: var(--nm-border);
+  box-shadow: var(--nm-shadow-xs);
+  transition: all var(--transition-fast);
+}
+
+.step-chip:hover {
+  color: var(--text-primary);
+  box-shadow: var(--nm-shadow-sm);
+}
+
+.step-chip.active {
+  color: var(--accent-teal);
+  box-shadow: var(--nm-inset-sm);
+  border: var(--nm-border-inset);
+  font-weight: 750;
+}
+
+.payload-inspector {
+  background: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  padding: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: #38bdf8;
+  overflow-x: auto;
+  line-height: 1.5;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.45);
+}
+
+/* ==========================================================
+   NEOMORPHIC SPECIALIZATIONS SECTION
+   ========================================================== */
+.credentials-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-8);
+}
+
+.filter-btn {
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  padding: 8px 20px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  border: var(--nm-border);
+  box-shadow: var(--nm-shadow-xs);
+  transition: all var(--transition-fast);
+}
+
+.filter-btn:hover {
+  color: var(--text-primary);
+  box-shadow: var(--nm-shadow-sm);
+  transform: translateY(-1px);
+}
+
+.filter-btn.active {
+  color: var(--accent-teal);
+  box-shadow: var(--nm-inset-sm);
+  border: var(--nm-border-inset);
+  font-weight: 750;
+  transform: translateY(0);
+}
+
+.credential-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: var(--space-6);
+}
+
+.credential-card {
+  background: var(--bg-card);
+  border: var(--nm-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-5);
+  box-shadow: var(--nm-shadow-md);
+  transition: all var(--transition-normal);
+  will-change: transform, box-shadow;
+}
+
+.credential-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--nm-shadow-hover);
+}
+
+.credential-top {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.credential-meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.provider-stamp {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.credential-title {
+  font-size: 1.15rem;
+  font-family: var(--font-heading);
+  font-weight: 750;
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+
+.credential-summary {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-weight: 450;
+}
+
+.credential-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+  border-top: 1px solid rgba(195, 206, 222, 0.45);
+  flex-wrap: wrap;
+}
+
+/* ==========================================================
+   TIMELINE SECTION (Neomorphism)
+   ========================================================== */
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.timeline-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 20px;
+  width: 3px;
+  background: #cbd5e1;
+  box-shadow: inset 1px 1px 2px #94a3b8;
+  border-radius: 9999px;
+}
+
+.timeline-node {
+  position: relative;
+  padding-left: 56px;
+  padding-bottom: var(--space-10);
+}
+
+.timeline-marker {
+  position: absolute;
+  left: 12px;
+  top: 6px;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  background-color: var(--bg-card);
+  border: 2.5px solid var(--accent-teal);
+  box-shadow: var(--nm-shadow-xs);
+}
+
+.timeline-card {
+  background: var(--bg-card);
+  border: var(--nm-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  box-shadow: var(--nm-shadow-md);
+}
+
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.timeline-year {
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  color: var(--accent-teal);
+  font-weight: 750;
+  background: rgba(14, 165, 233, 0.1);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+}
+
+/* ==========================================================
+   CONTACT SECTION & FOOTER (Neomorphism)
+   ========================================================== */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-10);
+}
+
+.contact-info-pane {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.contact-direct-channels {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.channel-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  background: var(--bg-card);
+  border: var(--nm-border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--nm-shadow-sm);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.channel-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--nm-shadow-hover);
+}
+
+.channel-icon {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  border-radius: var(--radius-xs);
+  background: rgba(14, 165, 233, 0.08);
+  border: 1px solid rgba(14, 165, 233, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-teal);
+  box-shadow: var(--nm-shadow-xs);
+  flex-shrink: 0;
+}
+
+.channel-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.channel-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+}
+
+.channel-value {
+  display: block;
+  color: var(--text-primary);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  font-family: var(--font-heading);
+  line-height: 1.35;
+  word-break: break-all;
+}
+
+.contact-form-pane {
+  background: var(--bg-card);
+  border: var(--nm-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  box-shadow: var(--nm-shadow-lg);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.form-label {
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.form-input,
+.form-textarea {
+  background: var(--bg-card);
+  border: var(--nm-border-inset);
+  border-radius: var(--radius-sm);
+  padding: 12px 18px;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  box-shadow: var(--nm-inset-sm);
+  transition: all var(--transition-fast);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: rgba(14, 165, 233, 0.6);
+  box-shadow: var(--nm-inset-md), 0 0 0 3px rgba(14, 165, 233, 0.15);
+}
+
+.site-footer {
+  border-top: var(--nm-border);
+  padding-top: var(--space-12);
+  padding-bottom: var(--space-12);
+  background-color: var(--bg-card);
+  box-shadow: 0 -8px 24px rgba(195, 206, 222, 0.35);
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+}
+
+.footer-colophon {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  font-weight: 550;
+  line-height: 1.6;
+}
+
+/* ==========================================================
+   GLOBAL ANIMATION ENHANCERS
+   GPU-accelerated transforms for silky 60fps+ interactions
+   ========================================================== */
+
+/* Ensure GPU compositing layer for animated elements */
+.arch-frame,
+.credential-card,
+.project-card,
+.timeline-card,
+.channel-card,
+.btn,
+.filter-btn {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Smooth arch-frame hover (complements Framer Motion) */
+.arch-frame {
+  transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.arch-frame:hover {
+  box-shadow: var(--nm-shadow-hover);
+}
+
+/* Badge scale hover */
+.badge {
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.badge:hover {
+  transform: scale(1.05);
+}
+
+/* Code tag hover */
+.code-tag {
+  transition: transform var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.code-tag:hover {
+  transform: scale(1.06);
+  box-shadow: var(--nm-shadow-xs);
+}
+
+/* Credential card base hover enhancement */
+.credential-card {
+  transition: box-shadow var(--transition-fast);
+}
+
+.credential-card:hover {
+  box-shadow: var(--nm-shadow-hover);
+}
+
+/* Timeline card smooth transition */
+.timeline-card {
+  transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+/* Form input smooth focus ring transition */
+.form-input,
+.form-textarea {
+  transition: box-shadow var(--transition-fast), border-color var(--transition-fast), transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  box-shadow: var(--nm-inset-sm), 0 0 0 3px rgba(14, 165, 233, 0.15);
+}
+
+/* Nav-link underline dot is now handled in the primary .nav-link block above */
+
+/* Smooth section transition */
+.section {
+  transition: opacity 0.3s ease;
+}
+
+/* Hero telemetry strip micro-animation */
+.telemetry-item {
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.telemetry-item:hover {
+  transform: translateY(-2px);
+}
+
+/* Arch list item hover */
+.arch-list-item {
+  transition: color var(--transition-fast), padding-left var(--transition-fast);
+}
+
+.arch-list-item:hover {
+  padding-left: 4px;
+}
+
+/* Provider stamp hover */
+.provider-stamp {
+  transition: color var(--transition-fast);
+}
+
+/* Filter button enhanced state */
+.filter-btn {
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.filter-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.08) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  border-radius: inherit;
+}
+
+.filter-btn.active::before,
+.filter-btn:hover::before {
+  opacity: 1;
+}
+
+/* Scroll progress indicator smooth rendering */
+.scroll-progress-indicator {
+  will-change: transform;
+  transform-origin: 0%;
+}

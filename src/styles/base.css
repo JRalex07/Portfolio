@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&family=Space+Grotesk:wght@600;700&display=swap');
+
+/* Modern Box Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* scroll-behavior: smooth; — Disabled: Lenis handles smooth scroll via RAF */
+  scroll-padding-top: 90px;
+  /* iOS Safari momentum scrolling */
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: none;
+
+  /* Crisp subpixel rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+
+  font-size: 16px;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
+  overflow-x: hidden;
+  min-height: 100vh;
+  /* Prevent layout jank from paint layers */
+  isolation: isolate;
+}
+
+/* Subtle Neomorphic Ambient Depth Overlay */
+.neo-ambient-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.6) 0%, transparent 40%),
+              radial-gradient(circle at 85% 85%, rgba(195, 206, 222, 0.35) 0%, transparent 45%);
+}
+
+/* Accessibility Focus States */
+:focus-visible {
+  outline: 3px solid rgba(14, 165, 233, 0.6);
+  outline-offset: 3px;
+  border-radius: var(--radius-xs);
+}
+
+/* Skip to Content Link */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--space-4);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: var(--nm-border);
+  box-shadow: var(--nm-shadow-md);
+  padding: var(--space-2) var(--space-4);
+  font-weight: 700;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  z-index: 9999;
+  border-radius: var(--radius-sm);
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+}
+
+/* Neomorphic Soft Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+  box-shadow: var(--nm-inset-xs);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+  border: 2px solid var(--bg-primary);
+  box-shadow: var(--nm-shadow-xs);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Text Selection */
+::selection {
+  background-color: rgba(14, 165, 233, 0.25);
+  color: var(--text-primary);
+}
+
+/* Links & Buttons Basic Resets */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* ==========================================================
+   PERFORMANCE: GPU Compositing Hints
+   Ensures animated elements stay on their own GPU layer,
+   preventing paint thrashing during scroll and animations.
+   ========================================================== */
+
+/* Section layout containment — prevents reflow propagation */
+.section {
+  contain: layout style;
+}
+
+/* GPU layer promotion for animated cards */
+.project-card,
+.credential-card,
+.arch-frame,
+.timeline-card,
+.channel-card {
+  /* Use transform3d to force a compositing layer */
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* Only promote when hovered to avoid excess VRAM */
+  will-change: auto;
+}
+
+.project-card:hover,
+.credential-card:hover,
+.arch-frame:hover,
+.timeline-card:hover,
+.channel-card:hover {
+  will-change: transform, box-shadow;
+}
+
+/* Fixed position elements: always on GPU layer */
+.site-header,
+.scroll-progress-indicator {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Image optimization */
+img, canvas {
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* Prefers Reduced Motion — Accessibility + Performance */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

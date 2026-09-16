@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <!-- Background Neomorphic Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="50%" stop-color="#F4F8FC" />
+      <stop offset="100%" stop-color="#E2EDF8" />
+    </linearGradient>
+
+    <!-- Accent Cyan/Teal Gradient -->
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2FD5C6" />
+      <stop offset="100%" stop-color="#0E9F90" />
+    </linearGradient>
+
+    <!-- Primary Navy Gradient -->
+    <linearGradient id="navyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B2D61" />
+      <stop offset="100%" stop-color="#061838" />
+    </linearGradient>
+
+    <!-- Subtle Drop Shadow -->
+    <filter id="softShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#0B2D61" flood-opacity="0.16" />
+    </filter>
+  </defs>
+
+  <!-- Base Squircle Container -->
+  <rect x="3" y="3" width="58" height="58" rx="16" fill="url(#bgGrad)" stroke="#CBDCEB" stroke-width="1.5" />
+  
+  <!-- Outer Neomorphic Highlight Ring -->
+  <rect x="5.5" y="5.5" width="53" height="53" rx="13.5" fill="none" stroke="#FFFFFF" stroke-width="1.5" opacity="0.9" />
+
+  <!-- Inner Architectural Accent Frame -->
+  <rect x="8" y="8" width="48" height="48" rx="11" fill="none" stroke="url(#tealGrad)" stroke-width="1" stroke-opacity="0.35" stroke-dasharray="3 3" />
+
+  <!-- Geometric Architectural Lettermark "R" -->
+  <g filter="url(#softShadow)">
+    <!-- Vertical Spine / Backbone with System Notch -->
+    <path d="M19 14 C19 12.895 19.895 12 21 12 H27 C28.105 12 29 12.895 29 14 V48 C29 49.105 28.105 50 27 50 H21 C19.895 50 19 49.105 19 48 Z" fill="url(#navyGrad)" />
+
+    <!-- Upper Bow of R with precision curve -->
+    <path d="M27 12 H37 C42.523 12 47 16.477 47 22 C47 27.523 42.523 32 37 32 H27 V12 Z M35 20 H29 V26 H35 C36.657 26 38 24.657 38 23 C38 21.343 36.657 20 35 20 Z" fill="url(#navyGrad)" />
+
+    <!-- Dynamic Diagonal Thrust Leg in Vibrant Teal -->
+    <path d="M32 29 L44 48 C44.5 48.8 44.1 50 43 50 H36 C35.2 50 34.5 49.5 34.1 48.8 L24.5 32 Z" fill="url(#tealGrad)" />
+
+    <!-- Terminal Circuit / Precision Agent Node -->
+    <circle cx="44" cy="18" r="3.5" fill="#2FD5C6" stroke="#FFFFFF" stroke-width="1.5" />
+    <circle cx="44" cy="18" r="1.5" fill="#0B2D61" />
+  </g>
+</svg>
