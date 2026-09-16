@@ -42,19 +42,21 @@ export const ArchitectureDiagram: React.FC = () => {
           overflowX: 'auto',
           padding: 'var(--space-2) 0',
           fontSize: '0.75rem',
-          fontFamily: 'var(--font-mono)'
+          fontFamily: 'var(--font-mono)',
+          WebkitOverflowScrolling: 'touch',
+          scrollbarWidth: 'none'
         }}>
-          <span style={{ padding: '5px 12px', background: 'var(--bg-card)', color: 'var(--text-primary)', border: 'var(--nm-border)', borderRadius: 'var(--radius-pill)', fontWeight: 650, boxShadow: 'var(--nm-shadow-xs)' }}>Consumer</span>
-          <ArrowRight size={14} color="var(--accent-teal)" aria-hidden="true" />
-          <span style={{ padding: '5px 12px', background: 'var(--bg-card)', color: 'var(--text-primary)', border: 'var(--nm-border)', borderRadius: 'var(--radius-pill)', fontWeight: 650, boxShadow: 'var(--nm-shadow-xs)' }}>Order Gateway</span>
-          <ArrowRight size={14} color="var(--accent-teal)" aria-hidden="true" />
-          <span style={{ padding: '5px 12px', background: 'var(--bg-card)', color: 'var(--text-primary)', border: 'var(--nm-border)', borderRadius: 'var(--radius-pill)', fontWeight: 650, boxShadow: 'var(--nm-shadow-xs)' }}>Admin & Support</span>
-          <ArrowRight size={14} color="var(--accent-teal)" aria-hidden="true" />
-          <span style={{ padding: '5px 12px', background: 'var(--bg-card)', color: 'var(--text-primary)', border: 'var(--nm-border)', borderRadius: 'var(--radius-pill)', fontWeight: 650, boxShadow: 'var(--nm-shadow-xs)' }}>Merchant</span>
-          <ArrowRight size={14} color="var(--accent-teal)" aria-hidden="true" />
-          <span style={{ padding: '5px 12px', background: 'var(--bg-card)', color: 'var(--text-primary)', border: 'var(--nm-border)', borderRadius: 'var(--radius-pill)', fontWeight: 650, boxShadow: 'var(--nm-shadow-xs)' }}>Rider / Salesman</span>
-          <ArrowRight size={14} color="var(--accent-teal)" aria-hidden="true" />
-          <span style={{ padding: '5px 12px', background: 'var(--bg-card)', color: 'var(--text-primary)', border: 'var(--nm-border)', borderRadius: 'var(--radius-pill)', fontWeight: 650, boxShadow: 'var(--nm-shadow-xs)' }}>Fulfillment</span>
+          <span style={{ padding: '5px 12px', background: 'var(--bg-card)', color: 'var(--text-primary)', border: 'var(--nm-border)', borderRadius: 'var(--radius-pill)', fontWeight: 650, boxShadow: 'var(--nm-shadow-xs)', whiteSpace: 'nowrap', flexShrink: 0 }}>Consumer</span>
+          <ArrowRight size={14} color="var(--accent-teal)" style={{ flexShrink: 0 }} aria-hidden="true" />
+          <span style={{ padding: '5px 12px', background: 'var(--bg-card)', color: 'var(--text-primary)', border: 'var(--nm-border)', borderRadius: 'var(--radius-pill)', fontWeight: 650, boxShadow: 'var(--nm-shadow-xs)', whiteSpace: 'nowrap', flexShrink: 0 }}>Order Gateway</span>
+          <ArrowRight size={14} color="var(--accent-teal)" style={{ flexShrink: 0 }} aria-hidden="true" />
+          <span style={{ padding: '5px 12px', background: 'var(--bg-card)', color: 'var(--text-primary)', border: 'var(--nm-border)', borderRadius: 'var(--radius-pill)', fontWeight: 650, boxShadow: 'var(--nm-shadow-xs)', whiteSpace: 'nowrap', flexShrink: 0 }}>Admin & Support</span>
+          <ArrowRight size={14} color="var(--accent-teal)" style={{ flexShrink: 0 }} aria-hidden="true" />
+          <span style={{ padding: '5px 12px', background: 'var(--bg-card)', color: 'var(--text-primary)', border: 'var(--nm-border)', borderRadius: 'var(--radius-pill)', fontWeight: 650, boxShadow: 'var(--nm-shadow-xs)', whiteSpace: 'nowrap', flexShrink: 0 }}>Merchant</span>
+          <ArrowRight size={14} color="var(--accent-teal)" style={{ flexShrink: 0 }} aria-hidden="true" />
+          <span style={{ padding: '5px 12px', background: 'var(--bg-card)', color: 'var(--text-primary)', border: 'var(--nm-border)', borderRadius: 'var(--radius-pill)', fontWeight: 650, boxShadow: 'var(--nm-shadow-xs)', whiteSpace: 'nowrap', flexShrink: 0 }}>Rider / Salesman</span>
+          <ArrowRight size={14} color="var(--accent-teal)" style={{ flexShrink: 0 }} aria-hidden="true" />
+          <span style={{ padding: '5px 12px', background: 'var(--bg-card)', color: 'var(--text-primary)', border: 'var(--nm-border)', borderRadius: 'var(--radius-pill)', fontWeight: 650, boxShadow: 'var(--nm-shadow-xs)', whiteSpace: 'nowrap', flexShrink: 0 }}>Fulfillment</span>
         </div>
       </div>
 
@@ -130,7 +132,7 @@ export const ArchitectureDiagram: React.FC = () => {
             </span>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-2)' }}>
               {selectedApp.keyEndpoints.map((ep) => (
-                <span key={ep} className="text-mono" style={{ fontSize: '0.75rem', background: 'var(--bg-card)', padding: '5px 12px', border: 'var(--nm-border)', borderRadius: 'var(--radius-xs)', color: 'var(--text-primary)', fontWeight: 650, boxShadow: 'var(--nm-shadow-xs)' }}>
+                <span key={ep} className="text-mono" style={{ fontSize: '0.75rem', background: 'var(--bg-card)', padding: '5px 12px', border: 'var(--nm-border)', borderRadius: 'var(--radius-xs)', color: 'var(--text-primary)', fontWeight: 650, boxShadow: 'var(--nm-shadow-xs)', wordBreak: 'break-all', maxWidth: '100%' }}>
                   {ep}
                 </span>
               ))}

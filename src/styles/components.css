@@ -2,14 +2,17 @@
    NEOMORPHISM (SOFT UI) NAVBAR
    ========================================================== */
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: var(--z-sticky-nav);
-  padding: 14px 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 12px 0;
   transition: all var(--transition-normal);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  background: rgba(234, 240, 248, 0.75);
+  background: rgba(234, 240, 248, 0.88);
 }
 
 .liquid-glass-navbar,

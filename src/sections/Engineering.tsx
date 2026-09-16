@@ -36,12 +36,12 @@ export const Engineering: React.FC = () => {
 
         {/* Workflow Toggle Buttons */}
         <Reveal variant="up" delay={0.1}>
-          <div style={{ display: 'flex', gap: 'var(--space-3)', marginBottom: 'var(--space-6)', flexWrap: 'wrap' }}>
+          <div className="engineering-tabs-bar" style={{ display: 'flex', gap: 'var(--space-3)', marginBottom: 'var(--space-6)', flexWrap: 'wrap' }}>
             {(['mcp', 'resilience'] as const).map((tab) => (
               <motion.button
                 key={tab}
                 type="button"
-                className={`btn ${activeWorkflow === tab ? 'btn-primary' : 'btn-secondary'}`}
+                className={`btn ${activeWorkflow === tab ? 'btn-primary' : 'btn-secondary'} engineering-tab-btn`}
                 onClick={() => setActiveWorkflow(tab)}
                 whileHover={{ scale: 1.04, transition: { duration: 0.15 } }}
                 whileTap={{ scale: 0.97 }}
@@ -80,7 +80,7 @@ export const Engineering: React.FC = () => {
                 </motion.p>
 
                 {/* Step Sequence */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 'var(--space-4)' }}>
+                <div className="engineering-steps-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))', gap: 'var(--space-4)' }}>
                   {mcpSteps.map((s, i) => (
                     <HoverCard key={s.step}>
                       <motion.div
@@ -152,7 +152,7 @@ export const Engineering: React.FC = () => {
                   Application systems must withstand transient network drops, invalid domain inputs, and downstream timeout failures without cascading crashes or database deadlocks.
                 </motion.p>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-4)' }}>
+                <div className="engineering-resilience-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: 'var(--space-4)' }}>
                   {resilienceCards.map((card, i) => (
                     <HoverCard key={card.title}>
                       <motion.div

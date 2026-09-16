@@ -61,7 +61,7 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
   return (
     <AnimatePresence>
       <motion.div
-        className="modal-backdrop"
+        className="spec-modal-backdrop"
         role="dialog"
         aria-modal="true"
         aria-labelledby="specialization-modal-title"
@@ -69,105 +69,43 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.22 }}
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: 'rgba(11, 45, 97, 0.72)',
-          backdropFilter: 'blur(14px)',
-          WebkitBackdropFilter: 'blur(14px)',
-          zIndex: 1000,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '16px',
-        }}
         onClick={onClose}
       >
         <motion.div
-          className="modal-card"
-          initial={{ opacity: 0, scale: 0.94, y: 16 }}
+          className="spec-modal-card"
+          initial={{ opacity: 0, scale: 0.95, y: 16 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.94, y: 16 }}
-          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] as const }}
-          style={{
-            backgroundColor: '#FFFFFF',
-            border: '1px solid rgba(18, 63, 135, 0.18)',
-            borderRadius: '22px',
-            maxWidth: '860px',
-            width: '100%',
-            padding: '24px 28px',
-            boxShadow: '0 25px 65px -12px rgba(11, 45, 97, 0.35), 0 0 0 1px rgba(18, 63, 135, 0.08)',
-            position: 'relative',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '18px',
-            maxHeight: '90vh',
-            overflowY: 'auto',
-          }}
+          exit={{ opacity: 0, scale: 0.95, y: 16 }}
+          transition={{ duration: 0.26, ease: [0.16, 1, 0.3, 1] as const }}
           onClick={(e) => e.stopPropagation()}
         >
           {/* Top Modal Header */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '14px', borderBottom: '1px solid #E2E8F0', paddingBottom: '16px' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+          <div className="spec-modal-header">
+            <div className="spec-modal-title-group">
+              <div className="spec-modal-badges">
                 <span
+                  className="spec-badge-provider"
                   style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    padding: '3px 10px',
-                    borderRadius: '9999px',
                     backgroundColor: isMicrosoft ? 'rgba(18, 63, 135, 0.08)' : 'rgba(217, 119, 6, 0.1)',
                     color: isMicrosoft ? '#0B2D61' : '#B45309',
-                    fontSize: '11px',
-                    fontWeight: 750,
-                    letterSpacing: '0.04em',
                   }}
                 >
                   {specialization.provider}
                 </span>
 
-                <span
-                  style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '11px',
-                    fontWeight: 650,
-                    color: '#64748B',
-                  }}
-                >
+                <span className="spec-badge-category">
                   {specialization.category}
                 </span>
 
-                <span style={{ fontSize: '11px', color: '#CBD5E1' }}>•</span>
+                <span className="spec-badge-separator">•</span>
 
-                <span
-                  style={{
-                    fontSize: '11px',
-                    fontWeight: 700,
-                    color: '#10B981',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '4px',
-                  }}
-                >
-                  <ShieldCheck size={13} />
+                <span className="spec-badge-verified">
+                  <ShieldCheck size={13} aria-hidden="true" />
                   Verified Completion
                 </span>
               </div>
 
-              <h2
-                id="specialization-modal-title"
-                style={{
-                  fontSize: '1.4rem',
-                  color: '#0B2D61',
-                  fontWeight: 800,
-                  lineHeight: 1.3,
-                  margin: 0,
-                  letterSpacing: '-0.02em',
-                }}
-              >
+              <h2 id="specialization-modal-title" className="spec-modal-title">
                 {specialization.title}
               </h2>
             </div>
@@ -177,77 +115,25 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
               type="button"
               onClick={onClose}
               aria-label="Close popup"
-              style={{
-                padding: '8px',
-                borderRadius: '10px',
-                color: '#475467',
-                cursor: 'pointer',
-                border: '1px solid #E2E8F0',
-                background: '#F8FAFC',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'all 0.15s ease',
-                flexShrink: 0,
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#EEF2F6';
-                e.currentTarget.style.color = '#0B2D61';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = '#F8FAFC';
-                e.currentTarget.style.color = '#475467';
-              }}
+              className="spec-modal-close-btn"
             >
               <X size={18} aria-hidden="true" />
             </button>
           </div>
 
-          {/* Tab Navigation Controls */}
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              flexWrap: 'wrap',
-              gap: '10px',
-            }}
-          >
-            <div
-              role="tablist"
-              aria-label="Syllabus and Certificate Tabs"
-              style={{
-                display: 'flex',
-                background: '#F1F5F9',
-                padding: '3px',
-                borderRadius: '12px',
-                gap: '4px',
-                border: '1px solid #E2E8F0',
-              }}
-            >
+          {/* Navigation Controls & Action Buttons */}
+          <div className="spec-modal-controls-bar">
+            {/* Segmented Tab Switcher */}
+            <div role="tablist" aria-label="Syllabus and Certificate Tabs" className="spec-tab-switcher">
               <button
                 type="button"
                 role="tab"
                 aria-selected={activeTab === 'certificate'}
                 onClick={() => setActiveTab('certificate')}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  padding: '7px 16px',
-                  borderRadius: '9px',
-                  fontSize: '12px',
-                  fontWeight: 750,
-                  cursor: 'pointer',
-                  border: 'none',
-                  transition: 'all 0.18s ease',
-                  backgroundColor: activeTab === 'certificate' ? '#FFFFFF' : 'transparent',
-                  color: activeTab === 'certificate' ? '#0B2D61' : '#64748B',
-                  boxShadow: activeTab === 'certificate' ? '0 2px 6px rgba(11, 45, 97, 0.12)' : 'none',
-                }}
+                className={`spec-tab-btn ${activeTab === 'certificate' ? 'active' : ''}`}
               >
-                <Award size={14} color={activeTab === 'certificate' ? '#27AFA3' : '#64748B'} aria-hidden="true" />
-                <span>Certificate Image</span>
+                <Award size={14} color={activeTab === 'certificate' ? '#0ea5e9' : '#64748B'} aria-hidden="true" />
+                <span>Certificate</span>
               </button>
 
               <button
@@ -255,162 +141,96 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
                 role="tab"
                 aria-selected={activeTab === 'syllabus'}
                 onClick={() => setActiveTab('syllabus')}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  padding: '7px 16px',
-                  borderRadius: '9px',
-                  fontSize: '12px',
-                  fontWeight: 750,
-                  cursor: 'pointer',
-                  border: 'none',
-                  transition: 'all 0.18s ease',
-                  backgroundColor: activeTab === 'syllabus' ? '#FFFFFF' : 'transparent',
-                  color: activeTab === 'syllabus' ? '#0B2D61' : '#64748B',
-                  boxShadow: activeTab === 'syllabus' ? '0 2px 6px rgba(11, 45, 97, 0.12)' : 'none',
-                }}
+                className={`spec-tab-btn ${activeTab === 'syllabus' ? 'active' : ''}`}
               >
-                <BookOpen size={14} color={activeTab === 'syllabus' ? '#27AFA3' : '#64748B'} aria-hidden="true" />
+                <BookOpen size={14} color={activeTab === 'syllabus' ? '#0ea5e9' : '#64748B'} aria-hidden="true" />
                 <span>Curriculum & Syllabus</span>
               </button>
             </div>
 
-            {/* Quick Metadata Pill */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            {/* Quick Metadata Action Buttons */}
+            <div className="spec-actions-row">
               <button
                 type="button"
                 onClick={handleCopyId}
-                className="btn btn-secondary btn-sm"
-                style={{ fontSize: '11px', padding: '5px 10px', gap: '5px' }}
+                className="spec-action-btn"
                 aria-label="Copy credential ID"
+                title="Copy Credential ID"
               >
                 {copied ? <Check size={12} color="#10B981" /> : <Copy size={12} />}
-                <span>{copied ? 'ID Copied' : specialization.credentialId}</span>
+                <span className="spec-id-text">{copied ? 'ID Copied' : specialization.credentialId}</span>
               </button>
 
               <a
                 href={specialization.certificatePdf}
                 download
-                className="btn btn-secondary btn-sm"
-                style={{ fontSize: '11px', padding: '5px 10px', gap: '5px', textDecoration: 'none' }}
+                className="spec-action-btn"
                 title="Download original verified PDF"
               >
                 <Download size={12} />
-                <span>Original PDF</span>
+                <span>Download PDF</span>
               </a>
             </div>
           </div>
 
-          {/* TAB 1: DEDICATED CERTIFICATE IMAGE SECTION (No PDF Viewer) */}
+          {/* TAB 1: CERTIFICATE IMAGE VIEW */}
           {activeTab === 'certificate' && (
             <motion.div
               key="certificate-image-view"
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.22 }}
-              style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}
+              transition={{ duration: 0.2 }}
+              className="spec-tab-content"
             >
               {/* Certificate Image Frame Container */}
               <div
-                style={{
-                  position: 'relative',
-                  backgroundColor: '#F8FAFC',
-                  borderRadius: '16px',
-                  border: '1px solid #CBD5E1',
-                  overflow: 'hidden',
-                  boxShadow: '0 8px 30px rgba(11, 45, 97, 0.09)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  padding: '12px',
-                }}
+                className="spec-cert-frame"
                 onClick={() => setLightboxOpen(true)}
                 title="Click to view fullscreen certificate"
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setLightboxOpen(true); }}
               >
-                {/* Certificate Image */}
                 <img
                   src={specialization.certificateImage}
                   alt={`Official Certificate: ${specialization.title} awarded to Raman Kumar Sharma`}
-                  style={{
-                    width: '100%',
-                    height: 'auto',
-                    maxHeight: '480px',
-                    objectFit: 'contain',
-                    borderRadius: '10px',
-                    display: 'block',
-                    backgroundColor: '#FFFFFF',
-                    boxShadow: '0 2px 10px rgba(0,0,0,0.06)',
-                  }}
+                  className="spec-cert-img"
                   loading="eager"
                 />
 
-                {/* Hover overlay hint */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    bottom: '22px',
-                    right: '22px',
-                    backgroundColor: 'rgba(11, 45, 97, 0.88)',
-                    backdropFilter: 'blur(8px)',
-                    color: '#FFFFFF',
-                    padding: '6px 14px',
-                    borderRadius: '9999px',
-                    fontSize: '11.5px',
-                    fontWeight: 700,
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.25)',
-                    pointerEvents: 'none',
-                  }}
-                >
+                {/* Subtle tap/click to expand hint */}
+                <div className="spec-cert-expand-hint">
                   <ZoomIn size={13} />
-                  <span>Click to Expand</span>
+                  <span>Tap to Expand</span>
                 </div>
               </div>
 
               {/* Certificate Verification Summary Bar */}
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  backgroundColor: '#F0F9F8',
-                  border: '1px solid #BCE5DF',
-                  borderRadius: '12px',
-                  padding: '12px 16px',
-                  flexWrap: 'wrap',
-                  gap: '10px',
-                }}
-              >
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                  <span style={{ fontSize: '11px', color: '#1A8077', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+              <div className="spec-cert-verify-bar">
+                <div className="spec-cert-verify-info">
+                  <span className="spec-verify-kicker">
                     Authenticity Verification
                   </span>
-                  <span style={{ fontSize: '12.5px', color: '#0B2D61', fontWeight: 650 }}>
+                  <span className="spec-verify-recipient">
                     Recipient: <strong>Raman Kumar Sharma</strong> • Issued: <strong>{specialization.issueDate}</strong>
                   </span>
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div className="spec-cert-verify-actions">
                   <button
                     type="button"
                     onClick={() => setLightboxOpen(true)}
-                    className="btn btn-secondary btn-sm"
-                    style={{ fontSize: '12px', gap: '6px' }}
+                    className="spec-verify-btn spec-verify-btn-secondary"
                   >
                     <Maximize2 size={13} />
-                    <span>View Fullscreen</span>
+                    <span>Fullscreen</span>
                   </button>
 
                   <button
                     type="button"
                     onClick={() => setActiveTab('syllabus')}
-                    className="btn btn-primary btn-sm"
-                    style={{ fontSize: '12px', gap: '6px' }}
+                    className="spec-verify-btn spec-verify-btn-primary"
                   >
                     <span>View Syllabus</span>
                     <BookOpen size={13} />
@@ -420,257 +240,126 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
             </motion.div>
           )}
 
-          {/* TAB 2: FIXED & REDESIGNED SYLLABUS SECTION */}
+          {/* TAB 2: CURRICULUM & SYLLABUS VIEW */}
           {activeTab === 'syllabus' && (
             <motion.div
               key="syllabus-view"
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.22 }}
-              style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}
+              transition={{ duration: 0.2 }}
+              className="spec-tab-content"
             >
-              {/* Technical Scope Summary */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                <span
-                  style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '11px',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.06em',
-                    color: '#64748B',
-                    fontWeight: 700,
-                  }}
-                >
+              {/* Technical Scope Summary Card */}
+              <div className="spec-syllabus-card">
+                <span className="spec-section-label">
                   Technical Scope & Overview
                 </span>
-                <p style={{ fontSize: '0.92rem', color: '#334155', lineHeight: 1.65, margin: 0, fontWeight: 450 }}>
+                <p className="spec-summary-text">
                   {specialization.summary}
                 </p>
               </div>
 
               {/* Applied Competency Callout */}
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'flex-start',
-                  gap: '12px',
-                  padding: '12px 16px',
-                  backgroundColor: '#F0F9F8',
-                  borderRadius: '12px',
-                  border: '1px solid #BCE5DF',
-                }}
-              >
-                <div
-                  style={{
-                    width: '32px',
-                    height: '32px',
-                    borderRadius: '8px',
-                    backgroundColor: 'rgba(39, 175, 163, 0.15)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: '#1A8077',
-                    flexShrink: 0,
-                    marginTop: '2px',
-                  }}
-                >
+              <div className="spec-competency-callout">
+                <div className="spec-competency-icon">
                   <Cpu size={18} aria-hidden="true" />
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '10.5px',
-                      color: '#1A8077',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.06em',
-                      fontWeight: 800,
-                    }}
-                  >
+                <div className="spec-competency-content">
+                  <span className="spec-competency-label">
                     Applied Engineering Competency
                   </span>
-                  <p style={{ fontSize: '0.9rem', color: '#0B2D61', lineHeight: 1.5, fontWeight: 650, margin: 0 }}>
+                  <p className="spec-competency-text">
                     {specialization.appliedCompetency}
                   </p>
                 </div>
               </div>
 
               {/* Step-by-Step Curriculum Modules */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span
-                    style={{
-                      fontSize: '0.95rem',
-                      fontWeight: 750,
-                      color: '#0B2D61',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                    }}
-                  >
-                    <BookOpen size={16} color="#27AFA3" aria-hidden="true" />
+              <div className="spec-modules-section">
+                <div className="spec-modules-header">
+                  <span className="spec-modules-title">
+                    <BookOpen size={15} color="#0ea5e9" aria-hidden="true" />
                     Mastered Curriculum & Syllabus Modules
                   </span>
-                  <span style={{ fontSize: '11px', color: '#64748B', fontFamily: 'var(--font-mono)' }}>
+                  <span className="spec-modules-count">
                     {specialization.syllabus.length} Completed Modules
                   </span>
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <div className="spec-modules-list">
                   {specialization.syllabus.map((item, idx) => (
                     <motion.div
                       key={idx}
-                      initial={{ opacity: 0, x: -8 }}
+                      initial={{ opacity: 0, x: -6 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.2, delay: idx * 0.04 }}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'flex-start',
-                        gap: '12px',
-                        padding: '12px 16px',
-                        backgroundColor: '#F8FAFC',
-                        border: '1px solid #E2E8F0',
-                        borderRadius: '10px',
-                        transition: 'border-color 0.15s ease',
-                      }}
+                      transition={{ duration: 0.18, delay: idx * 0.03 }}
+                      className="spec-module-item"
                     >
-                      <span
-                        style={{
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          width: '24px',
-                          height: '24px',
-                          borderRadius: '6px',
-                          backgroundColor: '#0B2D61',
-                          color: '#FFFFFF',
-                          fontSize: '11px',
-                          fontWeight: 800,
-                          flexShrink: 0,
-                          marginTop: '1px',
-                        }}
-                      >
-                        0{idx + 1}
+                      <span className="spec-module-num">
+                        {String(idx + 1).padStart(2, '0')}
                       </span>
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', flex: 1 }}>
-                        <span style={{ fontSize: '0.88rem', color: '#1E293B', fontWeight: 600, lineHeight: 1.5 }}>
-                          {item}
-                        </span>
-                      </div>
-                      <CheckCircle2 size={16} color="#10B981" style={{ flexShrink: 0, marginTop: '2px' }} aria-hidden="true" />
+                      <span className="spec-module-text">
+                        {item}
+                      </span>
+                      <CheckCircle2 size={16} color="#10B981" className="spec-module-check" aria-hidden="true" />
                     </motion.div>
                   ))}
                 </div>
               </div>
 
               {/* Mastered Technologies & Topics */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                <span
-                  style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '10.5px',
-                    textTransform: 'uppercase',
-                    fontWeight: 700,
-                    color: '#64748B',
-                    letterSpacing: '0.06em',
-                  }}
-                >
+              <div className="spec-topics-section">
+                <span className="spec-section-label">
                   Verified Core Competencies:
                 </span>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                <div className="spec-topics-wrap">
                   {specialization.topics.map((topic) => (
-                    <span
-                      key={topic}
-                      style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '11px',
-                        padding: '4px 10px',
-                        borderRadius: '6px',
-                        backgroundColor: '#EEF4F8',
-                        border: '1px solid #CBDCEB',
-                        color: '#0B2D61',
-                        fontWeight: 650,
-                      }}
-                    >
+                    <span key={topic} className="spec-topic-chip">
                       {topic}
                     </span>
                   ))}
                 </div>
               </div>
-
-              {/* Bottom Quick Switch */}
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  paddingTop: '10px',
-                  borderTop: '1px solid #E2E8F0',
-                  marginTop: '4px',
-                }}
-              >
-                <button
-                  type="button"
-                  onClick={() => setActiveTab('certificate')}
-                  className="btn btn-secondary btn-sm"
-                  style={{ gap: '6px', fontSize: '12px' }}
-                >
-                  <Award size={13} color="#27AFA3" />
-                  <span>View Certificate Image</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={onClose}
-                  className="btn btn-primary btn-sm"
-                  style={{ fontSize: '12px' }}
-                >
-                  Done
-                </button>
-              </div>
             </motion.div>
           )}
 
-          {/* Modal Bottom Footer */}
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              paddingTop: '12px',
-              borderTop: '1px solid #E2E8F0',
-              flexWrap: 'wrap',
-              gap: '10px',
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          {/* Unified Modal Footer */}
+          <div className="spec-modal-footer">
+            <div className="spec-footer-info">
               <Clock size={13} color="#64748B" aria-hidden="true" />
-              <span style={{ fontSize: '11.5px', color: '#64748B', fontWeight: 600 }}>
-                {specialization.hours}
-              </span>
+              <span>{specialization.hours}</span>
             </div>
 
-            <button
-              type="button"
-              onClick={onClose}
-              style={{
-                padding: '8px 22px',
-                borderRadius: '10px',
-                backgroundColor: '#0B2D61',
-                color: '#FFFFFF',
-                fontSize: '13px',
-                fontWeight: 700,
-                cursor: 'pointer',
-                border: 'none',
-                boxShadow: '0 4px 12px rgba(11, 45, 97, 0.2)',
-                transition: 'background-color 0.15s ease',
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#123F87')}
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#0B2D61')}
-            >
-              Close
-            </button>
+            <div className="spec-footer-actions">
+              {activeTab === 'syllabus' ? (
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('certificate')}
+                  className="spec-footer-btn spec-footer-btn-secondary"
+                >
+                  <Award size={13} color="#0ea5e9" />
+                  <span>Certificate Image</span>
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('syllabus')}
+                  className="spec-footer-btn spec-footer-btn-secondary"
+                >
+                  <BookOpen size={13} color="#0ea5e9" />
+                  <span>Curriculum & Syllabus</span>
+                </button>
+              )}
+
+              <button
+                type="button"
+                onClick={onClose}
+                className="spec-footer-btn spec-footer-btn-primary"
+              >
+                Done
+              </button>
+            </div>
           </div>
         </motion.div>
 
@@ -682,40 +371,18 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                backgroundColor: 'rgba(0, 0, 0, 0.92)',
-                zIndex: 1100,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '24px',
-              }}
+              className="spec-lightbox-backdrop"
               onClick={() => setLightboxOpen(false)}
             >
               {/* Lightbox Top Bar */}
               <div
-                style={{
-                  position: 'absolute',
-                  top: '20px',
-                  right: '24px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px',
-                  zIndex: 1101,
-                }}
+                className="spec-lightbox-bar"
                 onClick={(e) => e.stopPropagation()}
               >
                 <a
                   href={specialization.certificatePdf}
                   download
-                  className="btn btn-secondary btn-sm"
-                  style={{ backgroundColor: 'rgba(255,255,255,0.15)', color: '#FFFFFF', border: '1px solid rgba(255,255,255,0.3)', gap: '6px' }}
+                  className="spec-lightbox-download-btn"
                 >
                   <Download size={13} />
                   <span>Download PDF</span>
@@ -724,18 +391,7 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
                 <button
                   type="button"
                   onClick={() => setLightboxOpen(false)}
-                  style={{
-                    backgroundColor: 'rgba(255,255,255,0.2)',
-                    border: '1px solid rgba(255,255,255,0.35)',
-                    borderRadius: '50%',
-                    width: '38px',
-                    height: '38px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: '#FFFFFF',
-                    cursor: 'pointer',
-                  }}
+                  className="spec-lightbox-close-btn"
                   aria-label="Close fullscreen"
                 >
                   <X size={20} />
@@ -746,17 +402,11 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
               <motion.img
                 src={specialization.certificateImage}
                 alt={specialization.title}
-                initial={{ scale: 0.9, opacity: 0 }}
+                initial={{ scale: 0.92, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                transition={{ duration: 0.25 }}
-                style={{
-                  maxWidth: '92vw',
-                  maxHeight: '86vh',
-                  objectFit: 'contain',
-                  borderRadius: '12px',
-                  boxShadow: '0 20px 60px rgba(0,0,0,0.6)',
-                }}
+                exit={{ scale: 0.92, opacity: 0 }}
+                transition={{ duration: 0.24 }}
+                className="spec-lightbox-img"
                 onClick={(e) => e.stopPropagation()}
               />
             </motion.div>
@@ -764,23 +414,769 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
         </AnimatePresence>
 
         <style>{`
-          .modal-card::-webkit-scrollbar {
+          /* Modal Backdrop */
+          .spec-modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(11, 45, 97, 0.72);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            z-index: 1000;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 20px 14px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+          }
+
+          /* Modal Card */
+          .spec-modal-card {
+            background: #ffffff;
+            border: 1px solid rgba(18, 63, 135, 0.16);
+            border-radius: 20px;
+            max-width: 860px;
+            width: 100%;
+            padding: 24px 28px;
+            box-shadow: 0 25px 65px -12px rgba(11, 45, 97, 0.35), 0 0 0 1px rgba(18, 63, 135, 0.08);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin: auto 0;
+            max-height: calc(100dvh - 40px);
+            overflow-y: auto;
+            box-sizing: border-box;
+          }
+
+          .spec-modal-card::-webkit-scrollbar {
             width: 6px;
           }
-          .modal-card::-webkit-scrollbar-track {
+          .spec-modal-card::-webkit-scrollbar-track {
             background: transparent;
           }
-          .modal-card::-webkit-scrollbar-thumb {
+          .spec-modal-card::-webkit-scrollbar-thumb {
             background: rgba(11, 45, 97, 0.16);
             border-radius: 9999px;
           }
-          .modal-card::-webkit-scrollbar-thumb:hover {
-            background: rgba(11, 45, 97, 0.32);
+
+          /* Header */
+          .spec-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 14px;
           }
+
+          .spec-modal-title-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            min-width: 0;
+            flex: 1;
+          }
+
+          .spec-modal-badges {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+          }
+
+          .spec-badge-provider {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 750;
+            letter-spacing: 0.04em;
+          }
+
+          .spec-badge-category {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 650;
+            color: #64748b;
+          }
+
+          .spec-badge-separator {
+            font-size: 11px;
+            color: #cbd5e1;
+          }
+
+          .spec-badge-verified {
+            font-size: 11px;
+            font-weight: 700;
+            color: #10b981;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+          }
+
+          .spec-modal-title {
+            font-size: clamp(1.125rem, 3.5vw, 1.375rem);
+            color: #0b2d61;
+            font-weight: 800;
+            line-height: 1.3;
+            margin: 0;
+            letter-spacing: -0.02em;
+            word-break: break-word;
+          }
+
+          .spec-modal-close-btn {
+            padding: 8px;
+            border-radius: 10px;
+            color: #475467;
+            cursor: pointer;
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s ease;
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+          }
+
+          .spec-modal-close-btn:hover {
+            background-color: #eef2f6;
+            color: #0b2d61;
+          }
+
+          /* Controls Bar */
+          .spec-modal-controls-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+          }
+
+          .spec-tab-switcher {
+            display: flex;
+            background: #f1f5f9;
+            padding: 3px;
+            border-radius: 12px;
+            gap: 4px;
+            border: 1px solid #e2e8f0;
+          }
+
+          .spec-tab-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 7px 16px;
+            border-radius: 9px;
+            font-size: 12px;
+            font-weight: 750;
+            cursor: pointer;
+            border: none;
+            transition: all 0.18s ease;
+            background-color: transparent;
+            color: #64748b;
+            white-space: nowrap;
+          }
+
+          .spec-tab-btn.active {
+            background-color: #ffffff;
+            color: #0b2d61;
+            box-shadow: 0 2px 6px rgba(11, 45, 97, 0.12);
+          }
+
+          .spec-actions-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+          }
+
+          .spec-action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            padding: 6px 12px;
+            font-size: 11px;
+            font-weight: 650;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            background: #f8fafc;
+            color: #0b2d61;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.15s ease;
+          }
+
+          .spec-action-btn:hover {
+            background: #eef2f6;
+            border-color: #94a3b8;
+          }
+
+          .spec-id-text {
+            font-family: var(--font-mono);
+            font-size: 10.5px;
+            max-width: 180px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+
+          /* Tab Content */
+          .spec-tab-content {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+          }
+
+          /* Certificate Frame */
+          .spec-cert-frame {
+            position: relative;
+            background-color: #f8fafc;
+            border-radius: 14px;
+            border: 1px solid #cbd5e1;
+            overflow: hidden;
+            box-shadow: 0 6px 24px rgba(11, 45, 97, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 10px;
+          }
+
+          .spec-cert-img {
+            width: 100%;
+            height: auto;
+            max-height: 460px;
+            object-fit: contain;
+            border-radius: 8px;
+            display: block;
+            background-color: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+          }
+
+          .spec-cert-expand-hint {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            background-color: rgba(11, 45, 97, 0.88);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: #ffffff;
+            padding: 5px 12px;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            pointer-events: none;
+          }
+
+          /* Certificate Verification Bar */
+          .spec-cert-verify-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 12px;
+            padding: 12px 16px;
+            flex-wrap: wrap;
+            gap: 10px;
+          }
+
+          .spec-cert-verify-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+          }
+
+          .spec-verify-kicker {
+            font-size: 10.5px;
+            color: #16a34a;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+          }
+
+          .spec-verify-recipient {
+            font-size: 12px;
+            color: #0b2d61;
+            font-weight: 600;
+          }
+
+          .spec-cert-verify-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+          }
+
+          .spec-verify-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 7px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s ease;
+          }
+
+          .spec-verify-btn-secondary {
+            background: #ffffff;
+            color: #0b2d61;
+            border: 1px solid #cbd5e1;
+          }
+
+          .spec-verify-btn-secondary:hover {
+            background: #f1f5f9;
+          }
+
+          .spec-verify-btn-primary {
+            background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 2px 8px rgba(14, 165, 233, 0.35);
+          }
+
+          .spec-verify-btn-primary:hover {
+            background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
+          }
+
+          /* Syllabus Card */
+          .spec-syllabus-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 14px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+          }
+
+          .spec-section-label {
+            font-family: var(--font-mono);
+            font-size: 10.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #64748b;
+            font-weight: 700;
+          }
+
+          .spec-summary-text {
+            font-size: 0.9rem;
+            color: #334155;
+            line-height: 1.6;
+            margin: 0;
+            font-weight: 450;
+          }
+
+          /* Competency Callout */
+          .spec-competency-callout {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 16px;
+            background-color: #f0fdfa;
+            border-radius: 12px;
+            border: 1px solid #ccfbf1;
+          }
+
+          .spec-competency-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background-color: rgba(14, 165, 233, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0284c7;
+            flex-shrink: 0;
+            margin-top: 2px;
+          }
+
+          .spec-competency-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+          }
+
+          .spec-competency-label {
+            font-family: var(--font-mono);
+            font-size: 10.5px;
+            color: #0284c7;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-weight: 800;
+          }
+
+          .spec-competency-text {
+            font-size: 0.88rem;
+            color: #0b2d61;
+            line-height: 1.5;
+            font-weight: 650;
+            margin: 0;
+          }
+
+          /* Modules Section */
+          .spec-modules-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+          }
+
+          .spec-modules-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+          }
+
+          .spec-modules-title {
+            font-size: 0.92rem;
+            font-weight: 750;
+            color: #0b2d61;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+          }
+
+          .spec-modules-count {
+            font-size: 11px;
+            color: #64748b;
+            font-family: var(--font-mono);
+          }
+
+          .spec-modules-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+          }
+
+          .spec-module-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 11px 14px;
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            transition: border-color 0.15s ease, background-color 0.15s ease;
+          }
+
+          .spec-module-item:hover {
+            border-color: #cbd5e1;
+            background-color: #f1f5f9;
+          }
+
+          .spec-module-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            background-color: #0b2d61;
+            color: #ffffff;
+            font-size: 10.5px;
+            font-weight: 800;
+            flex-shrink: 0;
+            margin-top: 1px;
+          }
+
+          .spec-module-text {
+            font-size: 0.85rem;
+            color: #1e293b;
+            font-weight: 600;
+            line-height: 1.5;
+            flex: 1;
+          }
+
+          .spec-module-check {
+            flex-shrink: 0;
+            margin-top: 2px;
+          }
+
+          /* Topics Section */
+          .spec-topics-section {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+          }
+
+          .spec-topics-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+          }
+
+          .spec-topic-chip {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background-color: #eef4f8;
+            border: 1px solid #cbdceb;
+            color: #0b2d61;
+            font-weight: 650;
+          }
+
+          /* Modal Footer */
+          .spec-modal-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            border-top: 1px solid #e2e8f0;
+            flex-wrap: wrap;
+            gap: 10px;
+          }
+
+          .spec-footer-info {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11.5px;
+            color: #64748b;
+            font-weight: 600;
+          }
+
+          .spec-footer-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+          }
+
+          .spec-footer-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 7px 18px;
+            border-radius: 9px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s ease;
+          }
+
+          .spec-footer-btn-secondary {
+            background: #f8fafc;
+            color: #0b2d61;
+            border: 1px solid #cbd5e1;
+          }
+
+          .spec-footer-btn-secondary:hover {
+            background: #eef2f6;
+          }
+
+          .spec-footer-btn-primary {
+            background: #0b2d61;
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 3px 10px rgba(11, 45, 97, 0.2);
+          }
+
+          .spec-footer-btn-primary:hover {
+            background: #123f87;
+          }
+
+          /* Lightbox */
+          .spec-lightbox-backdrop {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.94);
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+          }
+
+          .spec-lightbox-bar {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1101;
+          }
+
+          .spec-lightbox-download-btn {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+          }
+
+          .spec-lightbox-close-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            cursor: pointer;
+          }
+
+          .spec-lightbox-img {
+            max-width: 95vw;
+            max-height: 82vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+          }
+
+          /* -------------------------------------------------------------
+             MOBILE SCREEN OPTIMIZATIONS (e.g. Oppo F25 Pro <= 640px)
+             ------------------------------------------------------------- */
           @media (max-width: 640px) {
-            .modal-card {
-              padding: 16px 16px !important;
+            .spec-modal-backdrop {
+              padding: 10px 8px;
+              align-items: flex-start;
+            }
+
+            .spec-modal-card {
+              padding: 16px 14px !important;
               border-radius: 16px !important;
+              gap: 12px;
+              max-height: calc(100dvh - 20px);
+            }
+
+            .spec-modal-header {
+              padding-bottom: 10px;
+            }
+
+            .spec-modal-badges {
+              gap: 5px;
+            }
+
+            .spec-modal-title {
+              font-size: 1.1rem;
+            }
+
+            .spec-modal-close-btn {
+              width: 32px;
+              height: 32px;
+              padding: 6px;
+            }
+
+            .spec-modal-controls-bar {
+              flex-direction: column;
+              align-items: stretch;
+              gap: 8px;
+            }
+
+            .spec-tab-switcher {
+              width: 100%;
+            }
+
+            .spec-tab-btn {
+              flex: 1;
+              padding: 8px 10px;
+              font-size: 11.5px;
+            }
+
+            .spec-actions-row {
+              width: 100%;
+              display: flex;
+            }
+
+            .spec-action-btn {
+              flex: 1;
+              padding: 6px 8px;
+              font-size: 10.5px;
+            }
+
+            .spec-id-text {
+              max-width: 110px;
+            }
+
+            .spec-cert-frame {
+              padding: 6px;
+            }
+
+            .spec-cert-img {
+              max-height: 320px;
+            }
+
+            .spec-cert-verify-bar {
+              padding: 10px 12px;
+              flex-direction: column;
+              align-items: stretch;
+              gap: 8px;
+            }
+
+            .spec-cert-verify-actions {
+              width: 100%;
+              display: flex;
+            }
+
+            .spec-verify-btn {
+              flex: 1;
+              padding: 7px 10px;
+              font-size: 11px;
+            }
+
+            .spec-syllabus-card {
+              padding: 12px 12px;
+            }
+
+            .spec-competency-callout {
+              padding: 10px 12px;
+              gap: 10px;
+            }
+
+            .spec-module-item {
+              padding: 9px 11px;
+              gap: 8px;
+            }
+
+            .spec-module-text {
+              font-size: 0.8125rem;
+            }
+
+            .spec-modal-footer {
+              padding-top: 10px;
+              flex-direction: column;
+              align-items: stretch;
+              gap: 8px;
+            }
+
+            .spec-footer-info {
+              justify-content: center;
+            }
+
+            .spec-footer-actions {
+              width: 100%;
+              display: flex;
+            }
+
+            .spec-footer-btn {
+              flex: 1;
+              padding: 8px 12px;
+              font-size: 11.5px;
             }
           }
         `}</style>
