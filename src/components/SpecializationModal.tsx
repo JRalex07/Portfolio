@@ -68,18 +68,18 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.22 }}
+        transition={{ duration: 0.2 }}
         onClick={onClose}
       >
         <motion.div
           className="spec-modal-card"
-          initial={{ opacity: 0, scale: 0.95, y: 16 }}
+          initial={{ opacity: 0, scale: 0.96, y: 12 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 16 }}
-          transition={{ duration: 0.26, ease: [0.16, 1, 0.3, 1] as const }}
+          exit={{ opacity: 0, scale: 0.96, y: 12 }}
+          transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] as const }}
           onClick={(e) => e.stopPropagation()}
         >
-          {/* Top Modal Header */}
+          {/* ── Fixed Header ── */}
           <div className="spec-modal-header">
             <div className="spec-modal-title-group">
               <div className="spec-modal-badges">
@@ -121,9 +121,9 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
             </button>
           </div>
 
-          {/* Navigation Controls & Action Buttons */}
+          {/* ── Fixed Segmented Tab Bar & Action Controls ── */}
           <div className="spec-modal-controls-bar">
-            {/* Segmented Tab Switcher */}
+            {/* Tab Switcher */}
             <div role="tablist" aria-label="Syllabus and Certificate Tabs" className="spec-tab-switcher">
               <button
                 type="button"
@@ -148,7 +148,7 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
               </button>
             </div>
 
-            {/* Quick Metadata Action Buttons */}
+            {/* Quick Actions */}
             <div className="spec-actions-row">
               <button
                 type="button"
@@ -173,158 +173,161 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
             </div>
           </div>
 
-          {/* TAB 1: CERTIFICATE IMAGE VIEW */}
-          {activeTab === 'certificate' && (
-            <motion.div
-              key="certificate-image-view"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.2 }}
-              className="spec-tab-content"
-            >
-              {/* Certificate Image Frame Container */}
-              <div
-                className="spec-cert-frame"
-                onClick={() => setLightboxOpen(true)}
-                title="Click to view fullscreen certificate"
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setLightboxOpen(true); }}
+          {/* ── Scrollable Body Area ── */}
+          <div className="spec-modal-body">
+            {/* TAB 1: CERTIFICATE IMAGE VIEW */}
+            {activeTab === 'certificate' && (
+              <motion.div
+                key="certificate-image-view"
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.18 }}
+                className="spec-tab-content"
               >
-                <img
-                  src={specialization.certificateImage}
-                  alt={`Official Certificate: ${specialization.title} awarded to Raman Kumar Sharma`}
-                  className="spec-cert-img"
-                  loading="eager"
-                />
+                {/* Certificate Image Frame Container */}
+                <div
+                  className="spec-cert-frame"
+                  onClick={() => setLightboxOpen(true)}
+                  title="Click to view fullscreen certificate"
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setLightboxOpen(true); }}
+                >
+                  <img
+                    src={specialization.certificateImage}
+                    alt={`Official Certificate: ${specialization.title} awarded to Raman Kumar Sharma`}
+                    className="spec-cert-img"
+                    loading="eager"
+                  />
 
-                {/* Subtle tap/click to expand hint */}
-                <div className="spec-cert-expand-hint">
-                  <ZoomIn size={13} />
-                  <span>Tap to Expand</span>
+                  {/* Subtle hover/tap hint */}
+                  <div className="spec-cert-expand-hint">
+                    <ZoomIn size={13} />
+                    <span>Click / Tap to Expand</span>
+                  </div>
                 </div>
-              </div>
 
-              {/* Certificate Verification Summary Bar */}
-              <div className="spec-cert-verify-bar">
-                <div className="spec-cert-verify-info">
-                  <span className="spec-verify-kicker">
-                    Authenticity Verification
+                {/* Certificate Verification Summary Bar */}
+                <div className="spec-cert-verify-bar">
+                  <div className="spec-cert-verify-info">
+                    <span className="spec-verify-kicker">
+                      Authenticity Verification
+                    </span>
+                    <span className="spec-verify-recipient">
+                      Recipient: <strong>Raman Kumar Sharma</strong> • Issued: <strong>{specialization.issueDate}</strong>
+                    </span>
+                  </div>
+
+                  <div className="spec-cert-verify-actions">
+                    <button
+                      type="button"
+                      onClick={() => setLightboxOpen(true)}
+                      className="spec-verify-btn spec-verify-btn-secondary"
+                    >
+                      <Maximize2 size={13} />
+                      <span>Fullscreen</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setActiveTab('syllabus')}
+                      className="spec-verify-btn spec-verify-btn-primary"
+                    >
+                      <span>View Syllabus</span>
+                      <BookOpen size={13} />
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {/* TAB 2: CURRICULUM & SYLLABUS VIEW */}
+            {activeTab === 'syllabus' && (
+              <motion.div
+                key="syllabus-view"
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.18 }}
+                className="spec-tab-content"
+              >
+                {/* Technical Scope Summary Card */}
+                <div className="spec-syllabus-card">
+                  <span className="spec-section-label">
+                    Technical Scope & Overview
                   </span>
-                  <span className="spec-verify-recipient">
-                    Recipient: <strong>Raman Kumar Sharma</strong> • Issued: <strong>{specialization.issueDate}</strong>
-                  </span>
-                </div>
-
-                <div className="spec-cert-verify-actions">
-                  <button
-                    type="button"
-                    onClick={() => setLightboxOpen(true)}
-                    className="spec-verify-btn spec-verify-btn-secondary"
-                  >
-                    <Maximize2 size={13} />
-                    <span>Fullscreen</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => setActiveTab('syllabus')}
-                    className="spec-verify-btn spec-verify-btn-primary"
-                  >
-                    <span>View Syllabus</span>
-                    <BookOpen size={13} />
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          )}
-
-          {/* TAB 2: CURRICULUM & SYLLABUS VIEW */}
-          {activeTab === 'syllabus' && (
-            <motion.div
-              key="syllabus-view"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.2 }}
-              className="spec-tab-content"
-            >
-              {/* Technical Scope Summary Card */}
-              <div className="spec-syllabus-card">
-                <span className="spec-section-label">
-                  Technical Scope & Overview
-                </span>
-                <p className="spec-summary-text">
-                  {specialization.summary}
-                </p>
-              </div>
-
-              {/* Applied Competency Callout */}
-              <div className="spec-competency-callout">
-                <div className="spec-competency-icon">
-                  <Cpu size={18} aria-hidden="true" />
-                </div>
-                <div className="spec-competency-content">
-                  <span className="spec-competency-label">
-                    Applied Engineering Competency
-                  </span>
-                  <p className="spec-competency-text">
-                    {specialization.appliedCompetency}
+                  <p className="spec-summary-text">
+                    {specialization.summary}
                   </p>
                 </div>
-              </div>
 
-              {/* Step-by-Step Curriculum Modules */}
-              <div className="spec-modules-section">
-                <div className="spec-modules-header">
-                  <span className="spec-modules-title">
-                    <BookOpen size={15} color="#0ea5e9" aria-hidden="true" />
-                    Mastered Curriculum & Syllabus Modules
-                  </span>
-                  <span className="spec-modules-count">
-                    {specialization.syllabus.length} Completed Modules
-                  </span>
-                </div>
-
-                <div className="spec-modules-list">
-                  {specialization.syllabus.map((item, idx) => (
-                    <motion.div
-                      key={idx}
-                      initial={{ opacity: 0, x: -6 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.18, delay: idx * 0.03 }}
-                      className="spec-module-item"
-                    >
-                      <span className="spec-module-num">
-                        {String(idx + 1).padStart(2, '0')}
-                      </span>
-                      <span className="spec-module-text">
-                        {item}
-                      </span>
-                      <CheckCircle2 size={16} color="#10B981" className="spec-module-check" aria-hidden="true" />
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Mastered Technologies & Topics */}
-              <div className="spec-topics-section">
-                <span className="spec-section-label">
-                  Verified Core Competencies:
-                </span>
-                <div className="spec-topics-wrap">
-                  {specialization.topics.map((topic) => (
-                    <span key={topic} className="spec-topic-chip">
-                      {topic}
+                {/* Applied Competency Callout */}
+                <div className="spec-competency-callout">
+                  <div className="spec-competency-icon">
+                    <Cpu size={18} aria-hidden="true" />
+                  </div>
+                  <div className="spec-competency-content">
+                    <span className="spec-competency-label">
+                      Applied Engineering Competency
                     </span>
-                  ))}
+                    <p className="spec-competency-text">
+                      {specialization.appliedCompetency}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          )}
 
-          {/* Unified Modal Footer */}
+                {/* Step-by-Step Curriculum Modules */}
+                <div className="spec-modules-section">
+                  <div className="spec-modules-header">
+                    <span className="spec-modules-title">
+                      <BookOpen size={15} color="#0ea5e9" aria-hidden="true" />
+                      Mastered Curriculum & Syllabus Modules
+                    </span>
+                    <span className="spec-modules-count">
+                      {specialization.syllabus.length} Completed Modules
+                    </span>
+                  </div>
+
+                  <div className="spec-modules-list">
+                    {specialization.syllabus.map((item, idx) => (
+                      <motion.div
+                        key={idx}
+                        initial={{ opacity: 0, x: -6 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.16, delay: idx * 0.03 }}
+                        className="spec-module-item"
+                      >
+                        <span className="spec-module-num">
+                          {String(idx + 1).padStart(2, '0')}
+                        </span>
+                        <span className="spec-module-text">
+                          {item}
+                        </span>
+                        <CheckCircle2 size={16} color="#10B981" className="spec-module-check" aria-hidden="true" />
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Mastered Technologies & Topics */}
+                <div className="spec-topics-section">
+                  <span className="spec-section-label">
+                    Verified Core Competencies:
+                  </span>
+                  <div className="spec-topics-wrap">
+                    {specialization.topics.map((topic) => (
+                      <span key={topic} className="spec-topic-chip">
+                        {topic}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </div>
+
+          {/* ── Fixed Bottom Footer ── */}
           <div className="spec-modal-footer">
             <div className="spec-footer-info">
               <Clock size={13} color="#64748B" aria-hidden="true" />
@@ -363,7 +366,7 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
           </div>
         </motion.div>
 
-        {/* FULLSCREEN LIGHTBOX FOR CERTIFICATE IMAGE */}
+        {/* ── Fullscreen Lightbox ── */}
         <AnimatePresence>
           {lightboxOpen && (
             <motion.div
@@ -374,7 +377,6 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
               className="spec-lightbox-backdrop"
               onClick={() => setLightboxOpen(false)}
             >
-              {/* Lightbox Top Bar */}
               <div
                 className="spec-lightbox-bar"
                 onClick={(e) => e.stopPropagation()}
@@ -398,14 +400,13 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
                 </button>
               </div>
 
-              {/* Lightbox Certificate Image */}
               <motion.img
                 src={specialization.certificateImage}
                 alt={specialization.title}
                 initial={{ scale: 0.92, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.92, opacity: 0 }}
-                transition={{ duration: 0.24 }}
+                transition={{ duration: 0.22 }}
                 className="spec-lightbox-img"
                 onClick={(e) => e.stopPropagation()}
               />
@@ -414,60 +415,48 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
         </AnimatePresence>
 
         <style>{`
-          /* Modal Backdrop */
+          /* Modal Backdrop — Perfectly Centered on Viewport */
           .spec-modal-backdrop {
             position: fixed;
             inset: 0;
-            background-color: rgba(11, 45, 97, 0.72);
+            background-color: rgba(11, 45, 97, 0.68);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
-            z-index: 1000;
+            z-index: 1050;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             justify-content: center;
-            padding: 20px 14px;
+            padding: 20px 16px;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
           }
 
-          /* Modal Card */
+          /* Modal Card — Rigidly bounded within viewport, with fixed header/footer and scrollable body */
           .spec-modal-card {
             background: #ffffff;
             border: 1px solid rgba(18, 63, 135, 0.16);
             border-radius: 20px;
-            max-width: 860px;
+            max-width: 820px;
             width: 100%;
-            padding: 24px 28px;
-            box-shadow: 0 25px 65px -12px rgba(11, 45, 97, 0.35), 0 0 0 1px rgba(18, 63, 135, 0.08);
-            position: relative;
+            max-height: min(90vh, 760px);
             display: flex;
             flex-direction: column;
-            gap: 16px;
-            margin: auto 0;
-            max-height: calc(100dvh - 40px);
-            overflow-y: auto;
+            box-shadow: 0 25px 60px -15px rgba(11, 45, 97, 0.4), 0 0 0 1px rgba(18, 63, 135, 0.08);
+            position: relative;
+            overflow: hidden;
             box-sizing: border-box;
           }
 
-          .spec-modal-card::-webkit-scrollbar {
-            width: 6px;
-          }
-          .spec-modal-card::-webkit-scrollbar-track {
-            background: transparent;
-          }
-          .spec-modal-card::-webkit-scrollbar-thumb {
-            background: rgba(11, 45, 97, 0.16);
-            border-radius: 9999px;
-          }
-
-          /* Header */
+          /* Header — Fixed at top of card */
           .spec-modal-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
             gap: 12px;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 14px;
+            border-bottom: 1px solid #eef2f6;
+            padding: 18px 24px 14px;
+            flex-shrink: 0;
+            background: #ffffff;
           }
 
           .spec-modal-title-group {
@@ -517,7 +506,7 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
           }
 
           .spec-modal-title {
-            font-size: clamp(1.125rem, 3.5vw, 1.375rem);
+            font-size: clamp(1.1rem, 2.4vw, 1.35rem);
             color: #0b2d61;
             font-weight: 800;
             line-height: 1.3;
@@ -547,18 +536,22 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
             color: #0b2d61;
           }
 
-          /* Controls Bar */
+          /* Controls Bar — Fixed below header */
           .spec-modal-controls-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 10px;
+            padding: 10px 24px 12px;
+            border-bottom: 1px solid #f1f5f9;
+            background: #fafbfc;
+            flex-shrink: 0;
           }
 
           .spec-tab-switcher {
             display: flex;
-            background: #f1f5f9;
+            background: #eef2f6;
             padding: 3px;
             border-radius: 12px;
             gap: 4px;
@@ -605,7 +598,7 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
             font-weight: 650;
             border-radius: 8px;
             border: 1px solid #cbd5e1;
-            background: #f8fafc;
+            background: #ffffff;
             color: #0b2d61;
             cursor: pointer;
             text-decoration: none;
@@ -626,7 +619,28 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
             white-space: nowrap;
           }
 
-          /* Tab Content */
+          /* Scrollable Modal Body */
+          .spec-modal-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            -webkit-overflow-scrolling: touch;
+          }
+
+          .spec-modal-body::-webkit-scrollbar {
+            width: 6px;
+          }
+          .spec-modal-body::-webkit-scrollbar-track {
+            background: transparent;
+          }
+          .spec-modal-body::-webkit-scrollbar-thumb {
+            background: rgba(11, 45, 97, 0.16);
+            border-radius: 9999px;
+          }
+
           .spec-tab-content {
             display: flex;
             flex-direction: column;
@@ -640,29 +654,29 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
             border-radius: 14px;
             border: 1px solid #cbd5e1;
             overflow: hidden;
-            box-shadow: 0 6px 24px rgba(11, 45, 97, 0.08);
+            box-shadow: 0 4px 20px rgba(11, 45, 97, 0.06);
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            padding: 10px;
+            padding: 8px;
           }
 
           .spec-cert-img {
             width: 100%;
             height: auto;
-            max-height: 460px;
+            max-height: min(44vh, 340px);
             object-fit: contain;
             border-radius: 8px;
             display: block;
             background-color: #ffffff;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
           }
 
           .spec-cert-expand-hint {
             position: absolute;
-            bottom: 16px;
-            right: 16px;
+            bottom: 14px;
+            right: 14px;
             background-color: rgba(11, 45, 97, 0.88);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
@@ -686,7 +700,7 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
             background-color: #f0fdf4;
             border: 1px solid #bbf7d0;
             border-radius: 12px;
-            padding: 12px 16px;
+            padding: 10px 14px;
             flex-wrap: wrap;
             gap: 10px;
           }
@@ -722,9 +736,9 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
             align-items: center;
             justify-content: center;
             gap: 6px;
-            padding: 7px 14px;
+            padding: 6px 14px;
             border-radius: 8px;
-            font-size: 12px;
+            font-size: 11.5px;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.15s ease;
@@ -756,7 +770,7 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
             background: #f8fafc;
             border: 1px solid #e2e8f0;
             border-radius: 12px;
-            padding: 14px 16px;
+            padding: 12px 14px;
             display: flex;
             flex-direction: column;
             gap: 6px;
@@ -772,9 +786,9 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
           }
 
           .spec-summary-text {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             color: #334155;
-            line-height: 1.6;
+            line-height: 1.55;
             margin: 0;
             font-weight: 450;
           }
@@ -784,7 +798,7 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
             display: flex;
             align-items: flex-start;
             gap: 12px;
-            padding: 12px 16px;
+            padding: 12px 14px;
             background-color: #f0fdfa;
             border-radius: 12px;
             border: 1px solid #ccfbf1;
@@ -819,7 +833,7 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
           }
 
           .spec-competency-text {
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             color: #0b2d61;
             line-height: 1.5;
             font-weight: 650;
@@ -830,7 +844,7 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
           .spec-modules-section {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
           }
 
           .spec-modules-header {
@@ -842,7 +856,7 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
           }
 
           .spec-modules-title {
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             font-weight: 750;
             color: #0b2d61;
             display: flex;
@@ -859,14 +873,14 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
           .spec-modules-list {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
           }
 
           .spec-module-item {
             display: flex;
             align-items: flex-start;
             gap: 10px;
-            padding: 11px 14px;
+            padding: 10px 12px;
             background-color: #f8fafc;
             border: 1px solid #e2e8f0;
             border-radius: 10px;
@@ -882,22 +896,22 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             border-radius: 6px;
             background-color: #0b2d61;
             color: #ffffff;
-            font-size: 10.5px;
+            font-size: 10px;
             font-weight: 800;
             flex-shrink: 0;
             margin-top: 1px;
           }
 
           .spec-module-text {
-            font-size: 0.85rem;
+            font-size: 0.83rem;
             color: #1e293b;
             font-weight: 600;
-            line-height: 1.5;
+            line-height: 1.45;
             flex: 1;
           }
 
@@ -921,8 +935,8 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
 
           .spec-topic-chip {
             font-family: var(--font-mono);
-            font-size: 11px;
-            padding: 4px 10px;
+            font-size: 10.5px;
+            padding: 3px 9px;
             border-radius: 6px;
             background-color: #eef4f8;
             border: 1px solid #cbdceb;
@@ -930,14 +944,15 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
             font-weight: 650;
           }
 
-          /* Modal Footer */
+          /* Fixed Bottom Footer */
           .spec-modal-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 12px;
-            border-top: 1px solid #e2e8f0;
-            flex-wrap: wrap;
+            padding: 12px 24px;
+            border-top: 1px solid #eef2f6;
+            background: #fafbfc;
+            flex-shrink: 0;
             gap: 10px;
           }
 
@@ -970,7 +985,7 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
           }
 
           .spec-footer-btn-secondary {
-            background: #f8fafc;
+            background: #ffffff;
             color: #0b2d61;
             border: 1px solid #cbd5e1;
           }
@@ -983,7 +998,7 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
             background: #0b2d61;
             color: #ffffff;
             border: none;
-            box-shadow: 0 3px 10px rgba(11, 45, 97, 0.2);
+            box-shadow: 0 2px 8px rgba(11, 45, 97, 0.2);
           }
 
           .spec-footer-btn-primary:hover {
@@ -995,7 +1010,7 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
             position: fixed;
             inset: 0;
             background-color: rgba(0, 0, 0, 0.94);
-            z-index: 1100;
+            z-index: 1200;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -1010,7 +1025,7 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
             display: flex;
             align-items: center;
             gap: 10px;
-            z-index: 1101;
+            z-index: 1201;
           }
 
           .spec-lightbox-download-btn {
@@ -1048,24 +1063,20 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
           }
 
-          /* -------------------------------------------------------------
-             MOBILE SCREEN OPTIMIZATIONS (e.g. Oppo F25 Pro <= 640px)
-             ------------------------------------------------------------- */
+          /* Mobile Screen Adjustments */
           @media (max-width: 640px) {
             .spec-modal-backdrop {
               padding: 10px 8px;
-              align-items: flex-start;
+              align-items: center;
             }
 
             .spec-modal-card {
-              padding: 16px 14px !important;
-              border-radius: 16px !important;
-              gap: 12px;
-              max-height: calc(100dvh - 20px);
+              max-height: 94dvh;
+              border-radius: 16px;
             }
 
             .spec-modal-header {
-              padding-bottom: 10px;
+              padding: 12px 14px 10px;
             }
 
             .spec-modal-badges {
@@ -1073,7 +1084,7 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
             }
 
             .spec-modal-title {
-              font-size: 1.1rem;
+              font-size: 1.05rem;
             }
 
             .spec-modal-close-btn {
@@ -1083,9 +1094,10 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
             }
 
             .spec-modal-controls-bar {
+              padding: 8px 12px;
               flex-direction: column;
               align-items: stretch;
-              gap: 8px;
+              gap: 6px;
             }
 
             .spec-tab-switcher {
@@ -1094,8 +1106,8 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
 
             .spec-tab-btn {
               flex: 1;
-              padding: 8px 10px;
-              font-size: 11.5px;
+              padding: 7px 8px;
+              font-size: 11px;
             }
 
             .spec-actions-row {
@@ -1105,7 +1117,7 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
 
             .spec-action-btn {
               flex: 1;
-              padding: 6px 8px;
+              padding: 5px 6px;
               font-size: 10.5px;
             }
 
@@ -1113,19 +1125,24 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
               max-width: 110px;
             }
 
+            .spec-modal-body {
+              padding: 10px 12px;
+              gap: 10px;
+            }
+
             .spec-cert-frame {
-              padding: 6px;
+              padding: 4px;
             }
 
             .spec-cert-img {
-              max-height: 320px;
+              max-height: 240px;
             }
 
             .spec-cert-verify-bar {
-              padding: 10px 12px;
+              padding: 8px 10px;
               flex-direction: column;
               align-items: stretch;
-              gap: 8px;
+              gap: 6px;
             }
 
             .spec-cert-verify-actions {
@@ -1135,37 +1152,20 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
 
             .spec-verify-btn {
               flex: 1;
-              padding: 7px 10px;
-              font-size: 11px;
-            }
-
-            .spec-syllabus-card {
-              padding: 12px 12px;
-            }
-
-            .spec-competency-callout {
-              padding: 10px 12px;
-              gap: 10px;
-            }
-
-            .spec-module-item {
-              padding: 9px 11px;
-              gap: 8px;
-            }
-
-            .spec-module-text {
-              font-size: 0.8125rem;
+              padding: 6px 8px;
+              font-size: 10.5px;
             }
 
             .spec-modal-footer {
-              padding-top: 10px;
+              padding: 10px 12px;
               flex-direction: column;
               align-items: stretch;
-              gap: 8px;
+              gap: 6px;
             }
 
             .spec-footer-info {
               justify-content: center;
+              font-size: 10.5px;
             }
 
             .spec-footer-actions {
@@ -1175,8 +1175,8 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
 
             .spec-footer-btn {
               flex: 1;
-              padding: 8px 12px;
-              font-size: 11.5px;
+              padding: 7px 10px;
+              font-size: 11px;
             }
           }
         `}</style>

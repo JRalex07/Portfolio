@@ -150,10 +150,10 @@ export const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => 
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       style={{
         backgroundColor: isScrolled
-          ? 'rgba(234, 240, 248, 0.88)'
-          : 'rgba(234, 240, 248, 0.65)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
+          ? 'rgba(234, 240, 248, 0.9)'
+          : 'rgba(234, 240, 248, 0.9)',
+        backdropFilter: 'blur(15px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(15px) saturate(180%)',
         transition: 'background-color 0.3s ease',
       }}
     >

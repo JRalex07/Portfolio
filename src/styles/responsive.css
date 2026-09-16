@@ -19,6 +19,7 @@ body {
 *::before,
 *::after {
   box-sizing: border-box;
+  min-width: 0;
 }
 
 /* -------------------------------------------------------
@@ -71,7 +72,7 @@ body {
     padding-top: 68px !important;
   }
 
-  /* Navbar */
+  /* Navbar — 80% Transparent Liquid Glass */
   .site-header {
     position: fixed !important;
     top: 0 !important;
@@ -80,12 +81,20 @@ body {
     width: 100% !important;
     z-index: 1000 !important;
     padding: 8px 0 !important;
+    background: rgba(234, 240, 248, 0.20) !important;
+    backdrop-filter: blur(24px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
   }
 
   .liquid-glass-navbar,
   .neobrutal-navbar {
     padding: 0 12px !important;
     height: 56px !important;
+    background: rgba(255, 255, 255, 0.20) !important;
+    backdrop-filter: blur(28px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    box-shadow: 0 8px 32px 0 rgba(11, 45, 97, 0.08) !important;
   }
 
   .brand-glyph {
@@ -140,6 +149,26 @@ body {
   .arch-frame {
     padding: 16px 14px !important;
     border-radius: var(--radius-sm) !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  .engineering-steps-grid,
+  .engineering-resilience-grid {
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .engineering-steps-grid > *,
+  .engineering-resilience-grid > * {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
   }
 
   .arch-frame-header {

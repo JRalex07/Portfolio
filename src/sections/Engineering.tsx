@@ -69,7 +69,7 @@ export const Engineering: React.FC = () => {
                 <span className="badge badge-teal">JSON-RPC 2.0 Compliant</span>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 'var(--space-6)' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr)', gap: 'var(--space-6)', width: '100%', maxWidth: '100%', minWidth: 0 }}>
                 <motion.p
                   style={{ fontSize: '0.9375rem', color: 'var(--text-secondary)' }}
                   initial={{ opacity: 0, y: 8 }}
@@ -80,11 +80,11 @@ export const Engineering: React.FC = () => {
                 </motion.p>
 
                 {/* Step Sequence */}
-                <div className="engineering-steps-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))', gap: 'var(--space-4)' }}>
+                <div className="engineering-steps-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))', gap: 'var(--space-4)', width: '100%', maxWidth: '100%', minWidth: 0 }}>
                   {mcpSteps.map((s, i) => (
-                    <HoverCard key={s.step}>
+                    <HoverCard key={s.step} style={{ minWidth: 0, width: '100%', maxWidth: '100%' }}>
                       <motion.div
-                        style={{ background: 'var(--bg-card)', padding: 'var(--space-5)', borderRadius: 'var(--radius-sm)', border: 'var(--nm-border)', boxShadow: 'var(--nm-shadow-sm)', height: '100%' }}
+                        style={{ background: 'var(--bg-card)', padding: 'var(--space-5)', borderRadius: 'var(--radius-sm)', border: 'var(--nm-border)', boxShadow: 'var(--nm-shadow-sm)', height: '100%', minWidth: 0, maxWidth: '100%', boxSizing: 'border-box' }}
                         initial={{ opacity: 0, y: 16, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         transition={{ duration: 0.45, delay: 0.12 + i * 0.07, ease: [0.16, 1, 0.3, 1] }}
@@ -99,7 +99,7 @@ export const Engineering: React.FC = () => {
 
                 {/* Code Snippet */}
                 <motion.div
-                  style={{ background: '#0f172a', padding: 'var(--space-5)', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(255, 255, 255, 0.1)', boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.45)' }}
+                  style={{ background: '#0f172a', padding: 'var(--space-5)', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(255, 255, 255, 0.1)', boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.45)', width: '100%', maxWidth: '100%', minWidth: 0, overflow: 'hidden' }}
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
@@ -110,7 +110,7 @@ export const Engineering: React.FC = () => {
                       Distributed Service Routing Pipeline Contract
                     </span>
                   </div>
-                  <pre style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: '#38bdf8', overflowX: 'auto' }}>
+                  <pre style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: '#38bdf8', overflowX: 'auto', maxWidth: '100%', minWidth: 0, WebkitOverflowScrolling: 'touch', margin: 0 }}>
                     {`// Distributed Systems Dispatch Pipeline Specification
 {
   "service": "CloudPower_Orchestration_Core",
@@ -142,7 +142,7 @@ export const Engineering: React.FC = () => {
                 <span className="badge badge-amber">Fault Isolation Pattern</span>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 'var(--space-6)' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr)', gap: 'var(--space-6)', width: '100%', maxWidth: '100%', minWidth: 0 }}>
                 <motion.p
                   style={{ fontSize: '0.9375rem', color: 'var(--text-secondary)' }}
                   initial={{ opacity: 0, y: 8 }}
@@ -152,11 +152,11 @@ export const Engineering: React.FC = () => {
                   Application systems must withstand transient network drops, invalid domain inputs, and downstream timeout failures without cascading crashes or database deadlocks.
                 </motion.p>
 
-                <div className="engineering-resilience-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: 'var(--space-4)' }}>
+                <div className="engineering-resilience-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: 'var(--space-4)', width: '100%', maxWidth: '100%', minWidth: 0 }}>
                   {resilienceCards.map((card, i) => (
-                    <HoverCard key={card.title}>
+                    <HoverCard key={card.title} style={{ minWidth: 0, width: '100%', maxWidth: '100%' }}>
                       <motion.div
-                        style={{ background: 'var(--bg-card)', padding: 'var(--space-5)', borderRadius: 'var(--radius-sm)', border: 'var(--nm-border)', boxShadow: 'var(--nm-shadow-sm)', height: '100%' }}
+                        style={{ background: 'var(--bg-card)', padding: 'var(--space-5)', borderRadius: 'var(--radius-sm)', border: 'var(--nm-border)', boxShadow: 'var(--nm-shadow-sm)', height: '100%', minWidth: 0, maxWidth: '100%', boxSizing: 'border-box' }}
                         initial={{ opacity: 0, y: 16, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         transition={{ duration: 0.45, delay: 0.12 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
@@ -169,7 +169,7 @@ export const Engineering: React.FC = () => {
                 </div>
 
                 <motion.div
-                  style={{ background: '#0f172a', padding: 'var(--space-5)', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(255, 255, 255, 0.1)', boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.45)' }}
+                  style={{ background: '#0f172a', padding: 'var(--space-5)', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(255, 255, 255, 0.1)', boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.45)', width: '100%', maxWidth: '100%', minWidth: 0, overflow: 'hidden' }}
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.35 }}
@@ -178,7 +178,7 @@ export const Engineering: React.FC = () => {
                     <Terminal size={14} color="#fbbf24" aria-hidden="true" />
                     <span className="text-mono" style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 650 }}>C# / .NET Exception Handling Architecture</span>
                   </div>
-                  <pre style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: '#fbbf24', overflowX: 'auto' }}>
+                  <pre style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: '#fbbf24', overflowX: 'auto', maxWidth: '100%', minWidth: 0, WebkitOverflowScrolling: 'touch', margin: 0 }}>
                     {`// Defensive Exception Strategy with Explicit Domain Isolation
 try {
     using var transaction = await _dbConnection.BeginTransactionAsync(ct);
