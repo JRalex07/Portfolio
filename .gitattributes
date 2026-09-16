@@ -1,0 +1,18 @@
+# Auto-detect line endings and normalise to LF in the repo
+* text=auto eol=lf
+
+# Explicitly binary assets — never touch line endings
+*.png binary
+*.webp binary
+*.pdf binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.svg text
+
+# Scripts: always LF
+*.sh text eol=lf
+
+# Windows-only artifacts — keep CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
