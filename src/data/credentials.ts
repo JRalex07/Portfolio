@@ -15,7 +15,17 @@ export interface Specialization {
   hours: string;
   certificatePdf: string;
   certificateImage: string;
+  verificationUrl: string;
 }
+
+// Base URL helper for GitHub Pages sub-path support ('/Portfolio/' in prod, '/' in dev)
+// OLD (Hardcoded root domain paths):
+// certificatePdf: "/certificates/msoft7.pdf"
+const BASE = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+const certAsset = (fileName: string) => `${BASE}certificates/${fileName}`;
 
 export const specializations: Specialization[] = [
   // 1. Tooling, MCP, and Agent Execution Environments
@@ -30,8 +40,11 @@ export const specializations: Specialization[] = [
     credentialId: "MSFT-MCP-884912-ENV",
     issueDate: "September 16, 2026",
     hours: "40 Hours Advanced Specialization",
-    certificatePdf: "/certificates/msoft7.pdf",
-    certificateImage: "/certificates/msoft7.webp",
+    // OLD: certificatePdf: "/certificates/msoft7.pdf",
+    // OLD: certificateImage: "/certificates/msoft7.webp",
+    certificatePdf: certAsset("msoft7.pdf"),
+    certificateImage: certAsset("msoft7.webp"),
+    verificationUrl: "https://learn.microsoft.com/api/achievements/share/en-us/RamanKumarSharma-5576/7DHAAB4Z?sharingId=E4F4F7E7A710C8AD",
     syllabus: [
       "Standardized JSON-RPC 2.0 communication between LLM clients and local tool servers",
       "Dynamic tool registration and JSON Schema validation",
@@ -51,8 +64,11 @@ export const specializations: Specialization[] = [
     credentialId: "MSFT-SDLC-914283-AGT",
     issueDate: "September 16, 2026",
     hours: "36 Hours Specialized Curriculum",
-    certificatePdf: "/certificates/msoft.pdf",
-    certificateImage: "/certificates/msoft.webp",
+    // OLD: certificatePdf: "/certificates/msoft.pdf",
+    // OLD: certificateImage: "/certificates/msoft.webp",
+    certificatePdf: certAsset("msoft.pdf"),
+    certificateImage: certAsset("msoft.webp"),
+    verificationUrl: "https://learn.microsoft.com/api/achievements/share/en-us/RamanKumarSharma-5576/K974PZWB?sharingId=E4F4F7E7A710C8AD",
     syllabus: [
       "Agent system design patterns and structured reflection loops",
       "CI/CD workflows for prompt templates and tool definitions",
@@ -72,8 +88,11 @@ export const specializations: Specialization[] = [
     credentialId: "MSFT-GH-738914-AGT",
     issueDate: "September 16, 2026",
     hours: "28 Hours Specialized Curriculum",
-    certificatePdf: "/certificates/msoft2.pdf",
-    certificateImage: "/certificates/msoft2.webp",
+    // OLD: certificatePdf: "/certificates/msoft2.pdf",
+    // OLD: certificateImage: "/certificates/msoft2.webp",
+    certificatePdf: certAsset("msoft2.pdf"),
+    certificateImage: certAsset("msoft2.webp"),
+    verificationUrl: "https://learn.microsoft.com/api/achievements/share/en-us/RamanKumarSharma-5576/2TWZ7U5V?sharingId=E4F4F7E7A710C8AD",
     syllabus: [
       "Autonomous repository exploration and context building",
       "Automated pull request analysis and test suite synthesis",
@@ -93,8 +112,11 @@ export const specializations: Specialization[] = [
     credentialId: "MSFT-NET-629104-EXC",
     issueDate: "November 5, 2025",
     hours: "32 Hours Advanced Specialization",
-    certificatePdf: "/certificates/msoft3.pdf",
-    certificateImage: "/certificates/msoft3.webp",
+    // OLD: certificatePdf: "/certificates/msoft3.pdf",
+    // OLD: certificateImage: "/certificates/msoft3.webp",
+    certificatePdf: certAsset("msoft3.pdf"),
+    certificateImage: certAsset("msoft3.webp"),
+    verificationUrl: "https://learn.microsoft.com/api/achievements/share/en-us/RamanKumarSharma-5576/HZRZYFT8?sharingId=E4F4F7E7A710C8AD",
     syllabus: [
       "Custom domain-specific exception hierarchy design",
       "Transactional rollback on unrecoverable domain invariants",
@@ -114,8 +136,11 @@ export const specializations: Specialization[] = [
     credentialId: "MSFT-ML-552910-DAT",
     issueDate: "November 5, 2025",
     hours: "35 Hours Theoretical & Practical",
-    certificatePdf: "/certificates/msodt4.pdf",
-    certificateImage: "/certificates/msodt4.webp",
+    // OLD: certificatePdf: "/certificates/msodt4.pdf",
+    // OLD: certificateImage: "/certificates/msodt4.webp",
+    certificatePdf: certAsset("msodt4.pdf"),
+    certificateImage: certAsset("msodt4.webp"),
+    verificationUrl: "https://learn.microsoft.com/api/achievements/share/en-us/RamanKumarSharma-5576/HZRZW9B8?sharingId=E4F4F7E7A710C8AD",
     syllabus: [
       "Supervised vs unsupervised learning topologies",
       "Validation metrics: Precision, Recall, F1, ROC-AUC, and Confusion Matrices",
@@ -135,8 +160,11 @@ export const specializations: Specialization[] = [
     credentialId: "MSFT-AI-441829-SYS",
     issueDate: "November 5, 2025",
     hours: "30 Hours Specialized Curriculum",
-    certificatePdf: "/certificates/msoft5.pdf",
-    certificateImage: "/certificates/msoft5.webp",
+    // OLD: certificatePdf: "/certificates/msoft5.pdf",
+    // OLD: certificateImage: "/certificates/msoft5.webp",
+    certificatePdf: certAsset("msoft5.pdf"),
+    certificateImage: certAsset("msoft5.webp"),
+    verificationUrl: "https://learn.microsoft.com/api/achievements/share/en-us/RamanKumarSharma-5576/4656BDRK?sharingId=E4F4F7E7A710C8AD",
     syllabus: [
       "Cognitive service architectures and RESTful inference endpoints",
       "Natural Language Processing (NLP) tokenization and embeddings",
@@ -156,8 +184,11 @@ export const specializations: Specialization[] = [
     credentialId: "MSFT-GENAI-319842-LLM",
     issueDate: "November 5, 2025",
     hours: "45 Hours Advanced Specialization",
-    certificatePdf: "/certificates/msoft6.pdf",
-    certificateImage: "/certificates/msoft6.webp",
+    // OLD: certificatePdf: "/certificates/msoft6.pdf",
+    // OLD: certificateImage: "/certificates/msoft6.webp",
+    certificatePdf: certAsset("msoft6.pdf"),
+    certificateImage: certAsset("msoft6.webp"),
+    verificationUrl: "https://learn.microsoft.com/api/achievements/share/en-us/RamanKumarSharma-5576/J3CUBZRT?sharingId=E4F4F7E7A710C8AD",
     syllabus: [
       "Transformer architectures and attention mechanisms",
       "Prompt engineering and system message steering techniques",
@@ -165,6 +196,11 @@ export const specializations: Specialization[] = [
       "Chain-of-thought and tree-of-thought reasoning decomposition"
     ]
   },
+  //     "Prompt engineering and system message steering techniques",
+  //     "Multi-turn agent state tracking and memory persistence",
+  //     "Chain-of-thought and tree-of-thought reasoning decomposition"
+  //   ]
+  // },
   // 8. Tutedude: Flutter Course
   {
     id: "spec-flutter",
@@ -177,8 +213,11 @@ export const specializations: Specialization[] = [
     credentialId: "TD-RAMA-FL-1356",
     issueDate: "July 30, 2026",
     hours: "60 Hours Comprehensive Training",
-    certificatePdf: "/certificates/certificate_TD-RAMA-FL-1356.pdf",
-    certificateImage: "/certificates/certificate_TD-RAMA-FL-1356.webp",
+    // OLD: certificatePdf: "/certificates/certificate_TD-RAMA-FL-1356.pdf",
+    // OLD: certificateImage: "/certificates/certificate_TD-RAMA-FL-1356.webp",
+    certificatePdf: certAsset("certificate_TD-RAMA-FL-1356.pdf"),
+    certificateImage: certAsset("certificate_TD-RAMA-FL-1356.webp"),
+    verificationUrl: "https://upskill.tutedude.com/certificate/TD-RAMA-FL-1356",
     syllabus: [
       "Declarative UI trees and customized rendering pipelines",
       "State management separation: UI presentation vs business logic",
@@ -198,8 +237,11 @@ export const specializations: Specialization[] = [
     credentialId: "TD-RAMA-PY-1100",
     issueDate: "November 4, 2025",
     hours: "48 Hours Comprehensive Training",
-    certificatePdf: "/certificates/certificate_TD-RAMA-PY-1100.pdf",
-    certificateImage: "/certificates/certificate_TD-RAMA-PY-1100.webp",
+    // OLD: certificatePdf: "/certificates/certificate_TD-RAMA-PY-1100.pdf",
+    // OLD: certificateImage: "/certificates/certificate_TD-RAMA-PY-1100.webp",
+    certificatePdf: certAsset("certificate_TD-RAMA-PY-1100.pdf"),
+    certificateImage: certAsset("certificate_TD-RAMA-PY-1100.webp"),
+    verificationUrl: "https://upskill.tutedude.com/certificate/TD-RAMA-PY-1100",
     syllabus: [
       "Advanced object-oriented programming and design patterns in Python",
       "Asynchronous I/O with asyncio and concurrent event loops",
@@ -219,8 +261,11 @@ export const specializations: Specialization[] = [
     credentialId: "TD-RAMA-PB-0043",
     issueDate: "September 16, 2026",
     hours: "40 Hours Comprehensive Training",
-    certificatePdf: "/certificates/certificate_TD-RAMA-PB-0043.pdf",
-    certificateImage: "/certificates/certificate_TD-RAMA-PB-0043.webp",
+    // OLD: certificatePdf: "/certificates/certificate_TD-RAMA-PB-0043.pdf",
+    // OLD: certificateImage: "/certificates/certificate_TD-RAMA-PB-0043.webp",
+    certificatePdf: certAsset("certificate_TD-RAMA-PB-0043.pdf"),
+    certificateImage: certAsset("certificate_TD-RAMA-PB-0043.webp"),
+    verificationUrl: "https://upskill.tutedude.com/certificate/TD-RAMA-PB-0043",
     syllabus: [
       "Dimensional data modeling: Star and Snowflake schemas",
       "Advanced DAX calculations, filter context, and time intelligence measures",
@@ -240,8 +285,11 @@ export const specializations: Specialization[] = [
     credentialId: "TD-RAMA-JA-2241",
     issueDate: "February 7, 2026",
     hours: "52 Hours Comprehensive Training",
-    certificatePdf: "/certificates/certificate_TD-RAMA-JA-2241.pdf",
-    certificateImage: "/certificates/certificate_TD-RAMA-JA-2241.webp",
+    // OLD: certificatePdf: "/certificates/certificate_TD-RAMA-JA-2241.pdf",
+    // OLD: certificateImage: "/certificates/certificate_TD-RAMA-JA-2241.webp",
+    certificatePdf: certAsset("certificate_TD-RAMA-JA-2241.pdf"),
+    certificateImage: certAsset("certificate_TD-RAMA-JA-2241.webp"),
+    verificationUrl: "https://upskill.tutedude.com/certificate/TD-RAMA-JA-2241",
     syllabus: [
       "Object-oriented domain modeling and SOLID architectural principles",
       "Java concurrency utilities: Executors, Locks, and thread synchronization",

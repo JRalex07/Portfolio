@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SectionHeading } from '../components/SectionHeading';
-import { SpecializationModal } from '../components/SpecializationModal';
-import { specializations, Specialization } from '../data/credentials';
-import { BookOpen, Cpu, ArrowRight } from 'lucide-react';
+import { specializations } from '../data/credentials';
+import { BookOpen, Cpu, ArrowRight, Download } from 'lucide-react';
 import { Reveal } from '../components/MotionReveal';
 
 export const Specializations: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string>('All');
-  const [selectedSpec, setSelectedSpec] = useState<Specialization | null>(null);
 
   const filters = [
     { label: 'All', count: specializations.length },
@@ -69,7 +67,6 @@ export const Specializations: React.FC = () => {
                 exit={{ opacity: 0, scale: 0.9, y: -10, filter: 'blur(4px)' }}
                 transition={{ duration: 0.4, delay: idx * 0.04, ease: [0.16, 1, 0.3, 1] as const }}
                 whileHover={{ y: -5, transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] as const } }}
-                whileTap={{ scale: 0.99 }}
               >
                 <div className="credential-top">
                   <motion.div
@@ -84,7 +81,15 @@ export const Specializations: React.FC = () => {
                     <span className="provider-stamp">{spec.category}</span>
                   </motion.div>
 
-                  <h3 className="credential-title" style={{ fontSize: '1.0625rem' }}>{spec.title}</h3>
+                  <h3 className="credential-title" style={{ fontSize: '1.0625rem' }}>
+                    <a
+                      href={`/certificate/${spec.id}`}
+                      style={{ color: 'inherit', textDecoration: 'none' }}
+                      aria-label={`View syllabus and certificate for ${spec.title}`}
+                    >
+                      {spec.title}
+                    </a>
+                  </h3>
 
                   <p className="credential-summary" style={{ fontSize: '0.8125rem' }}>
                     {spec.summary}
@@ -126,36 +131,40 @@ export const Specializations: React.FC = () => {
                     <span className="text-mono" style={{ fontSize: '11px' }}>{spec.syllabus.length} Syllabus Modules</span>
                   </div>
 
-                  <motion.button
-                    type="button"
-                    className="btn btn-secondary btn-sm"
-                    onClick={() => setSelectedSpec(spec)}
-                    aria-label={`Inspect syllabus and certificate for ${spec.title}`}
-                    style={{ gap: '6px' }}
-                    whileHover={{ scale: 1.05, x: 2, transition: { duration: 0.18 } }}
-                    whileTap={{ scale: 0.97 }}
-                  >
-                    <BookOpen size={13} aria-hidden="true" />
-                    <span>Syllabus & Certificate</span>
-                    <motion.span
-                      animate={{ x: [0, 3, 0] }}
-                      transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                    <motion.a
+                      href={`/certificate/${spec.id}`}
+                      className="btn btn-primary btn-sm"
+                      aria-label={`View syllabus and certificate for ${spec.title}`}
+                      style={{ gap: '6px', padding: '7px 13px', fontSize: '11.5px', textDecoration: 'none' }}
+                      whileHover={{ scale: 1.04 }}
+                      whileTap={{ scale: 0.97 }}
                     >
-                      <ArrowRight size={12} aria-hidden="true" />
-                    </motion.span>
-                  </motion.button>
+                      <BookOpen size={13} aria-hidden="true" />
+                      <span>Syllabus & Certificate</span>
+                      <ArrowRight size={13} aria-hidden="true" />
+                    </motion.a>
+
+                    <motion.a
+                      href={spec.certificatePdf}
+                      download
+                      className="btn btn-secondary btn-sm"
+                      aria-label={`Download certificate PDF for ${spec.title}`}
+                      style={{ gap: '5px', padding: '7px 11px', fontSize: '11.5px', textDecoration: 'none' }}
+                      whileHover={{ scale: 1.04 }}
+                      whileTap={{ scale: 0.97 }}
+                      title="Download Verified PDF"
+                    >
+                      <Download size={13} aria-hidden="true" />
+                      <span>PDF</span>
+                    </motion.a>
+                  </div>
                 </div>
               </motion.article>
             ))}
           </AnimatePresence>
         </motion.div>
       </div>
-
-      {/* Specialization Detail Modal */}
-      <SpecializationModal
-        specialization={selectedSpec}
-        onClose={() => setSelectedSpec(null)}
-      />
     </section>
   );
 };

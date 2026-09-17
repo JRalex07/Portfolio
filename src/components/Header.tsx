@@ -1,24 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { personalInfo } from '../data/personal';
-
-export interface NavItem {
-  label: string;
-  path: string;
-  id: string;
-}
-
-export const NAV_ITEMS: NavItem[] = [
-  { label: 'Overview', path: '/', id: 'hero' },
-  { label: 'About', path: '/about', id: 'about' },
-  { label: 'Projects', path: '/projects', id: 'projects' },
-  { label: 'Ecosystem', path: '/ecosystem', id: 'ecosystem' },
-  { label: 'Engineering', path: '/engineering', id: 'engineering' },
-  { label: 'Stack', path: '/stack', id: 'stack' },
-  { label: 'Specializations', path: '/specializations', id: 'specializations' },
-  { label: 'Timeline', path: '/timeline', id: 'timeline' },
-  { label: 'Contact', path: '/contact', id: 'contact' },
-];
+import { NAV_ITEMS } from '../data/navigation';
+export type { NavItem } from '../data/navigation';
 
 interface HeaderProps {
   activeSection: string;
@@ -150,10 +134,10 @@ export const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => 
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       style={{
         backgroundColor: isScrolled
-          ? 'rgba(234, 240, 248, 0.9)'
-          : 'rgba(234, 240, 248, 0.9)',
-        backdropFilter: 'blur(15px) saturate(180%)',
-        WebkitBackdropFilter: 'blur(15px) saturate(180%)',
+          ? 'rgba(234, 240, 248, 0.25)'
+          : 'rgba(234, 240, 248, 0.20)',
+        backdropFilter: 'blur(24px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(24px) saturate(180%)',
         transition: 'background-color 0.3s ease',
       }}
     >

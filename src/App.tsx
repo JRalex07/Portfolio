@@ -4,6 +4,7 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { ScrollProgress } from './components/ScrollProgress';
 import { NotFound } from './pages/NotFound';
+import { CertificatePage } from './pages/CertificatePage';
 import { Hero } from './sections/Hero';
 import { About } from './sections/About';
 import { Projects } from './sections/Projects';
@@ -40,12 +41,33 @@ const SECTION_ROUTE_MAP: Record<string, string> = {
   contact: '/contact',
 };
 
+// Base path helper for GitHub Pages sub-path support ('/Portfolio' in prod, '' in dev)
+// OLD (Root domain only):
+// const normalizePath = (path: string): string => {
+//   const cleaned = path.toLowerCase().trim();
+//   if (cleaned.length > 1 && cleaned.endsWith('/')) {
+//     return cleaned.slice(0, -1);
+//   }
+//   return cleaned || '/';
+// };
+const BASE_PATH = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+
 const normalizePath = (path: string): string => {
-  const cleaned = path.toLowerCase().trim();
+  let cleaned = path.toLowerCase().trim();
+  // Strip GitHub Pages repository sub-path (e.g. '/Portfolio')
+  if (BASE_PATH && cleaned.startsWith(BASE_PATH.toLowerCase())) {
+    cleaned = cleaned.slice(BASE_PATH.length);
+  }
   if (cleaned.length > 1 && cleaned.endsWith('/')) {
     return cleaned.slice(0, -1);
   }
   return cleaned || '/';
+};
+
+// Converts an internal route (e.g. '/about') to a full browser URL (e.g. '/Portfolio/about' or '/about')
+const toBrowserPath = (path: string): string => {
+  const norm = path.startsWith('/') ? path : `/${path}`;
+  return BASE_PATH ? `${BASE_PATH}${norm}` : norm;
 };
 
 export const App: React.FC = () => {
@@ -69,21 +91,31 @@ export const App: React.FC = () => {
     }
   }, []);
 
-
   // Programmatic navigation handler
   const handleNavigate = useCallback((path: string, sectionId?: string) => {
     const normalized = normalizePath(path);
     setCurrentPath(normalized);
 
+    if (normalized.startsWith('/certificate')) {
+      setIsNotFound(false);
+      setActiveSection('specializations');
+      // OLD: window.history.pushState(null, '', normalized);
+      window.history.pushState(null, '', toBrowserPath(normalized));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
     if (ROUTE_SECTION_MAP[normalized]) {
       setIsNotFound(false);
       const targetSection = sectionId || ROUTE_SECTION_MAP[normalized];
       setActiveSection(targetSection);
-      window.history.pushState(null, '', normalized);
+      // OLD: window.history.pushState(null, '', normalized);
+      window.history.pushState(null, '', toBrowserPath(normalized));
       scrollToSection(targetSection, true);
     } else {
       setIsNotFound(true);
-      window.history.pushState(null, '', normalized);
+      // OLD: window.history.pushState(null, '', normalized);
+      window.history.pushState(null, '', toBrowserPath(normalized));
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [scrollToSection]);
@@ -96,13 +128,20 @@ export const App: React.FC = () => {
       const hashId = window.location.hash.substring(1);
       if (SECTION_ROUTE_MAP[hashId]) {
         const cleanPath = SECTION_ROUTE_MAP[hashId];
-        window.history.replaceState(null, '', cleanPath);
+        // OLD: window.history.replaceState(null, '', cleanPath);
+        window.history.replaceState(null, '', toBrowserPath(cleanPath));
         setCurrentPath(cleanPath);
         setIsNotFound(false);
         setActiveSection(hashId);
         setTimeout(() => scrollToSection(hashId, false), 100);
         return;
       }
+    }
+
+    if (path.startsWith('/certificate')) {
+      setIsNotFound(false);
+      setActiveSection('specializations');
+      return;
     }
 
     if (ROUTE_SECTION_MAP[path]) {
@@ -123,6 +162,12 @@ export const App: React.FC = () => {
     const handlePopState = () => {
       const path = normalizePath(window.location.pathname);
       setCurrentPath(path);
+
+      if (path.startsWith('/certificate')) {
+        setIsNotFound(false);
+        setActiveSection('specializations');
+        return;
+      }
 
       if (ROUTE_SECTION_MAP[path]) {
         setIsNotFound(false);
@@ -173,8 +218,10 @@ export const App: React.FC = () => {
             setActiveSection(currentSec);
 
             // Update browser URL cleanly without page reload and without '#'
-            if (window.location.pathname !== targetPath) {
-              window.history.replaceState(null, '', targetPath);
+            const fullBrowserUrl = toBrowserPath(targetPath);
+            if (window.location.pathname !== fullBrowserUrl) {
+              // OLD: window.history.replaceState(null, '', targetPath);
+              window.history.replaceState(null, '', fullBrowserUrl);
               setCurrentPath(targetPath);
             }
             break;
@@ -220,6 +267,19 @@ export const App: React.FC = () => {
   // Render 404 page if path is unmapped
   if (isNotFound) {
     return <NotFound onNavigate={handleNavigate} currentPath={currentPath} />;
+  }
+
+  // Render dedicated Certificate & Syllabus page
+  if (currentPath.startsWith('/certificate')) {
+    return (
+      <div className="app-container">
+        <ScrollProgress />
+        <div className="neo-ambient-bg" aria-hidden="true" />
+        <Header activeSection="specializations" onNavigate={handleNavigate} />
+        <CertificatePage currentPath={currentPath} onNavigate={handleNavigate} />
+        <Footer />
+      </div>
+    );
   }
 
   return (

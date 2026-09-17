@@ -12,7 +12,8 @@ import {
   Clock,
   Download,
   ZoomIn,
-  Maximize2
+  Maximize2,
+  ExternalLink
 } from 'lucide-react';
 import { Specialization } from '../data/credentials';
 
@@ -168,7 +169,16 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
                 title="Download original verified PDF"
               >
                 <Download size={12} />
-                <span>Download PDF</span>
+                <span>PDF</span>
+              </a>
+
+              <a
+                href={`/certificate/${specialization.id}`}
+                className="spec-action-btn"
+                title="Open Dedicated Full Page View"
+              >
+                <ExternalLink size={12} />
+                <span>Full Page View</span>
               </a>
             </div>
           </div>
