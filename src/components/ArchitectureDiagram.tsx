@@ -65,7 +65,19 @@ export const ArchitectureDiagram: React.FC = () => {
         <span className="text-mono text-muted" style={{ fontSize: '0.75rem', textTransform: 'uppercase', display: 'block', marginBottom: 'var(--space-2)' }}>
           Select Ecosystem Application Component:
         </span>
-        <div className="ecosystem-nav-tabs" role="tablist">
+        <div
+          className="ecosystem-nav-tabs"
+          role="tablist"
+          style={{
+            display: 'flex',
+            gap: '8px',
+            overflowX: 'auto',
+            overflowY: 'hidden',
+            maxWidth: '100%',
+            WebkitOverflowScrolling: 'touch',
+            paddingBottom: '12px',
+          }}
+        >
           {ecosystemApps.map((app) => (
             <button
               key={app.id}
@@ -73,8 +85,14 @@ export const ArchitectureDiagram: React.FC = () => {
               aria-selected={selectedAppId === app.id}
               className={`app-tab-btn ${selectedAppId === app.id ? 'active' : ''}`}
               onClick={() => setSelectedAppId(app.id)}
+              style={{
+                flexShrink: 0,
+                flex: '0 0 auto',
+                minWidth: 'max-content',
+                whiteSpace: 'nowrap',
+              }}
             >
-              <span className="tab-indicator-dot" style={{ backgroundColor: app.color }} />
+              <span className="tab-indicator-dot" style={{ backgroundColor: app.color, flexShrink: 0 }} />
               <span>{app.name.replace('CloudPower ', '')}</span>
             </button>
           ))}
