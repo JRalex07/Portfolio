@@ -5,8 +5,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig(({ command }) => ({
   // OLD (Root domain default):
   // base: '/',
-  // NEW (GitHub Pages repository sub-path in production build, root in local dev):
-  base: command === 'build' ? '/' : '/',
+  base: '/',
   plugins: [react()],
   server: {
     port: 5173,

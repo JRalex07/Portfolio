@@ -3,7 +3,13 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding-top: 84px;
+  padding-top: var(--header-height, 96px);
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    padding-top: var(--header-height-mobile, 78px);
+  }
 }
 
 .content-wrapper {
@@ -19,6 +25,20 @@
   margin-right: auto;
   padding-left: var(--space-6);
   padding-right: var(--space-6);
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
 }
 
 .container-narrow {
@@ -60,21 +80,34 @@
   align-items: start;
 }
 
-/* Neomorphic Raised Frame */
+/* Skeuomorphic Architectural Frame (Solid Tactile Plate) */
 .arch-frame {
   position: relative;
-  background: var(--bg-card);
-  border: var(--nm-border);
-  border-radius: var(--radius-md);
+  background: var(--skeuo-plate-bg);
+  border: var(--skeuo-plate-border);
+  border-radius: var(--radius-card);
   padding: var(--space-8);
-  box-shadow: var(--nm-shadow-md);
+  box-shadow: var(--skeuo-plate-shadow);
   transition: all var(--transition-normal);
   will-change: transform, box-shadow;
+  overflow: hidden;
+}
+
+.arch-frame::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  pointer-events: none;
 }
 
 .arch-frame:hover {
   transform: translateY(-3px);
-  box-shadow: var(--nm-shadow-hover);
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: var(--glass-l2-shadow-hover);
 }
 
 .arch-frame-header {
@@ -83,7 +116,7 @@
   align-items: center;
   padding-bottom: var(--space-4);
   margin-bottom: var(--space-6);
-  border-bottom: 1px solid rgba(195, 206, 222, 0.45);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .arch-tag {
@@ -92,4 +125,8 @@
   color: var(--accent-teal);
   font-weight: 700;
   letter-spacing: 0.04em;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
 }

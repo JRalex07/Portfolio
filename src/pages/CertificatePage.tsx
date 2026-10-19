@@ -303,15 +303,15 @@ export const CertificatePage: React.FC<CertificatePageProps> = ({ currentPath, o
                         className="cert-auth-val"
                         style={{
                           color: 'var(--accent-teal)',
-                          wordBreak: 'break-all',
-                          fontSize: '11.5px',
+                          fontSize: '12px',
+                          fontWeight: 650,
                           display: 'inline-flex',
                           alignItems: 'center',
-                          gap: '4px',
+                          gap: '6px',
                           textDecoration: 'none'
                         }}
                       >
-                        <span>{verificationUrl}</span>
+                        <span>Click to Verify Authenticity</span>
                         <ExternalLink size={12} style={{ flexShrink: 0 }} aria-hidden="true" />
                       </a>
                     </div>
@@ -326,7 +326,7 @@ export const CertificatePage: React.FC<CertificatePageProps> = ({ currentPath, o
                       className="btn btn-primary cert-action-btn"
                     >
                       <ExternalLink size={14} aria-hidden="true" />
-                      <span>Verify on {selectedSpec.provider}</span>
+                      <span>Click to Verify on {selectedSpec.provider}</span>
                     </a>
 
                     <a
@@ -567,15 +567,15 @@ export const CertificatePage: React.FC<CertificatePageProps> = ({ currentPath, o
         }
 
         .cert-spec-dropdown {
-          background: var(--bg-card);
-          border: var(--nm-border);
-          border-radius: var(--radius-sm);
-          padding: 8px 14px;
+          background: var(--skeuo-btn-bg);
+          border: 1px solid var(--skeuo-plate-border);
+          border-radius: var(--radius-pill);
+          padding: 8px 18px;
           font-family: var(--font-heading);
           font-size: 12px;
           font-weight: 650;
           color: var(--text-primary);
-          box-shadow: var(--nm-shadow-xs);
+          box-shadow: var(--skeuo-btn-shadow);
           max-width: 320px;
           cursor: pointer;
         }
@@ -587,6 +587,10 @@ export const CertificatePage: React.FC<CertificatePageProps> = ({ currentPath, o
           flex-direction: column;
           gap: 12px;
           margin-bottom: 20px;
+          background: var(--skeuo-plate-bg);
+          border: 1px solid var(--skeuo-plate-border);
+          border-radius: var(--radius-card);
+          box-shadow: var(--skeuo-plate-shadow);
         }
 
         .cert-hero-badges {
@@ -605,8 +609,8 @@ export const CertificatePage: React.FC<CertificatePageProps> = ({ currentPath, o
           color: #10b981;
           background: rgba(16, 185, 129, 0.08);
           border: 1px solid rgba(16, 185, 129, 0.25);
-          padding: 3px 10px;
-          border-radius: 9999px;
+          padding: 4px 14px;
+          border-radius: var(--radius-pill);
         }
 
         .cert-hero-title {
@@ -631,7 +635,7 @@ export const CertificatePage: React.FC<CertificatePageProps> = ({ currentPath, o
           grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
           gap: 12px;
           padding-top: 14px;
-          border-top: 1px solid rgba(195, 206, 222, 0.45);
+          border-top: 1px solid rgba(255, 255, 255, 0.08);
           margin-top: 4px;
         }
 
@@ -673,22 +677,24 @@ export const CertificatePage: React.FC<CertificatePageProps> = ({ currentPath, o
           display: inline-flex;
           align-items: center;
           gap: 5px;
-          padding: 8px 14px;
+          padding: 8px 16px;
           border-radius: var(--radius-pill);
-          background: var(--bg-card);
-          border: var(--nm-border);
+          background: var(--skeuo-btn-bg);
+          border: 1px solid var(--skeuo-plate-border);
+          box-shadow: var(--skeuo-btn-shadow);
           font-size: 11.5px;
           font-weight: 650;
           color: var(--text-secondary);
           cursor: pointer;
           white-space: nowrap;
+          transition: all var(--transition-fast);
         }
 
         .cert-mode-btn.active {
-          background: #ffffff;
-          color: var(--accent-teal);
-          border-color: rgba(14, 165, 233, 0.35);
-          box-shadow: var(--nm-shadow-xs);
+          background: rgba(56, 189, 248, 0.18);
+          color: #38bdf8;
+          border-color: rgba(56, 189, 248, 0.45);
+          box-shadow: 0 0 20px -3px rgba(56, 189, 248, 0.3);
           font-weight: 750;
         }
 
@@ -710,11 +716,15 @@ export const CertificatePage: React.FC<CertificatePageProps> = ({ currentPath, o
 
         /* Canvas Card */
         .cert-canvas-card {
-          padding: 16px;
+          padding: 20px;
           display: flex;
           flex-direction: column;
-          gap: 12px;
+          gap: 14px;
           cursor: pointer;
+          background: var(--skeuo-plate-bg);
+          border: 1px solid var(--skeuo-plate-border);
+          border-radius: var(--radius-card);
+          box-shadow: var(--skeuo-plate-shadow);
         }
 
         .cert-canvas-header {
@@ -725,15 +735,15 @@ export const CertificatePage: React.FC<CertificatePageProps> = ({ currentPath, o
 
         .cert-image-wrapper {
           position: relative;
-          background: #f8fafc;
-          border: 1px solid #cbd5e1;
-          border-radius: 12px;
+          background: #04060a;
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          border-radius: var(--radius-card-sm);
           overflow: hidden;
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 10px;
-          box-shadow: inset 0 2px 6px rgba(0,0,0,0.03);
+          padding: 12px;
+          box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.6);
         }
 
         .cert-main-img {
@@ -741,10 +751,10 @@ export const CertificatePage: React.FC<CertificatePageProps> = ({ currentPath, o
           height: auto;
           max-height: 480px;
           object-fit: contain;
-          border-radius: 8px;
+          border-radius: var(--radius-card-sm);
           display: block;
-          background: #ffffff;
-          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+          background: #04060a;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
           transition: transform 0.25s ease;
         }
 
@@ -756,11 +766,12 @@ export const CertificatePage: React.FC<CertificatePageProps> = ({ currentPath, o
           position: absolute;
           bottom: 18px;
           right: 18px;
-          background: rgba(11, 45, 97, 0.85);
-          backdrop-filter: blur(8px);
-          color: #ffffff;
+          background: #121a2c;
+          border: 1px solid rgba(56, 189, 248, 0.45);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+          color: #38bdf8;
           padding: 6px 14px;
-          border-radius: 9999px;
+          border-radius: var(--radius-pill);
           font-size: 11px;
           font-weight: 700;
           display: flex;
@@ -775,13 +786,17 @@ export const CertificatePage: React.FC<CertificatePageProps> = ({ currentPath, o
           display: flex;
           flex-direction: column;
           gap: 16px;
+          background: var(--skeuo-plate-bg);
+          border: 1px solid var(--skeuo-plate-border);
+          border-radius: var(--radius-card);
+          box-shadow: var(--skeuo-plate-shadow);
         }
 
         .cert-auth-header {
           display: flex;
           align-items: center;
           gap: 10px;
-          border-bottom: 1px solid rgba(195, 206, 222, 0.45);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
           padding-bottom: 12px;
         }
 
@@ -796,8 +811,8 @@ export const CertificatePage: React.FC<CertificatePageProps> = ({ currentPath, o
           justify-content: space-between;
           align-items: center;
           font-size: 12.5px;
-          padding: 4px 0;
-          border-bottom: 1px dashed rgba(195, 206, 222, 0.35);
+          padding: 6px 0;
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
         }
 
         .cert-auth-key {
@@ -823,24 +838,29 @@ export const CertificatePage: React.FC<CertificatePageProps> = ({ currentPath, o
           gap: 6px;
           text-decoration: none;
           justify-content: center;
-          padding: 9px 12px;
+          padding: 10px 16px;
+          border-radius: var(--radius-pill) !important;
         }
 
         /* Right Column Styles */
         .cert-competency-card {
-          padding: 16px 18px;
+          padding: 20px 22px;
           display: flex;
           align-items: flex-start;
           gap: 14px;
-          background: rgba(14, 165, 233, 0.05);
-          border: 1px solid rgba(14, 165, 233, 0.22);
+          background: var(--skeuo-plate-bg);
+          border: 1px solid var(--skeuo-plate-border);
+          border-radius: var(--radius-card);
+          box-shadow: var(--skeuo-plate-shadow);
         }
 
         .cert-competency-icon-box {
-          width: 36px;
-          height: 36px;
-          border-radius: 10px;
-          background: rgba(14, 165, 233, 0.12);
+          width: 38px;
+          height: 38px;
+          border-radius: 50%;
+          background: rgba(56, 189, 248, 0.15);
+          border: 1px solid rgba(56, 189, 248, 0.3);
+          color: #38bdf8;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -853,13 +873,17 @@ export const CertificatePage: React.FC<CertificatePageProps> = ({ currentPath, o
           display: flex;
           flex-direction: column;
           gap: 14px;
+          background: var(--skeuo-plate-bg);
+          border: 1px solid var(--skeuo-plate-border);
+          border-radius: var(--radius-card);
+          box-shadow: var(--skeuo-plate-shadow);
         }
 
         .cert-modules-header {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          border-bottom: 1px solid rgba(195, 206, 222, 0.45);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
           padding-bottom: 10px;
         }
 
@@ -873,28 +897,30 @@ export const CertificatePage: React.FC<CertificatePageProps> = ({ currentPath, o
           display: flex;
           align-items: center;
           gap: 12px;
-          padding: 11px 14px;
-          background: var(--bg-card);
-          border: var(--nm-border);
-          border-radius: var(--radius-xs);
-          box-shadow: var(--nm-shadow-xs);
+          padding: 12px 18px;
+          background: rgba(10, 15, 29, 0.65);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: var(--radius-pill);
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
           transition: all var(--transition-fast);
         }
 
         .cert-module-row:hover {
           transform: translateX(3px);
-          box-shadow: var(--nm-shadow-sm);
+          border-color: rgba(56, 189, 248, 0.35);
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
         }
 
         .cert-module-badge {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          width: 24px;
-          height: 24px;
-          border-radius: 6px;
-          background: var(--text-primary);
-          color: #ffffff;
+          width: 26px;
+          height: 26px;
+          border-radius: 50%;
+          background: rgba(56, 189, 248, 0.2);
+          border: 1px solid rgba(56, 189, 248, 0.35);
+          color: #38bdf8;
           font-size: 11px;
           font-weight: 800;
           flex-shrink: 0;
@@ -912,34 +938,43 @@ export const CertificatePage: React.FC<CertificatePageProps> = ({ currentPath, o
         }
 
         .cert-topics-card {
-          padding: 16px 18px;
+          padding: 20px 22px;
+          background: var(--skeuo-plate-bg);
+          border: 1px solid var(--skeuo-plate-border);
+          border-radius: var(--radius-card);
+          box-shadow: var(--skeuo-plate-shadow);
         }
 
         /* Pager Card */
         .cert-pager-card {
-          padding: 14px 18px;
+          padding: 16px 22px;
           display: flex;
           justify-content: space-between;
           align-items: center;
           gap: 12px;
+          background: var(--skeuo-plate-bg);
+          border: 1px solid var(--skeuo-plate-border);
+          border-radius: var(--radius-card);
+          box-shadow: var(--skeuo-plate-shadow);
         }
 
         .cert-pager-btn {
           display: flex;
           align-items: center;
           gap: 8px;
-          background: transparent;
-          border: none;
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid rgba(255, 255, 255, 0.08);
           cursor: pointer;
           color: var(--text-primary);
           transition: all 0.15s ease;
-          padding: 6px 10px;
-          border-radius: 8px;
+          padding: 8px 16px;
+          border-radius: var(--radius-pill);
         }
 
         .cert-pager-btn:hover {
-          background: var(--bg-card);
-          color: var(--accent-teal);
+          background: rgba(56, 189, 248, 0.12);
+          border-color: rgba(56, 189, 248, 0.35);
+          color: #38bdf8;
         }
 
         .cert-pager-text {

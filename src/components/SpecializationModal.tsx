@@ -429,9 +429,7 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
           .spec-modal-backdrop {
             position: fixed;
             inset: 0;
-            background-color: rgba(11, 45, 97, 0.68);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
+            background-color: rgba(5, 7, 13, 0.9);
             z-index: 1050;
             display: flex;
             align-items: center;
@@ -687,9 +685,9 @@ export const SpecializationModal: React.FC<SpecializationModalProps> = ({ specia
             position: absolute;
             bottom: 14px;
             right: 14px;
-            background-color: rgba(11, 45, 97, 0.88);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            background-color: #121a2c;
+            border: 1px solid rgba(56, 189, 248, 0.45);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
             color: #ffffff;
             padding: 5px 12px;
             border-radius: 9999px;

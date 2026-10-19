@@ -36,14 +36,19 @@ body {
   isolation: isolate;
 }
 
-/* Subtle Neomorphic Ambient Depth Overlay */
+/* Warm Off-White Ambient Depth Mesh */
+.liquid-ambient-bg,
 .neo-ambient-bg {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background: radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.6) 0%, transparent 40%),
-              radial-gradient(circle at 85% 85%, rgba(195, 206, 222, 0.35) 0%, transparent 45%);
+  background:
+    radial-gradient(circle at 12% 12%, rgba(2, 132, 199, 0.04) 0%, transparent 45%),
+    radial-gradient(circle at 88% 18%, rgba(245, 158, 11, 0.035) 0%, transparent 45%),
+    radial-gradient(circle at 50% 85%, rgba(99, 102, 241, 0.03) 0%, transparent 55%),
+    radial-gradient(rgba(18, 20, 23, 0.035) 1px, transparent 1px);
+  background-size: auto, auto, auto, 28px 28px;
 }
 
 /* Accessibility Focus States */

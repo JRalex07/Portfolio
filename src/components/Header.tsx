@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { personalInfo } from '../data/personal';
 import { NAV_ITEMS } from '../data/navigation';
+import { LiquidGlass } from './LiquidGlass';
 export type { NavItem } from '../data/navigation';
 
 interface HeaderProps {
@@ -127,73 +128,94 @@ export const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => 
 
   return (
     <motion.header
-      className="site-header"
+      className={`site-header ${isScrolled ? 'scrolled' : ''}`}
       role="banner"
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      style={{
-        backgroundColor: isScrolled
-          ? 'rgba(234, 240, 248, 0.25)'
-          : 'rgba(234, 240, 248, 0.20)',
-        backdropFilter: 'blur(24px) saturate(180%)',
-        WebkitBackdropFilter: 'blur(24px) saturate(180%)',
-        transition: 'background-color 0.3s ease',
-      }}
     >
       <div className="container">
-        <div className="liquid-glass-navbar">
-          {/* Brand */}
-          <motion.a
-            href="/"
-            className="brand-logo"
-            aria-label="Raman Kumar Sharma — Portfolio"
-            onClick={(e) => handleLinkClick(e, '/', 'hero')}
-            whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
-            whileTap={{ scale: 0.97 }}
-          >
-            <div className="brand-glyph" aria-hidden="true">R</div>
-            <span>{personalInfo.name}</span>
-          </motion.a>
-
-          {/* Desktop Nav */}
-          <nav className="site-nav desktop-nav" role="navigation" aria-label="Main Navigation">
-            <ul className="nav-menu">
-              {NAV_ITEMS.map((item) => (
-                <li key={item.label} style={{ position: 'relative' }}>
-                  <a
-                    href={item.path}
-                    className={`nav-link ${activeSection === item.id ? 'active' : ''}`}
-                    onClick={(e) => handleLinkClick(e, item.path, item.id)}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          {/* Hamburger Button */}
-          <div className="header-actions">
-            <motion.button
-              type="button"
-              className="hamburger-btn"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-expanded={mobileMenuOpen}
-              aria-label={mobileMenuOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
-              aria-controls="mobile-nav-menu"
-              whileTap={{ scale: 0.92, transition: { duration: 0.1 } }}
+        <LiquidGlass
+          pill
+          level="interactive"
+          elevation="floating"
+          className="liquid-glass-navbar"
+          style={{ width: '100%' }}
+          optics={{
+            frost: 24,
+            dispersion: 0.12,
+            sheen: 0.48,
+            bend: 0.22,
+            curvature: 0.12,
+            specular: 0.7,
+          }}
+        >
+          <div className="liquid-glass-navbar-inner">
+            {/* Brand Logo */}
+            <motion.a
+              href="/"
+              className="brand-logo"
+              aria-label="Raman Kumar Sharma — Portfolio"
+              onClick={(e) => handleLinkClick(e, '/', 'hero')}
+              whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+              whileTap={{ scale: 0.98 }}
             >
-              <HamburgerIcon open={mobileMenuOpen} />
-            </motion.button>
+              <div className="brand-glyph" aria-hidden="true">R</div>
+              <span className="brand-name">{personalInfo.name}</span>
+            </motion.a>
+
+            {/* Desktop Navigation */}
+            <nav className="site-nav desktop-nav" role="navigation" aria-label="Main Navigation">
+              <ul className="nav-menu">
+                {NAV_ITEMS.map((item) => {
+                  const isActive =
+                    activeSection === item.id ||
+                    (item.id === 'certifications' && activeSection === 'specializations');
+
+                  return (
+                    <li key={item.label} className="nav-item">
+                      <a
+                        href={item.path}
+                        className={`nav-link ${isActive ? 'active' : ''}`}
+                        onClick={(e) => handleLinkClick(e, item.path, item.id)}
+                      >
+                        {isActive && (
+                          <motion.div
+                            layoutId="active-nav-indicator"
+                            className="active-nav-pill-indicator"
+                            transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                          />
+                        )}
+                        <span className="nav-link-text">{item.label}</span>
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
+
+            {/* Mobile Actions / Hamburger Button */}
+            <div className="header-actions">
+              <motion.button
+                type="button"
+                className="hamburger-btn"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-expanded={mobileMenuOpen}
+                aria-label={mobileMenuOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
+                aria-controls="mobile-nav-menu"
+                whileTap={{ scale: 0.92, transition: { duration: 0.1 } }}
+              >
+                <HamburgerIcon open={mobileMenuOpen} />
+              </motion.button>
+            </div>
           </div>
-        </div>
+        </LiquidGlass>
       </div>
 
       {/* Mobile Dropdown Menu — AnimatePresence for smooth mount/unmount */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.nav
+          <motion.div
             id="mobile-nav-menu"
             role="navigation"
             aria-label="Mobile Navigation"
@@ -201,70 +223,39 @@ export const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => 
             initial="hidden"
             animate="visible"
             exit="exit"
-            style={{
-              position: 'absolute',
-              top: '78px',
-              left: '10px',
-              right: '10px',
-              backgroundColor: 'var(--bg-card)',
-              border: 'var(--nm-border)',
-              borderRadius: 'var(--radius-md)',
-              padding: 'var(--space-4)',
-              boxShadow: 'var(--nm-shadow-lg)',
-              zIndex: 200,
-              maxHeight: 'calc(100dvh - 100px)',
-              overflowY: 'auto',
-            }}
+            className="mobile-nav-dropdown-wrapper"
           >
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              {NAV_ITEMS.map((item) => (
-                <motion.li key={item.label} variants={menuItemVariants}>
-                  <a
-                    href={item.path}
-                    className={`nav-link ${activeSection === item.id ? 'active' : ''}`}
-                    onClick={(e) => handleLinkClick(e, item.path, item.id)}
-                    style={{ display: 'block', width: '100%', padding: '11px 16px', fontSize: '0.9rem', borderRadius: '12px' }}
-                  >
-                    {item.label}
-                  </a>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.nav>
+            <div className="mobile-nav-dropdown-panel">
+              <ul className="mobile-nav-list">
+                {NAV_ITEMS.map((item) => {
+                  const isActive =
+                    activeSection === item.id ||
+                    (item.id === 'certifications' && activeSection === 'specializations');
+
+                  return (
+                    <motion.li key={item.label} variants={menuItemVariants}>
+                      <a
+                        href={item.path}
+                        className={`mobile-nav-link ${isActive ? 'active' : ''}`}
+                        onClick={(e) => handleLinkClick(e, item.path, item.id)}
+                      >
+                        <span className="mobile-nav-link-label">{item.label}</span>
+                        {isActive ? (
+                          <span className="mobile-nav-active-badge">Active</span>
+                        ) : (
+                          <svg className="mobile-nav-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <path d="M6 12L10 8L6 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        )}
+                      </a>
+                    </motion.li>
+                  );
+                })}
+              </ul>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
-
-      <style>{`
-        /* ─── Desktop nav — hidden on mobile ─── */
-        .desktop-nav { display: flex; }
-
-        /* ─── Hamburger button — hidden on desktop ─── */
-        .hamburger-btn {
-          display: none;
-          align-items: center;
-          justify-content: center;
-          width: 40px;
-          height: 40px;
-          border-radius: 10px;
-          background: var(--bg-card);
-          border: var(--nm-border);
-          box-shadow: var(--nm-shadow-xs);
-          color: var(--text-primary);
-          cursor: pointer;
-          transition: box-shadow 160ms ease, background 160ms ease;
-          flex-shrink: 0;
-        }
-
-        .hamburger-btn:hover {
-          box-shadow: var(--nm-shadow-sm);
-          color: var(--accent-teal);
-        }
-
-        @media (max-width: 768px) {
-          .desktop-nav { display: none !important; }
-          .hamburger-btn { display: inline-flex !important; }
-        }
-      `}</style>
     </motion.header>
   );
 };

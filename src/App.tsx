@@ -3,53 +3,32 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { ScrollProgress } from './components/ScrollProgress';
-import { NotFound } from './pages/NotFound';
+import { CursorTrail } from './components/CursorTrail';
+import { HomePage } from './pages/HomePage';
+import { ProjectsPage } from './pages/ProjectsPage';
+import { CertificationsPage } from './pages/CertificationsPage';
 import { CertificatePage } from './pages/CertificatePage';
-import { Hero } from './sections/Hero';
-import { About } from './sections/About';
-import { Projects } from './sections/Projects';
-import { Ecosystem } from './sections/Ecosystem';
-import { Engineering } from './sections/Engineering';
-import { TechStack } from './sections/TechStack';
-import { Specializations } from './sections/Specializations';
-import { Timeline } from './sections/Timeline';
-import { Contact } from './sections/Contact';
-import { useLenis, smoothScrollTo } from './hooks/useLenis';
+import { AboutPage } from './pages/AboutPage';
+import { ContactPage } from './pages/ContactPage';
+import { NotFound } from './pages/NotFound';
+import { useLenis } from './hooks/useLenis';
 
-const ROUTE_SECTION_MAP: Record<string, string> = {
-  '/': 'hero',
-  '/overview': 'hero',
-  '/about': 'about',
-  '/projects': 'projects',
-  '/ecosystem': 'ecosystem',
-  '/engineering': 'engineering',
-  '/stack': 'stack',
-  '/specializations': 'specializations',
-  '/timeline': 'timeline',
-  '/contact': 'contact',
-};
-
-const SECTION_ROUTE_MAP: Record<string, string> = {
-  hero: '/',
-  about: '/about',
-  projects: '/projects',
-  ecosystem: '/ecosystem',
-  engineering: '/engineering',
-  stack: '/stack',
-  specializations: '/specializations',
-  timeline: '/timeline',
-  contact: '/contact',
+// Route aliases mapping to canonical routes
+const CANONICAL_ROUTES: Record<string, string> = {
+  '/': '/',
+  '/overview': '/',
+  '/home': '/',
+  '/projects': '/projects',
+  '/certifications': '/certifications',
+  '/specializations': '/certifications',
+  '/credentials': '/certifications',
+  '/about': '/about',
+  '/engineering': '/about',
+  '/timeline': '/about',
+  '/contact': '/contact',
 };
 
 // Base path helper for GitHub Pages sub-path support ('/Portfolio' in prod, '' in dev)
-// OLD (Root domain only):
-// const normalizePath = (path: string): string => {
-//   const cleaned = path.toLowerCase().trim();
-//   if (cleaned.length > 1 && cleaned.endsWith('/')) {
-//     return cleaned.slice(0, -1);
-//   }
-//   return cleaned || '/';
-// };
 const BASE_PATH = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
 
 const normalizePath = (path: string): string => {
@@ -59,12 +38,12 @@ const normalizePath = (path: string): string => {
     cleaned = cleaned.slice(BASE_PATH.length);
   }
   if (cleaned.length > 1 && cleaned.endsWith('/')) {
-    return cleaned.slice(0, -1);
+    cleaned = cleaned.slice(0, -1);
   }
   return cleaned || '/';
 };
 
-// Converts an internal route (e.g. '/about') to a full browser URL (e.g. '/Portfolio/about' or '/about')
+// Converts an internal route (e.g. '/projects') to a full browser URL (e.g. '/Portfolio/projects' or '/projects')
 const toBrowserPath = (path: string): string => {
   const norm = path.startsWith('/') ? path : `/${path}`;
   return BASE_PATH ? `${BASE_PATH}${norm}` : norm;
@@ -75,166 +54,115 @@ export const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>('hero');
   const [isNotFound, setIsNotFound] = useState<boolean>(false);
 
-  // Initialize Lenis smooth scroll — runs at display refresh rate
+  // Initialize smooth scroll momentum
   useLenis();
 
-  // Smooth scroll utility — uses Lenis for momentum, falls back to native
-  const scrollToSection = useCallback((sectionId: string, smooth: boolean = true) => {
-    const el = document.getElementById(sectionId);
-    if (el) {
-      if (smooth) {
-        smoothScrollTo(el, 85);
-      } else {
-        const top = el.getBoundingClientRect().top + window.scrollY - 85;
-        window.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
-      }
-    }
-  }, []);
+  // Determine active section id for navbar highlighting
+  const getSectionForPath = (path: string): string => {
+    if (path === '/' || path === '/overview') return 'hero';
+    if (path === '/projects') return 'projects';
+    if (path === '/certifications' || path === '/specializations' || path.startsWith('/certificate')) return 'certifications';
+    if (path === '/about') return 'about';
+    if (path === '/contact') return 'contact';
+    return '';
+  };
 
   // Programmatic navigation handler
   const handleNavigate = useCallback((path: string, sectionId?: string) => {
     const normalized = normalizePath(path);
-    setCurrentPath(normalized);
 
+    // Deep Certificate Route check (/certificate/:id)
     if (normalized.startsWith('/certificate')) {
+      setCurrentPath(normalized);
       setIsNotFound(false);
-      setActiveSection('specializations');
-      // OLD: window.history.pushState(null, '', normalized);
+      setActiveSection('certifications');
       window.history.pushState(null, '', toBrowserPath(normalized));
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
 
-    if (ROUTE_SECTION_MAP[normalized]) {
+    // Canonical route match
+    const canonical = CANONICAL_ROUTES[normalized];
+    if (canonical) {
+      setCurrentPath(canonical);
       setIsNotFound(false);
-      const targetSection = sectionId || ROUTE_SECTION_MAP[normalized];
-      setActiveSection(targetSection);
-      // OLD: window.history.pushState(null, '', normalized);
-      window.history.pushState(null, '', toBrowserPath(normalized));
-      scrollToSection(targetSection, true);
+      const targetSec = sectionId || getSectionForPath(canonical);
+      setActiveSection(targetSec);
+      window.history.pushState(null, '', toBrowserPath(canonical));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
+      setCurrentPath(normalized);
       setIsNotFound(true);
-      // OLD: window.history.pushState(null, '', normalized);
+      setActiveSection('');
       window.history.pushState(null, '', toBrowserPath(normalized));
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  }, [scrollToSection]);
+  }, []);
 
-  // Handle initial page load and deep linking
+  // Handle initial page load and legacy hash migration (e.g. #projects -> /projects)
   useEffect(() => {
     const path = normalizePath(window.location.pathname);
-    // If there is an old hash (e.g. #projects), migrate cleanly to /projects
+
+    // If an old URL hash exists, migrate cleanly
     if (window.location.hash && window.location.hash.length > 1) {
       const hashId = window.location.hash.substring(1);
-      if (SECTION_ROUTE_MAP[hashId]) {
-        const cleanPath = SECTION_ROUTE_MAP[hashId];
-        // OLD: window.history.replaceState(null, '', cleanPath);
-        window.history.replaceState(null, '', toBrowserPath(cleanPath));
-        setCurrentPath(cleanPath);
-        setIsNotFound(false);
-        setActiveSection(hashId);
-        setTimeout(() => scrollToSection(hashId, false), 100);
-        return;
-      }
+      const targetPath = hashId === 'hero' ? '/' : `/${hashId}`;
+      const canonical = CANONICAL_ROUTES[targetPath] || targetPath;
+      window.history.replaceState(null, '', toBrowserPath(canonical));
+      setCurrentPath(canonical);
+      setIsNotFound(false);
+      setActiveSection(getSectionForPath(canonical));
+      window.scrollTo({ top: 0, behavior: 'auto' });
+      return;
     }
 
     if (path.startsWith('/certificate')) {
+      setCurrentPath(path);
       setIsNotFound(false);
-      setActiveSection('specializations');
+      setActiveSection('certifications');
       return;
     }
 
-    if (ROUTE_SECTION_MAP[path]) {
+    const canonical = CANONICAL_ROUTES[path];
+    if (canonical) {
+      setCurrentPath(canonical);
       setIsNotFound(false);
-      const section = ROUTE_SECTION_MAP[path];
-      setActiveSection(section);
-      if (section !== 'hero') {
-        // Deep link scroll after layout mount
-        setTimeout(() => scrollToSection(section, true), 150);
-      }
+      setActiveSection(getSectionForPath(canonical));
     } else {
       setIsNotFound(true);
+      setActiveSection('');
     }
-  }, [scrollToSection]);
+  }, []);
 
-  // Handle browser Back / Forward buttons
+  // Handle browser Back / Forward history buttons
   useEffect(() => {
     const handlePopState = () => {
       const path = normalizePath(window.location.pathname);
-      setCurrentPath(path);
 
       if (path.startsWith('/certificate')) {
+        setCurrentPath(path);
         setIsNotFound(false);
-        setActiveSection('specializations');
+        setActiveSection('certifications');
         return;
       }
 
-      if (ROUTE_SECTION_MAP[path]) {
+      const canonical = CANONICAL_ROUTES[path];
+      if (canonical) {
+        setCurrentPath(canonical);
         setIsNotFound(false);
-        const section = ROUTE_SECTION_MAP[path];
-        setActiveSection(section);
-        scrollToSection(section, true);
+        setActiveSection(getSectionForPath(canonical));
       } else {
+        setCurrentPath(path);
         setIsNotFound(true);
+        setActiveSection('');
       }
     };
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
-  }, [scrollToSection]);
+  }, []);
 
-  // Scroll spy with clean URL pathname synchronization (NO hash #)
-  useEffect(() => {
-    if (isNotFound) return;
-
-    const sections = [
-      'hero',
-      'about',
-      'projects',
-      'ecosystem',
-      'engineering',
-      'stack',
-      'specializations',
-      'timeline',
-      'contact',
-    ];
-
-    let ticking = false;
-
-    const handleScroll = () => {
-      if (ticking) return;
-      ticking = true;
-
-      window.requestAnimationFrame(() => {
-        ticking = false;
-        const scrollPosition = window.scrollY + 220;
-
-        for (let i = sections.length - 1; i >= 0; i--) {
-          const el = document.getElementById(sections[i]);
-          if (el && el.offsetTop <= scrollPosition) {
-            const currentSec = sections[i];
-            const targetPath = SECTION_ROUTE_MAP[currentSec] || '/';
-
-            setActiveSection(currentSec);
-
-            // Update browser URL cleanly without page reload and without '#'
-            const fullBrowserUrl = toBrowserPath(targetPath);
-            if (window.location.pathname !== fullBrowserUrl) {
-              // OLD: window.history.replaceState(null, '', targetPath);
-              window.history.replaceState(null, '', fullBrowserUrl);
-              setCurrentPath(targetPath);
-            }
-            break;
-          }
-        }
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [isNotFound]);
-
-  // Intercept any stray in-page anchor clicks to prevent '#' hash changes
+  // Intercept internal links for client-side routing
   useEffect(() => {
     const handleAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null;
@@ -248,15 +176,14 @@ export const App: React.FC = () => {
       if (href.startsWith('#') && href.length > 1) {
         e.preventDefault();
         const targetId = href.substring(1);
-        const cleanPath = SECTION_ROUTE_MAP[targetId] || `/${targetId}`;
-        handleNavigate(cleanPath, targetId);
+        const targetPath = targetId === 'hero' ? '/' : `/${targetId}`;
+        handleNavigate(targetPath, targetId);
       }
-      // Handle internal relative paths like /about, /projects
+      // Handle internal relative paths like /about, /projects, /certifications
       else if (href.startsWith('/') && !href.startsWith('//')) {
         e.preventDefault();
         const normalized = normalizePath(href);
-        const targetId = ROUTE_SECTION_MAP[normalized];
-        handleNavigate(normalized, targetId);
+        handleNavigate(normalized);
       }
     };
 
@@ -264,51 +191,74 @@ export const App: React.FC = () => {
     return () => document.removeEventListener('click', handleAnchorClick);
   }, [handleNavigate]);
 
-  // Render 404 page if path is unmapped
-  if (isNotFound) {
-    return <NotFound onNavigate={handleNavigate} currentPath={currentPath} />;
-  }
 
-  // Render dedicated Certificate & Syllabus page
-  if (currentPath.startsWith('/certificate')) {
-    return (
-      <div className="app-container">
-        <ScrollProgress />
-        <div className="neo-ambient-bg" aria-hidden="true" />
-        <Header activeSection="specializations" onNavigate={handleNavigate} />
-        <CertificatePage currentPath={currentPath} onNavigate={handleNavigate} />
-        <Footer />
-      </div>
-    );
-  }
+  // Page Transition Variants
+  const pageVariants = {
+    initial: { opacity: 0, y: 12 },
+    animate: { opacity: 1, y: 0, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] as const } },
+    exit: { opacity: 0, y: -12, transition: { duration: 0.25, ease: 'easeIn' as const } },
+  };
+
+  // Render Page Content based on currentPath
+  const renderPage = () => {
+    if (isNotFound) {
+      return <NotFound onNavigate={handleNavigate} currentPath={currentPath} />;
+    }
+
+    if (currentPath.startsWith('/certificate')) {
+      return <CertificatePage currentPath={currentPath} onNavigate={handleNavigate} />;
+    }
+
+    switch (currentPath) {
+      case '/':
+      case '/overview':
+        return <HomePage onNavigate={handleNavigate} />;
+      case '/projects':
+        return <ProjectsPage onNavigate={handleNavigate} />;
+      case '/certifications':
+      case '/specializations':
+        return <CertificationsPage onNavigate={handleNavigate} />;
+      case '/about':
+        return <AboutPage onNavigate={handleNavigate} />;
+      case '/contact':
+        return <ContactPage onNavigate={handleNavigate} />;
+      default:
+        return <NotFound onNavigate={handleNavigate} currentPath={currentPath} />;
+    }
+  };
 
   return (
     <div className="app-container">
-      {/* Top Scroll Depth Progress Bar (himamritshop.in style) */}
+      {/* Canvas-based Liquid Glass smooth spring cursor trail */}
+      <CursorTrail />
+
+      {/* Top Scroll Depth Progress Indicator */}
       <ScrollProgress />
 
-      {/* Subtle Neomorphic Ambient Depth Overlay */}
-      <div className="neo-ambient-bg" aria-hidden="true" />
+      {/* Liquid Glass Atmospheric Ambient Depth Mesh */}
+      <div className="liquid-ambient-bg" aria-hidden="true" />
 
       {/* Accessible skip link */}
-      <a href="#hero" className="skip-link">
+      <a href="#main-content" className="skip-link">
         Skip to primary content
       </a>
 
-      {/* Persistent minimal navigation */}
+      {/* Liquid Glass persistent navigation bar */}
       <Header activeSection={activeSection} onNavigate={handleNavigate} />
 
-      {/* Main content landmark */}
+      {/* Main content landmark with animated liquid page transition */}
       <main id="main-content" className="content-wrapper">
-        <Hero />
-        <About />
-        <Projects />
-        <Ecosystem />
-        <Engineering />
-        <TechStack />
-        <Specializations />
-        <Timeline />
-        <Contact />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentPath}
+            variants={pageVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+          >
+            {renderPage()}
+          </motion.div>
+        </AnimatePresence>
       </main>
 
       {/* Colophon & verified links footer */}
@@ -316,11 +266,11 @@ export const App: React.FC = () => {
 
       {/* Floating Scroll-to-Top Button */}
       <AnimatePresence>
-        {activeSection !== 'hero' && (
+        {!isNotFound && activeSection !== 'hero' && activeSection !== '' && (
           <motion.button
             type="button"
             aria-label="Scroll to top"
-            onClick={() => handleNavigate('/', 'hero')}
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             initial={{ opacity: 0, scale: 0.7, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.7, y: 20 }}
@@ -335,9 +285,9 @@ export const App: React.FC = () => {
               width: '46px',
               height: '46px',
               borderRadius: '50%',
-              background: 'var(--bg-card)',
-              border: 'var(--nm-border)',
-              boxShadow: 'var(--nm-shadow-md)',
+              background: 'var(--skeuo-btn-bg)',
+              border: '1px solid var(--skeuo-plate-border)',
+              boxShadow: 'var(--skeuo-btn-shadow)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',

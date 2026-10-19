@@ -1,50 +1,128 @@
 :root {
   /* ==========================================================
-     NEOMORPHISM (SOFT UI) LIGHT THEME DESIGN SYSTEM
+     PREMIUM LIGHT-THEME DESIGN SYSTEM TOKENS
+     Curated warm off-white, strong charcoal typography, subtle stone surfaces,
+     and surgical electric sky / emerald accents.
      ========================================================== */
 
-  /* Surface Palette (Calibrated Soft Neomorphic Canvas) */
-  --bg-primary: #eaf0f8;
-  --bg-secondary: #eaf0f8;
-  --bg-card: #eaf0f8;
-  --bg-inset: #e2e8f0;
-  --bg-elevated: #f1f5fa;
-  --bg-overlay: rgba(234, 240, 248, 0.92);
+  /* Canvas & Editorial Surface Plates */
+  --bg-canvas: #faf9f6;          /* Warm Alabaster / Chalk canvas */
+  --bg-primary: #ffffff;         /* Pure Optical White */
+  --bg-secondary: #f4f3ef;       /* Warm Stone / Porcelain */
+  --bg-card: #ffffff;            /* Crisp Card Surface */
+  --bg-card-hover: #fcfcfb;      /* Subtle Hover Luminescence */
+  --bg-elevated: #ffffff;        /* Elevated Popover Surface */
+  --bg-overlay: rgba(250, 249, 246, 0.88); /* Frost Backdrop */
+  --bg-inset: #f1f0eb;           /* Debossed Input / Well Plate */
 
-  /* Neomorphic Shadow System (Dual Lighting from Top-Left) */
-  --nm-shadow-xs: 3px 3px 6px #cad3df, -3px -3px 6px #ffffff;
-  --nm-shadow-sm: 5px 5px 12px #c7d1de, -5px -5px 12px #ffffff;
-  --nm-shadow-md: 9px 9px 20px #c4cee0, -9px -9px 20px #ffffff;
-  --nm-shadow-lg: 14px 14px 28px #bfc9db, -14px -14px 28px #ffffff;
-  --nm-shadow-hover: 12px 12px 24px #b8c4d6, -12px -12px 24px #ffffff;
-  --nm-shadow-active: inset 4px 4px 8px #c4cee0, inset -4px -4px 8px #ffffff;
+  /* Border & Separation System */
+  --border-subtle: #e7e5df;      /* Delicate Stone Hairline */
+  --border-default: #dcdad3;     /* Standard Framing */
+  --border-card: rgba(220, 218, 211, 0.8);
+  --border-focus: #0ea5e9;       /* Electric Sky Focus Ring */
 
-  /* Inset / Recessed Shadows */
-  --nm-inset-xs: inset 2px 2px 5px #cad3df, inset -2px -2px 5px #ffffff;
-  --nm-inset-sm: inset 4px 4px 9px #c7d1de, inset -4px -4px 9px #ffffff;
-  --nm-inset-md: inset 6px 6px 14px #c2ccdc, inset -6px -6px 14px #ffffff;
+  /* High Legibility Editorial Charcoal Typography */
+  --text-primary: #121417;       /* Rich Deep Charcoal (Near-black) */
+  --text-secondary: #474a52;     /* Balanced Editorial Gray */
+  --text-muted: #6b707d;         /* Subtle Metadata Gray */
+  --text-dim: #9aa0ad;           /* Faint Tertiary / Labels */
+  --text-accent: #0284c7;        /* Focused Sapphire Cyan */
 
-  /* Neomorphic Clean Surface Edges */
-  --nm-border: 1px solid rgba(255, 255, 255, 0.9);
-  --nm-border-inset: 1px solid rgba(195, 206, 222, 0.5);
-  --border-subtle: 1px solid rgba(255, 255, 255, 0.8);
+  /* Curated Accent Palette (Light Theme Vibrance) */
+  --accent-teal: #0284c7;        /* Sapphire Sky Blue */
+  --accent-teal-dark: #0369a1;
+  --accent-teal-soft: rgba(2, 132, 199, 0.08);
+  --accent-blue: #2563eb;
+  --accent-indigo: #4f46e5;
+  --accent-purple: #7c3aed;
+  --accent-purple-soft: rgba(124, 58, 237, 0.08);
+  --accent-amber: #d97706;
+  --accent-amber-soft: rgba(217, 119, 6, 0.08);
+  --accent-emerald: #059669;
+  --accent-emerald-soft: rgba(5, 150, 105, 0.08);
+  --accent-rose: #e11d48;
 
-  /* Refined Accent Colors */
-  --accent-teal: #0ea5e9;
-  --accent-teal-soft: rgba(14, 165, 233, 0.12);
-  --accent-blue: #3b82f6;
-  --accent-indigo: #6366f1;
-  --accent-purple: #8b5cf6;
-  --accent-amber: #f59e0b;
-  --accent-emerald: #10b981;
-  --accent-rose: #f43f5e;
+  /* Level 1: Sunken / Inset Plates (Search inputs, telemetry recess, code blocks) */
+  --skeuo-inset-bg: #f3f2ed;
+  --skeuo-inset-border: 1px solid #e2e0d8;
+  --skeuo-inset-shadow: inset 0 2px 4px rgba(18, 20, 23, 0.04), 0 1px 0 rgba(255, 255, 255, 0.8);
 
-  /* High Legibility Typography Colors */
-  --text-primary: #1e293b;
-  --text-secondary: #334155;
-  --text-muted: #64748b;
-  --text-dim: #94a3b8;
-  --text-accent: #0284c7;
+  /* Level 2: Raised Interactive Plates (Cards, Project Containers, Nav) */
+  --skeuo-plate-bg: #ffffff;
+  --skeuo-plate-bg-hover: #ffffff;
+  --skeuo-plate-border: 1px solid #e7e5df;
+  --skeuo-plate-border-hover: 1px solid #0284c7;
+  --skeuo-plate-shadow: 0 4px 20px -2px rgba(18, 20, 23, 0.05), 0 2px 6px -1px rgba(18, 20, 23, 0.03);
+  --skeuo-plate-shadow-hover: 0 16px 36px -6px rgba(18, 20, 23, 0.09), 0 6px 14px -2px rgba(18, 20, 23, 0.04), 0 0 0 1px rgba(2, 132, 199, 0.15);
+
+  /* Level 3: Prominent Extruded Plates (Modals, Feature Highlights) */
+  --skeuo-chassis-bg: #ffffff;
+  --skeuo-chassis-border: 1px solid #dcdad3;
+  --skeuo-chassis-shadow: 0 24px 54px -10px rgba(18, 20, 23, 0.12), 0 8px 18px -4px rgba(18, 20, 23, 0.06);
+
+  /* Tactile Physical Push Buttons */
+  --skeuo-btn-bg: #f8f7f4;
+  --skeuo-btn-border: 1px solid #dcdad3;
+  --skeuo-btn-shadow: 0 2px 5px rgba(18, 20, 23, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --skeuo-btn-pressed: inset 0 2px 4px rgba(18, 20, 23, 0.08);
+
+  /* Primary Accent Push Button (Solid Deep Charcoal / Electric Sky) */
+  --skeuo-btn-primary-bg: #121417;
+  --skeuo-btn-primary-border: 1px solid #121417;
+  --skeuo-btn-primary-shadow: 0 4px 14px rgba(18, 20, 23, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+
+  /* Mapped Glass/Skeuo Aliases */
+  --glass-l1-bg: var(--skeuo-inset-bg);
+  --glass-l1-bg-hover: #ebe9e3;
+  --glass-l1-blur: none;
+  --glass-l1-border: var(--skeuo-inset-border);
+  --glass-l1-border-hover: 1px solid rgba(2, 132, 199, 0.4);
+  --glass-l1-shadow: var(--skeuo-inset-shadow);
+
+  --glass-l2-bg: var(--skeuo-plate-bg);
+  --glass-l2-bg-hover: var(--skeuo-plate-bg-hover);
+  --glass-l2-blur: none;
+  --glass-l2-border: var(--skeuo-plate-border);
+  --glass-l2-border-hover: var(--skeuo-plate-border-hover);
+  --glass-l2-shadow: var(--skeuo-plate-shadow);
+  --glass-l2-shadow-hover: var(--skeuo-plate-shadow-hover);
+
+  --glass-l3-bg: var(--skeuo-chassis-bg);
+  --glass-l3-blur: none;
+  --glass-l3-border: var(--skeuo-chassis-border);
+  --glass-l3-shadow: var(--skeuo-chassis-shadow);
+
+  --glass-bg: var(--skeuo-plate-bg);
+  --glass-bg-hover: var(--skeuo-plate-bg-hover);
+  --glass-bg-active: var(--skeuo-btn-pressed);
+  --glass-bg-panel: #ffffff;
+  --glass-bg-card: #ffffff;
+  --glass-bg-nav: rgba(255, 255, 255, 0.92);
+
+  --glass-border: var(--skeuo-plate-border);
+  --glass-border-hover: var(--skeuo-plate-border-hover);
+  --glass-border-highlight: 1px solid #0284c7;
+  --glass-border-subtle: var(--border-subtle);
+
+  --glass-specular-top: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  --glass-specular-accent: inset 0 1px 0 rgba(2, 132, 199, 0.35);
+  --glass-shadow-sm: var(--skeuo-inset-shadow);
+  --glass-shadow-md: var(--skeuo-plate-shadow);
+  --glass-shadow-lg: var(--skeuo-chassis-shadow);
+  --glass-shadow-hover: var(--skeuo-plate-shadow-hover);
+
+  /* Neumorphism / Soft-Depth Aliases */
+  --nm-shadow-xs: 0 1px 3px rgba(18, 20, 23, 0.05);
+  --nm-shadow-sm: 0 2px 6px rgba(18, 20, 23, 0.06);
+  --nm-shadow-md: 0 6px 18px rgba(18, 20, 23, 0.07);
+  --nm-shadow-lg: 0 18px 40px rgba(18, 20, 23, 0.1);
+  --nm-shadow-hover: var(--skeuo-plate-shadow-hover);
+  --nm-shadow-active: var(--skeuo-btn-pressed);
+  --nm-inset-xs: var(--skeuo-inset-shadow);
+  --nm-inset-sm: var(--skeuo-inset-shadow);
+  --nm-inset-md: var(--skeuo-inset-shadow);
+  --nm-border: 1px solid var(--border-subtle);
+  --nm-border-inset: var(--skeuo-inset-border);
 
   /* Font Families */
   --font-display: 'Plus Jakarta Sans', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -61,20 +139,29 @@
   --text-2xl: 1.5rem;
   --text-3xl: 1.875rem;
   --text-4xl: 2.25rem;
-  --text-5xl: 3rem;
+  --text-5xl: 3.25rem;
+  --text-hero: clamp(2.4rem, 5.5vw, 4.25rem);
 
-  /* Smooth Neomorphic Corner Radii */
-  --radius-xs: 8px;
-  --radius-sm: 14px;
+  /* Refined Curvature Tokens (Balanced Pills & Soft Rects) */
+  --radius-pill: 9999px;
+  --radius-pill-sm: 9999px;
+  --radius-pill-md: 9999px;
+  --radius-card-sm: 16px;
+  --radius-card: 24px;
+  --radius-card-lg: 32px;
+  --radius-card-xl: 40px;
+
+  --radius-xs: 9999px;
+  --radius-sm: 9999px;
   --radius-md: 20px;
   --radius-lg: 28px;
   --radius-xl: 36px;
-  --radius-pill: 9999px;
 
-  /* Smooth Transitions */
-  --transition-fast: 160ms cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-normal: 260ms cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-smooth: 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  /* Animation Easing & Durations */
+  --ease-liquid: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 160ms var(--ease-liquid);
+  --transition-normal: 260ms var(--ease-liquid);
+  --transition-smooth: 420ms var(--ease-liquid);
 
   /* Spacing Scale */
   --space-1: 0.25rem;
@@ -88,15 +175,22 @@
   --space-12: 3rem;
   --space-16: 4rem;
   --space-20: 5rem;
+  --space-24: 6rem;
 
   /* Container Widths */
   --max-width-content: 1260px;
-  --max-width-narrow: 860px;
+  --max-width-narrow: 880px;
 
-  /* Z-Index */
+  /* Header System Heights */
+  --header-height: 96px;
+  --header-height-mobile: 78px;
+
+  /* Z-Index Hierarchy */
   --z-bg-canvas: 0;
-  --z-content: 1;
-  --z-sticky-nav: 50;
-  --z-modal-backdrop: 90;
-  --z-modal: 100;
+  --z-cursor-trail: 5;
+  --z-content: 10;
+  --z-sticky-nav: 100;
+  --z-hover-preview: 150;
+  --z-modal-backdrop: 200;
+  --z-modal: 250;
 }

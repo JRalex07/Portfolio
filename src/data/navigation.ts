@@ -5,13 +5,9 @@ export interface NavItem {
 }
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: 'Overview', path: '/', id: 'hero' },
-  { label: 'About', path: '/about', id: 'about' },
+  { label: 'Home', path: '/', id: 'hero' },
   { label: 'Projects', path: '/projects', id: 'projects' },
-  { label: 'Ecosystem', path: '/ecosystem', id: 'ecosystem' },
-  { label: 'Engineering', path: '/engineering', id: 'engineering' },
-  { label: 'Stack', path: '/stack', id: 'stack' },
-  { label: 'Specializations', path: '/specializations', id: 'specializations' },
-  { label: 'Timeline', path: '/timeline', id: 'timeline' },
+  { label: 'Certifications', path: '/certifications', id: 'certifications' },
+  { label: 'About', path: '/about', id: 'about' },
   { label: 'Contact', path: '/contact', id: 'contact' },
 ];

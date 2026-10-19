@@ -2,7 +2,7 @@ export interface Project {
   id: string;
   title: string;
   subtitle: string;
-  category: "Distributed Ecosystem" | "Agentic Systems" | "Mobile Engineering" | "Backend Systems" | "E-Commerce";
+  category: "Distributed Ecosystem" | "Agentic Systems" | "Mobile Engineering" | "Backend Systems" | "E-Commerce" | "Interactive Web Architecture";
   badge: string;
   problem: string;
   solution: string;
@@ -140,5 +140,31 @@ export const projects: Project[] = [
     technologies: ["Flutter", "Dart", "BLoC / Provider", "SQLite", "REST APIs", "Native Channels"],
     githubUrl: "https://github.com/JRalex07",
     isFeatured: false
+  },
+  {
+    id: "institutional-school-portal",
+    title: "Interactive School Landing Page & Institutional Academic Portal",
+    subtitle: "Production educational landing platform featuring an interactive spatial mascot assistant, dynamic configuration engine, and full academic lifecycle workflows",
+    category: "Interactive Web Architecture",
+    badge: "Live School Platform",
+    problem: "Institutional and educational landing pages frequently suffer from rigid CMS limitations, lifeless navigation structures, poor mobile accessibility, and disconnected administrative notification pipelines that fail to engage prospective students and parents.",
+    solution: "Architected and deployed a fluid, spatial school landing platform at alex-prototype.netlify.app featuring an autonomous mascot assistant with real-time viewport collision detection, a dynamic school configuration engine for instant theming/branding customization, and streamlined academic workflows.",
+    architectureDetails: [
+      "Spatial Mascot Assistant Engine: Autonomous assistant with mathematical viewport safe-area boundaries, collision calculation, dynamic speech bubbles, and scroll-linked section tracking.",
+      "Dynamic School Configuration System: Real-time context provider (SchoolConfigProvider) enabling instantaneous theme switching, branding overrides, academic year toggles, and notification modals.",
+      "Code-Split Component Architecture: Performance-optimized route splitting with React 19 lazy loading and Suspense boundaries for instantaneous initial page loads.",
+      "Responsive Multi-Tier Workflows: Comprehensive modules for Admissions, Academics, Faith, Academic Calendar, and Direct Parent Inquiries."
+    ],
+    keyFeatures: [
+      "Live production deployment at alex-prototype.netlify.app",
+      "Interactive spatial mascot assistant with collision avoidance",
+      "Runtime configuration drawer for live branding and theme customization",
+      "Comprehensive academic admissions and curriculum exploration workflows",
+      "Zero layout shifts with fluid GSAP and Framer Motion micro-interactions"
+    ],
+    technologies: ["React 19", "TypeScript", "Vite", "React Router 7", "Framer Motion", "GSAP 3", "Lucide Icons", "Netlify"],
+    liveUrl: "https://alex-prototype.netlify.app/",
+    githubUrl: "https://github.com/JRalex07",
+    isFeatured: true
   }
 ];
