@@ -1,18 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&family=Space+Grotesk:wght@600;700&display=swap');
 
 /* Modern Box Reset */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 html {
-  /* scroll-behavior: smooth; — Disabled: Lenis handles smooth scroll via RAF */
   scroll-padding-top: 90px;
   /* iOS Safari momentum scrolling */
   -webkit-overflow-scrolling: touch;
-  overscroll-behavior: none;
 
   /* Crisp subpixel rendering */
   -webkit-font-smoothing: antialiased;
@@ -30,7 +30,7 @@ body {
   line-height: 1.6;
   background-color: var(--bg-primary);
   color: var(--text-secondary);
-  overflow-x: hidden;
+  overflow-x: clip;
   min-height: 100vh;
   /* Prevent layout jank from paint layers */
   isolation: isolate;
@@ -122,7 +122,8 @@ button {
   cursor: pointer;
 }
 
-img, svg {
+img,
+svg {
   display: block;
   max-width: 100%;
 }
@@ -168,13 +169,17 @@ img, svg {
 }
 
 /* Image optimization */
-img, canvas {
+img,
+canvas {
   image-rendering: -webkit-optimize-contrast;
 }
 
 /* Prefers Reduced Motion — Accessibility + Performance */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

@@ -14,6 +14,7 @@ import {
   Award
 } from 'lucide-react';
 import { personalInfo } from '../data/personal';
+import { scrollToTop } from '../hooks/useLenis';
 
 const GithubIcon: React.FC<{ size?: number }> = ({ size = 15 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -59,8 +60,8 @@ export const Footer: React.FC = () => {
     setTimeout(() => setCopiedPgp(false), 2200);
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const handleScrollToTop = () => {
+    scrollToTop(false);
   };
 
   return (
@@ -291,7 +292,7 @@ export const Footer: React.FC = () => {
 
           <button
             type="button"
-            onClick={scrollToTop}
+            onClick={handleScrollToTop}
             className="footer-back-to-top-btn"
             aria-label="Return to top of page"
           >

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import {
   ArrowRight,
@@ -61,8 +61,18 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
     restDelta: 0.001,
   });
 
-  const heroLeftY = useTransform(smoothProgress, [0, 1], [0, 75]);
-  const heroRightY = useTransform(smoothProgress, [0, 1], [0, 125]);
+  const [isMobileScreen, setIsMobileScreen] = useState(
+    () => typeof window !== 'undefined' && window.innerWidth < 900
+  );
+
+  useEffect(() => {
+    const handleResize = () => setIsMobileScreen(window.innerWidth < 900);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const heroLeftY = useTransform(smoothProgress, [0, 1], [0, isMobileScreen ? 0 : 75]);
+  const heroRightY = useTransform(smoothProgress, [0, 1], [0, isMobileScreen ? 0 : 125]);
   const heroOpacity = useTransform(smoothProgress, [0, 0.85], [1, 0.15]);
   const heroScale = useTransform(smoothProgress, [0, 1], [1, 0.95]);
 

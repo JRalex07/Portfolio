@@ -17,6 +17,7 @@ import {
   Share2
 } from 'lucide-react';
 import { specializations, Specialization } from '../data/credentials';
+import { scrollToTop } from '../hooks/useLenis';
 
 interface CertificatePageProps {
   currentPath: string;
@@ -56,7 +57,7 @@ export const CertificatePage: React.FC<CertificatePageProps> = ({ currentPath, o
 
   // Sync route and document title
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollToTop(true);
     document.title = `${selectedSpec.title} — Verified Certificate & Syllabus | Raman Kumar Sharma`;
     const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
     const targetPath = base ? `${base}/certificate/${selectedSpec.id}` : `/certificate/${selectedSpec.id}`;

@@ -11,7 +11,7 @@ import { CertificatePage } from './pages/CertificatePage';
 import { AboutPage } from './pages/AboutPage';
 import { ContactPage } from './pages/ContactPage';
 import { NotFound } from './pages/NotFound';
-import { useLenis } from './hooks/useLenis';
+import { useLenis, scrollToTop, recalculateScroll } from './hooks/useLenis';
 
 // Route aliases mapping to canonical routes
 const CANONICAL_ROUTES: Record<string, string> = {
@@ -77,7 +77,7 @@ export const App: React.FC = () => {
       setIsNotFound(false);
       setActiveSection('certifications');
       window.history.pushState(null, '', toBrowserPath(normalized));
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      scrollToTop(true);
       return;
     }
 
@@ -89,13 +89,13 @@ export const App: React.FC = () => {
       const targetSec = sectionId || getSectionForPath(canonical);
       setActiveSection(targetSec);
       window.history.pushState(null, '', toBrowserPath(canonical));
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      scrollToTop(true);
     } else {
       setCurrentPath(normalized);
       setIsNotFound(true);
       setActiveSection('');
       window.history.pushState(null, '', toBrowserPath(normalized));
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      scrollToTop(true);
     }
   }, []);
 
@@ -176,6 +176,12 @@ export const App: React.FC = () => {
       if (href.startsWith('#') && href.length > 1) {
         e.preventDefault();
         const targetId = href.substring(1);
+        if (targetId === 'main-content') {
+          const el = document.getElementById('main-content');
+          el?.focus();
+          el?.scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
         const targetPath = targetId === 'hero' ? '/' : `/${targetId}`;
         handleNavigate(targetPath, targetId);
       }
@@ -248,7 +254,13 @@ export const App: React.FC = () => {
 
       {/* Main content landmark with animated liquid page transition */}
       <main id="main-content" className="content-wrapper">
-        <AnimatePresence mode="wait">
+        <AnimatePresence
+          mode="wait"
+          onExitComplete={() => {
+            scrollToTop(true);
+            recalculateScroll();
+          }}
+        >
           <motion.div
             key={currentPath}
             variants={pageVariants}
@@ -270,7 +282,7 @@ export const App: React.FC = () => {
           <motion.button
             type="button"
             aria-label="Scroll to top"
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            onClick={() => scrollToTop(false)}
             initial={{ opacity: 0, scale: 0.7, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.7, y: 20 }}

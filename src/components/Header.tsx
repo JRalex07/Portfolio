@@ -10,61 +10,70 @@ interface HeaderProps {
   onNavigate: (path: string, sectionId: string) => void;
 }
 
-// ─── Animated Hamburger SVG ────────────────────────────────────────────────────
-// Three lines morph into an X with spring physics.
+// ─── Animated Hamburger Bars ──────────────────────────────────────────────────
+// Three lines morph into an X with spring physics without triggering SVG render errors.
 const HamburgerIcon: React.FC<{ open: boolean }> = ({ open }) => {
   return (
-    <svg
-      width="22"
-      height="22"
-      viewBox="0 0 22 22"
-      fill="none"
+    <div
+      style={{
+        width: '18px',
+        height: '14px',
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+      }}
       aria-hidden="true"
-      style={{ display: 'block' }}
     >
-      {/* Top line → top arm of X */}
-      <motion.line
-        x1="3" y1="6" x2="19" y2="6"
-        stroke="currentColor"
-        strokeWidth="2.2"
-        strokeLinecap="round"
+      <motion.span
+        style={{
+          width: '100%',
+          height: '2px',
+          backgroundColor: 'currentColor',
+          borderRadius: '2px',
+          display: 'block',
+          transformOrigin: 'left center',
+        }}
         animate={
           open
-            ? { x1: 4, y1: 4, x2: 18, y2: 18, opacity: 1 }
-            : { x1: 3, y1: 6, x2: 19, y2: 6, opacity: 1 }
+            ? { rotate: 45, x: 2, y: -1 }
+            : { rotate: 0, x: 0, y: 0 }
         }
-        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
       />
-
-      {/* Middle line → fades out */}
-      <motion.line
-        x1="3" y1="11" x2="19" y2="11"
-        stroke="currentColor"
-        strokeWidth="2.2"
-        strokeLinecap="round"
+      <motion.span
+        style={{
+          width: '100%',
+          height: '2px',
+          backgroundColor: 'currentColor',
+          borderRadius: '2px',
+          display: 'block',
+          transformOrigin: 'center',
+        }}
         animate={
           open
             ? { opacity: 0, scaleX: 0 }
             : { opacity: 1, scaleX: 1 }
         }
-        style={{ originX: '50%', originY: '50%', transformBox: 'fill-box' }}
-        transition={{ duration: 0.22, ease: 'easeInOut' }}
+        transition={{ duration: 0.18 }}
       />
-
-      {/* Bottom line → bottom arm of X */}
-      <motion.line
-        x1="3" y1="16" x2="19" y2="16"
-        stroke="currentColor"
-        strokeWidth="2.2"
-        strokeLinecap="round"
+      <motion.span
+        style={{
+          width: '100%',
+          height: '2px',
+          backgroundColor: 'currentColor',
+          borderRadius: '2px',
+          display: 'block',
+          transformOrigin: 'left center',
+        }}
         animate={
           open
-            ? { x1: 4, y1: 18, x2: 18, y2: 4, opacity: 1 }
-            : { x1: 3, y1: 16, x2: 19, y2: 16, opacity: 1 }
+            ? { rotate: -45, x: 2, y: 1 }
+            : { rotate: 0, x: 0, y: 0 }
         }
-        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
       />
-    </svg>
+    </div>
   );
 };
 
