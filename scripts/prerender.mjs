@@ -45,6 +45,24 @@ function escapeHtml(str) {
     .replace(/'/g, '&#39;');
 }
 
+// Escape HTML and automatically convert URL domains into styled anchors
+function escapeHtmlWithLinks(str) {
+  const escaped = escapeHtml(str);
+  return escaped.replace(
+    /(https?:\/\/[^\s]+|(?:\b[a-zA-Z0-9-]+\.)+(?:runs-on\.dev|dev|in|store|app|com|org)(?:\/[^\s.,]*)?)/g,
+    (match) => {
+      let url = match;
+      let trailing = '';
+      if (/[.,;:!]$/.test(url)) {
+        trailing = url.slice(-1);
+        url = url.slice(0, -1);
+      }
+      const href = url.startsWith('http') ? url : `https://${url}`;
+      return `<a href="${href}" target="_blank" rel="noopener noreferrer" style="color: #0284c7; text-decoration: underline; text-underline-offset: 3px; font-weight: 600;">${url}</a>${trailing}`;
+    }
+  );
+}
+
 // Generate shared persistent header shell
 function renderHeader(activePath) {
   return `
@@ -176,11 +194,11 @@ function generateHomeHtml() {
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; margin-bottom: 16px;">
                   <div>
                     <strong style="font-size: 11px; font-family: monospace; color: #d97706; text-transform: uppercase;">Problem:</strong>
-                    <p style="font-size: 0.9rem; color: #475569; margin: 4px 0 0; line-height: 1.6;">${escapeHtml(proj.problem)}</p>
+                    <p style="font-size: 0.9rem; color: #475569; margin: 4px 0 0; line-height: 1.6;">${escapeHtmlWithLinks(proj.problem)}</p>
                   </div>
                   <div>
                     <strong style="font-size: 11px; font-family: monospace; color: #059669; text-transform: uppercase;">Engineered Solution:</strong>
-                    <p style="font-size: 0.9rem; color: #475569; margin: 4px 0 0; line-height: 1.6;">${escapeHtml(proj.solution)}</p>
+                    <p style="font-size: 0.9rem; color: #475569; margin: 4px 0 0; line-height: 1.6;">${escapeHtmlWithLinks(proj.solution)}</p>
                   </div>
                 </div>
                 <div style="display: flex; flex-wrap: wrap; gap: 6px;">
@@ -336,11 +354,11 @@ function generateProjectsHtml() {
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 18px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 20px;">
               <div>
                 <strong style="font-size: 11px; font-family: monospace; color: #d97706; text-transform: uppercase;">Architecture Challenge & Problem:</strong>
-                <p style="font-size: 0.92rem; color: #334155; line-height: 1.65; margin: 6px 0 0;">${escapeHtml(proj.problem)}</p>
+                <p style="font-size: 0.92rem; color: #334155; line-height: 1.65; margin: 6px 0 0;">${escapeHtmlWithLinks(proj.problem)}</p>
               </div>
               <div>
                 <strong style="font-size: 11px; font-family: monospace; color: #059669; text-transform: uppercase;">Engineered Solution & Invariants:</strong>
-                <p style="font-size: 0.92rem; color: #334155; line-height: 1.65; margin: 6px 0 0;">${escapeHtml(proj.solution)}</p>
+                <p style="font-size: 0.92rem; color: #334155; line-height: 1.65; margin: 6px 0 0;">${escapeHtmlWithLinks(proj.solution)}</p>
               </div>
             </div>
 
@@ -348,7 +366,7 @@ function generateProjectsHtml() {
             <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 20px;">
               <div style="font-family: monospace; font-size: 11px; color: #0284c7; font-weight: 700; margin-bottom: 12px; text-transform: uppercase;">System Specifications & Architectural Invariants:</div>
               <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 0.92rem; line-height: 1.7;">
-                ${proj.architectureDetails.map(d => `<li>${escapeHtml(d)}</li>`).join('')}
+                ${proj.architectureDetails.map(d => `<li>${escapeHtmlWithLinks(d)}</li>`).join('')}
               </ul>
             </div>
 

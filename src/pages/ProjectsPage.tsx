@@ -22,6 +22,53 @@ interface ProjectsPageProps {
   onNavigate?: (path: string, sectionId?: string) => void;
 }
 
+const renderWithClickableLinks = (text: string): React.ReactNode => {
+  const urlRegex = /(https?:\/\/[^\s]+|(?:\b[a-zA-Z0-9-]+\.)+(?:runs-on\.dev|dev|in|store|app|com|org)(?:\/[^\s.,]*)?)/g;
+  const parts: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = urlRegex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.substring(lastIndex, match.index));
+    }
+    let matchedUrl = match[0];
+    let trailingPunctuation = '';
+    if (/[.,;:!]$/.test(matchedUrl)) {
+      trailingPunctuation = matchedUrl.slice(-1);
+      matchedUrl = matchedUrl.slice(0, -1);
+    }
+    const href = matchedUrl.startsWith('http') ? matchedUrl : `https://${matchedUrl}`;
+    parts.push(
+      <a
+        key={match.index}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          color: 'var(--accent-teal, #0284c7)',
+          fontWeight: 600,
+          textDecoration: 'underline',
+          textUnderlineOffset: '3px',
+          wordBreak: 'break-word',
+          transition: 'color var(--transition-fast)'
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {matchedUrl}
+      </a>
+    );
+    if (trailingPunctuation) {
+      parts.push(trailingPunctuation);
+    }
+    lastIndex = match.index + match[0].length;
+  }
+  if (lastIndex < text.length) {
+    parts.push(text.substring(lastIndex));
+  }
+  return parts.length > 0 ? parts : text;
+};
+
 const CATEGORIES = [
   'All',
   'Distributed Ecosystem',
@@ -400,7 +447,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = () => {
                           </span>
                         </div>
                         <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.65 }}>
-                          {proj.problem}
+                          {renderWithClickableLinks(proj.problem)}
                         </p>
                       </div>
 
@@ -411,7 +458,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = () => {
                           </span>
                         </div>
                         <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.65 }}>
-                          {proj.solution}
+                          {renderWithClickableLinks(proj.solution)}
                         </p>
                       </div>
                     </div>

@@ -8,6 +8,53 @@ interface ProjectCardProps {
   index?: number;
 }
 
+const renderWithClickableLinks = (text: string): React.ReactNode => {
+  const urlRegex = /(https?:\/\/[^\s]+|(?:\b[a-zA-Z0-9-]+\.)+(?:runs-on\.dev|dev|in|store|app|com|org)(?:\/[^\s.,]*)?)/g;
+  const parts: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = urlRegex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.substring(lastIndex, match.index));
+    }
+    let matchedUrl = match[0];
+    let trailingPunctuation = '';
+    if (/[.,;:!]$/.test(matchedUrl)) {
+      trailingPunctuation = matchedUrl.slice(-1);
+      matchedUrl = matchedUrl.slice(0, -1);
+    }
+    const href = matchedUrl.startsWith('http') ? matchedUrl : `https://${matchedUrl}`;
+    parts.push(
+      <a
+        key={match.index}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          color: 'var(--accent-teal, #0284c7)',
+          fontWeight: 600,
+          textDecoration: 'underline',
+          textUnderlineOffset: '3px',
+          wordBreak: 'break-word',
+          transition: 'color var(--transition-fast)'
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {matchedUrl}
+      </a>
+    );
+    if (trailingPunctuation) {
+      parts.push(trailingPunctuation);
+    }
+    lastIndex = match.index + match[0].length;
+  }
+  if (lastIndex < text.length) {
+    parts.push(text.substring(lastIndex));
+  }
+  return parts.length > 0 ? parts : text;
+};
+
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index = 0 }) => {
   return (
     <motion.article
@@ -48,7 +95,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index = 0 }) 
           The Engineering Challenge
         </span>
         <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', lineHeight: 1.55, fontWeight: 450 }}>
-          {project.problem}
+          {renderWithClickableLinks(project.problem)}
         </p>
       </div>
 
@@ -58,7 +105,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index = 0 }) 
           Architectural Implementation
         </span>
         <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginBottom: 'var(--space-3)', lineHeight: 1.55, fontWeight: 450 }}>
-          {project.solution}
+          {renderWithClickableLinks(project.solution)}
         </p>
         <ul className="arch-list">
           {project.architectureDetails.map((detail, idx) => (
@@ -71,7 +118,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index = 0 }) 
               transition={{ duration: 0.4, delay: idx * 0.05, ease: [0.16, 1, 0.3, 1] }}
             >
               <span className="arch-list-bullet" style={{ color: 'var(--accent-teal)' }}>›</span>
-              <span>{detail}</span>
+              <span>{renderWithClickableLinks(detail)}</span>
             </motion.li>
           ))}
         </ul>
