@@ -19,9 +19,8 @@ export interface Specialization {
 }
 
 // Base URL helper for GitHub Pages sub-path support ('/Portfolio/' in prod, '/' in dev)
-const BASE = import.meta.env.BASE_URL.endsWith('/')
-  ? import.meta.env.BASE_URL
-  : `${import.meta.env.BASE_URL}/`;
+const rawBase = (typeof import.meta !== 'undefined' && import.meta.env?.BASE_URL) || '/';
+const BASE = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
 
 const certAsset = (fileName: string) => `${BASE}certificates/${fileName}`;
 

@@ -177,14 +177,14 @@ export const Footer: React.FC = () => {
 
               <li>
                 <a
-                  href="https://alex-prototype.netlify.app/"
+                  href="https://school.alex.runs-on.dev/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="footer-nav-link"
                 >
                   <div className="footer-link-content">
-                    <span className="footer-link-name">MountWEB Prototype</span>
-                    <span className="footer-link-desc">Interactive Tourism & Booking Platform</span>
+                    <span className="footer-link-name">School Landing Page</span>
+                    <span className="footer-link-desc">Interactive Educational & Institutional Portal</span>
                   </div>
                   <ArrowUpRight size={13} className="footer-link-arrow" />
                 </a>
@@ -300,6 +300,11 @@ export const Footer: React.FC = () => {
             <ArrowUp size={14} className="footer-top-arrow" />
           </button>
         </div>
+      </div>
+
+      {/* ─── 4. OVERSIZED DECORATIVE WATERMARK ─── */}
+      <div className="footer-watermark-wrapper" aria-hidden="true">
+        <span className="footer-watermark-text">ALEX</span>
       </div>
     </footer>
   );

@@ -1,0 +1,23 @@
+{
+  "name": "Raman Kumar Sharma — Application Engineer & Systems Builder",
+  "short_name": "Raman Sharma",
+  "description": "Engineering portfolio of Raman Kumar Sharma: Flutter architecture, multi-tier systems, and Model Context Protocol (MCP) agent execution runtimes.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0284c7",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/profile.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}

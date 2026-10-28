@@ -6,8 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
+  <!-- Google Search Console Verification -->
+  <meta name="google-site-verification" content="7AZoA4m3U--BhISibW0TGQ0I1gYw4DuRl51vvQmpdGI" />
+
   <!-- Canonical URL -->
-  <link rel="canonical" href="https://cloudpower.store" />
+  <link rel="canonical" href="https://alex.runs-on.dev/" />
 
   <!-- Search Engine Robots Directive -->
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -21,27 +24,35 @@
     content="Raman Kumar Sharma, Application Engineer, Systems Builder, Flutter Developer, HimAmrit, CloudPower, Model Context Protocol, MCP, Agentic AI, Python, Java, C#, FastAPI, PostgreSQL, Software Architect, India" />
 
   <!-- Open Graph / Facebook / LinkedIn Metadata -->
-  <meta property="og:type" content="profile" />
-  <meta property="og:url" content="https://cloudpower.store" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://alex.runs-on.dev/" />
   <meta property="og:title" content="Raman Kumar Sharma | Application Engineer & Systems Builder" />
   <meta property="og:description"
-    content="Digital engineering portfolio and verified systems archive of Raman Kumar Sharma. Flutter mobile architecture, multi-service backend runtimes, and MCP agent execution environments." />
-  <meta property="og:site_name" content="Raman Kumar Sharma Engineering Portfolio" />
+    content="Engineering portfolio of Raman Kumar Sharma: Flutter architecture, multi-tier ecosystems, and Model Context Protocol (MCP) agent execution runtimes." />
+  <meta property="og:site_name" content="Raman Kumar Sharma Portfolio" />
   <meta property="og:locale" content="en_US" />
-  <meta property="profile:first_name" content="Raman Kumar" />
-  <meta property="profile:last_name" content="Sharma" />
-  <meta property="profile:username" content="JRalex07" />
+  <meta property="og:image" content="https://alex.runs-on.dev/og-image.png" />
+  <meta property="og:image:secure_url" content="https://alex.runs-on.dev/og-image.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Raman Kumar Sharma — Application Engineer & Systems Builder Portfolio" />
 
   <!-- Twitter / X Card Metadata -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:url" content="https://cloudpower.store" />
+  <meta name="twitter:url" content="https://alex.runs-on.dev/" />
   <meta name="twitter:title" content="Raman Kumar Sharma | Application Engineer & Systems Builder" />
   <meta name="twitter:description"
     content="Specialized portfolio featuring Flutter architectures, CloudPower multi-app ecosystems, HimAmrit shopping platforms, and Model Context Protocol (MCP) agent execution." />
+  <meta name="twitter:image" content="https://alex.runs-on.dev/og-image.png" />
+  <meta name="twitter:image:alt" content="Raman Kumar Sharma — Application Engineer & Systems Builder Portfolio" />
 
-  <!-- Theme & Appearance Configuration (Soft Neomorphism Light Theme) -->
-  <meta name="theme-color" content="#eaf0f8" />
+  <!-- Theme & Appearance Configuration -->
+  <meta name="theme-color" content="#ffffff" />
   <meta name="color-scheme" content="light" />
+
+  <!-- Web Application Manifest -->
+  <link rel="manifest" href="/site.webmanifest" />
 
   <!-- Google Fonts Preconnect & Optimized Loading -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -51,41 +62,42 @@
     rel="stylesheet" />
 
   <!-- Favicon Vector SVG -->
-  <!-- OLD: <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
-  <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
   <!-- Single Page Apps for GitHub Pages URL Restorer (MIT License: https://github.com/rafgraph/spa-github-pages) -->
   <script>
-    (function(l) {
-      if (l.search[1] === '/' ) {
-        var decoded = l.search.slice(1).split('&').map(function(s) { 
+    (function (l) {
+      if (l.search[1] === '/') {
+        var decoded = l.search.slice(1).split('&').map(function (s) {
           return s.replace(/~and~/g, '&')
         }).join('?');
         window.history.replaceState(null, null,
-            l.pathname.slice(0, -1) + decoded + l.hash
+          l.pathname.slice(0, -1) + decoded + l.hash
         );
       }
     }(window.location))
   </script>
 
-  <!-- Schema.org JSON-LD Structured Data for Enhanced Google Knowledge Graph & Rich Snippets -->
+  <!-- Schema.org JSON-LD Structured Data for Enhanced Knowledge Graph & Discoverability -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "Person",
-        "@id": "https://cloudpower.store/#person",
+        "@id": "https://alex.runs-on.dev/#person",
         "name": "Raman Kumar Sharma",
         "givenName": "Raman Kumar",
         "familyName": "Sharma",
         "jobTitle": "Application Engineer & Systems Builder",
-        "email": "developer@cloudpower.store",
-        "url": "https://cloudpower.store",
+        "email": "mailto:developer@cloudpower.store",
+        "url": "https://alex.runs-on.dev/",
+        "image": "https://alex.runs-on.dev/profile.jpeg",
         "sameAs": [
           "https://github.com/JRalex07",
-          "https://linkedin.com/in/jralex07",
+          "https://www.linkedin.com/in/jralex07/",
           "https://himamritshop.in",
+          "https://cloudpower.store",
           "https://info.cloudpower.store"
         ],
         "knowsAbout": [
@@ -102,25 +114,27 @@
       },
       {
         "@type": "WebSite",
-        "@id": "https://cloudpower.store/#website",
-        "url": "https://cloudpower.store",
+        "@id": "https://alex.runs-on.dev/#website",
+        "url": "https://alex.runs-on.dev/",
         "name": "Raman Kumar Sharma Portfolio",
         "description": "Portfolio and engineering systems archive of Raman Kumar Sharma.",
         "publisher": {
-          "@id": "https://cloudpower.store/#person"
-        }
+          "@id": "https://alex.runs-on.dev/#person"
+        },
+        "inLanguage": "en-US"
       },
       {
         "@type": "ProfilePage",
-        "@id": "https://cloudpower.store/#webpage",
-        "url": "https://cloudpower.store",
+        "@id": "https://alex.runs-on.dev/#webpage",
+        "url": "https://alex.runs-on.dev/",
         "name": "Raman Kumar Sharma | Application Engineer & Systems Builder",
         "isPartOf": {
-          "@id": "https://cloudpower.store/#website"
+          "@id": "https://alex.runs-on.dev/#website"
         },
         "about": {
-          "@id": "https://cloudpower.store/#person"
-        }
+          "@id": "https://alex.runs-on.dev/#person"
+        },
+        "primaryImageOfPage": "https://alex.runs-on.dev/profile.jpeg"
       }
     ]
   }

@@ -148,7 +148,7 @@ export const projects: Project[] = [
     category: "Interactive Web Architecture",
     badge: "Live School Platform",
     problem: "Institutional and educational landing pages frequently suffer from rigid CMS limitations, lifeless navigation structures, poor mobile accessibility, and disconnected administrative notification pipelines that fail to engage prospective students and parents.",
-    solution: "Architected and deployed a fluid, spatial school landing platform at alex-prototype.netlify.app featuring an autonomous mascot assistant with real-time viewport collision detection, a dynamic school configuration engine for instant theming/branding customization, and streamlined academic workflows.",
+    solution: "Architected and deployed a fluid, spatial school landing platform at school.alex.runs-on.dev featuring an autonomous mascot assistant with real-time viewport collision detection, a dynamic school configuration engine for instant theming/branding customization, and streamlined academic workflows.",
     architectureDetails: [
       "Spatial Mascot Assistant Engine: Autonomous assistant with mathematical viewport safe-area boundaries, collision calculation, dynamic speech bubbles, and scroll-linked section tracking.",
       "Dynamic School Configuration System: Real-time context provider (SchoolConfigProvider) enabling instantaneous theme switching, branding overrides, academic year toggles, and notification modals.",
@@ -156,14 +156,14 @@ export const projects: Project[] = [
       "Responsive Multi-Tier Workflows: Comprehensive modules for Admissions, Academics, Faith, Academic Calendar, and Direct Parent Inquiries."
     ],
     keyFeatures: [
-      "Live production deployment at alex-prototype.netlify.app",
+      "Live production deployment at school.alex.runs-on.dev",
       "Interactive spatial mascot assistant with collision avoidance",
       "Runtime configuration drawer for live branding and theme customization",
       "Comprehensive academic admissions and curriculum exploration workflows",
       "Zero layout shifts with fluid GSAP and Framer Motion micro-interactions"
     ],
-    technologies: ["React 19", "TypeScript", "Vite", "React Router 7", "Framer Motion", "GSAP 3", "Lucide Icons", "Netlify"],
-    liveUrl: "https://alex-prototype.netlify.app/",
+    technologies: ["React 19", "TypeScript", "Vite", "React Router 7", "Framer Motion", "GSAP 3", "Lucide Icons"],
+    liveUrl: "https://school.alex.runs-on.dev/",
     githubUrl: "https://github.com/JRalex07",
     isFeatured: true
   }

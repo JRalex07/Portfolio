@@ -92,11 +92,31 @@ body {
     width: 100% !important;
     z-index: 1000 !important;
     padding: 8px 0 !important;
-    background: rgba(255, 255, 255, 0.94) !important;
-    backdrop-filter: blur(16px) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
-    border-bottom: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.08)) !important;
-    box-shadow: 0 4px 20px -2px rgba(18, 20, 23, 0.05) !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+    pointer-events: none;
+  }
+
+  .site-header.scrolled {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+  }
+
+  .site-header .container {
+    pointer-events: none;
+  }
+
+  .site-header .liquid-glass-navbar,
+  .site-header .mobile-nav-dropdown-wrapper {
+    pointer-events: auto;
   }
 
   .liquid-glass-navbar,
@@ -104,445 +124,457 @@ body {
     width: 100% !important;
     max-width: 100% !important;
     height: 58px !important;
-    background: var(--skeuo-plate-bg) !important;
-    border: var(--skeuo-plate-border) !important;
-    box-shadow: var(--skeuo-plate-shadow) !important;
+    background: rgba(255, 255, 255, 0.92) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.08)) !important;
+    box-shadow: 0 6px 20px -2px rgba(18, 20, 23, 0.08) !important;
   }
 
-  .liquid-glass-navbar>div,
-  .liquid-glass-navbar-inner {
-    width: 100% !important;
-    height: 100% !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    padding: 0 14px !important;
-    box-sizing: border-box !important;
+    .liquid-glass-navbar>.liquid-glass-navbar-inner {
+      width: 100% !important;
+      height: 100% !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      padding: 0 14px !important;
+      box-sizing: border-box !important;
+    }
+
+    .brand-glyph {
+      width: 32px !important;
+      height: 32px !important;
+      min-width: 32px !important;
+      font-size: 13px !important;
+      flex-shrink: 0;
+    }
+
+    .brand-logo {
+      gap: 10px !important;
+      max-width: calc(100% - 56px) !important;
+      overflow: hidden !important;
+      display: flex !important;
+      align-items: center !important;
+    }
+
+    .brand-logo span,
+    .brand-name {
+      font-size: clamp(0.88rem, 3.6vw, 1.02rem) !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+
+    .desktop-nav {
+      display: none !important;
+    }
+
+    .nav-menu {
+      display: none !important;
+    }
+
+    .header-actions {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: flex-end !important;
+      flex-shrink: 0 !important;
+    }
+
+    .hamburger-btn {
+      display: inline-flex !important;
+      width: 42px !important;
+      height: 42px !important;
+      border-radius: var(--radius-pill) !important;
+      flex-shrink: 0 !important;
+    }
+
+    .mobile-nav-dropdown-wrapper {
+      top: 76px !important;
+      left: 12px !important;
+      right: 12px !important;
+      z-index: 1100 !important;
+    }
+
+    /* All Multi-Column Grids -> Single Column */
+    .arch-grid-2,
+    .arch-grid-3,
+    .arch-grid-split,
+    .contact-grid,
+    .ecosystem-details-grid,
+    .home-hero-grid,
+    .home-about-card,
+    .about-split-grid,
+    .timeline-row,
+    .contact-layout-grid,
+    .contact-inputs-row,
+    .project-problem-solution-grid {
+      grid-template-columns: 1fr !important;
+      gap: var(--space-5) !important;
+    }
+
+    .home-about-card {
+      padding: clamp(18px, 4.5vw, 32px) !important;
+      grid-template-columns: 1fr !important;
+      gap: 24px !important;
+    }
+
+    .home-projects-grid {
+      grid-template-columns: 1fr !important;
+      gap: 20px !important;
+    }
+
+    .home-credentials-grid {
+      grid-template-columns: 1fr !important;
+      gap: 16px !important;
+    }
+
+    .hero-3d-sculpture-card {
+      max-width: 100% !important;
+      height: auto !important;
+      min-height: 350px !important;
+      padding: 24px 14px 18px 14px !important;
+    }
+
+    .hero-3d-footer {
+      position: relative !important;
+      bottom: auto !important;
+      left: auto !important;
+      right: auto !important;
+      margin-top: 14px !important;
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+      gap: 6px !important;
+    }
+
+    /* Cards & Frames Internal Padding */
+    .arch-frame {
+      padding: 16px 14px !important;
+      border-radius: var(--radius-card-sm) !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      width: 100% !important;
+      overflow: hidden !important;
+      box-sizing: border-box !important;
+    }
+
+    .engineering-steps-grid,
+    .engineering-resilience-grid {
+      grid-template-columns: 1fr !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+    }
+
+    .engineering-steps-grid>*,
+    .engineering-resilience-grid>* {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+    }
+
+    .arch-frame-header {
+      flex-wrap: wrap !important;
+      gap: 8px !important;
+      align-items: flex-start !important;
+      margin-bottom: var(--space-4) !important;
+    }
+
+    .arch-tag {
+      font-size: 11px !important;
+      word-break: break-word !important;
+    }
+
+    .project-card {
+      padding: 16px 14px !important;
+      gap: var(--space-4) !important;
+      border-radius: var(--radius-md) !important;
+    }
+
+    .project-architecture-box {
+      padding: 12px 12px !important;
+    }
+
+    .project-title {
+      font-size: 1.25rem !important;
+    }
+
+    .credential-card {
+      padding: 16px 14px !important;
+      gap: var(--space-3) !important;
+    }
+
+    .credential-grid {
+      grid-template-columns: 1fr !important;
+      gap: var(--space-4) !important;
+    }
+
+    .credential-footer {
+      flex-direction: column !important;
+      align-items: stretch !important;
+      gap: 10px !important;
+    }
+
+    .credential-footer .btn {
+      width: 100% !important;
+      justify-content: center !important;
+    }
+
+    .contact-form-pane {
+      padding: 16px 14px !important;
+      border-radius: var(--radius-md) !important;
+    }
+
+    /* Hero Section */
+    .hero-wrapper {
+      min-height: auto !important;
+      padding-top: var(--space-6) !important;
+      padding-bottom: var(--space-8) !important;
+    }
+
+    .hero-status-pill {
+      padding: 5px 14px !important;
+      font-size: 11px !important;
+    }
+
+    .hero-title {
+      font-size: clamp(1.85rem, 6.2vw, 2.6rem) !important;
+    }
+
+    .hero-title span {
+      font-size: clamp(1.05rem, 3.8vw, 1.35rem) !important;
+      margin-top: 6px !important;
+    }
+
+    .hero-lead {
+      font-size: 0.9375rem !important;
+      line-height: 1.6 !important;
+    }
+
+    .hero-actions {
+      gap: 8px !important;
+      margin-top: 4px !important;
+    }
+
+    .hero-actions .btn {
+      padding: 8px 14px !important;
+      font-size: 11.5px !important;
+    }
+
+    .hero-telemetry-strip {
+      grid-template-columns: 1fr !important;
+      gap: 8px !important;
+      margin-top: var(--space-5) !important;
+      padding-top: var(--space-5) !important;
+    }
+
+    .telemetry-item {
+      padding: 10px 14px !important;
+    }
+
+    .telemetry-value {
+      font-size: 0.8125rem !important;
+      word-break: break-word !important;
+    }
+
+    /* Ecosystem Architecture */
+    .ecosystem-flow-pane {
+      padding: 14px 12px !important;
+    }
+
+    .flow-stepper {
+      flex-direction: column !important;
+      align-items: stretch !important;
+      gap: 6px !important;
+    }
+
+    .step-chip {
+      width: 100% !important;
+      padding: 8px 10px !important;
+      font-size: 11px !important;
+    }
+
+    .ecosystem-nav-tabs {
+      display: flex !important;
+      gap: 8px !important;
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      max-width: 100% !important;
+      width: 100% !important;
+      padding: 6px 4px 14px 4px !important;
+      -webkit-overflow-scrolling: touch !important;
+      scrollbar-width: thin;
+    }
+
+    .app-tab-btn {
+      display: inline-flex !important;
+      flex: 0 0 auto !important;
+      flex-shrink: 0 !important;
+      min-width: max-content !important;
+      white-space: nowrap !important;
+      padding: 7px 14px !important;
+      font-size: 11.5px !important;
+    }
+
+    .payload-inspector {
+      padding: 12px 10px !important;
+      font-size: 11px !important;
+    }
+
+    /* Code Snippets & Pre Blocks */
+    pre {
+      max-width: 100% !important;
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch;
+      font-size: 11.5px !important;
+      padding: 8px 0 !important;
+    }
+
+    /* Timeline */
+    .timeline-container::before {
+      left: 8px !important;
+    }
+
+    .timeline-node {
+      padding-left: 28px !important;
+      padding-bottom: var(--space-6) !important;
+    }
+
+    .timeline-marker {
+      left: 0px !important;
+      width: 17px !important;
+      height: 17px !important;
+    }
+
+    .timeline-card {
+      padding: 14px 12px !important;
+    }
+
+    /* Contact Section */
+    .channel-card {
+      padding: 11px 12px !important;
+      gap: 10px !important;
+    }
+
+    .channel-icon {
+      width: 36px !important;
+      height: 36px !important;
+      min-width: 36px !important;
+    }
+
+    .channel-label {
+      font-size: 10px !important;
+    }
+
+    .channel-value {
+      font-size: clamp(0.78rem, 3vw, 0.85rem) !important;
+      word-break: break-all !important;
+    }
+
+    .form-input,
+    .form-textarea {
+      padding: 10px 12px !important;
+      font-size: 13px !important;
+    }
+
+    /* Footer Responsive Console */
+    .site-footer {
+      padding-top: var(--space-8) !important;
+      padding-bottom: 0 !important;
+    }
+
+    .site-footer>.container {
+      padding-bottom: var(--space-8) !important;
+    }
+
+    .footer-watermark-text {
+      font-size: clamp(4rem, 23vw, 8.5rem);
+      transform: translateY(18%);
+      letter-spacing: -0.035em;
+      opacity: 0.85;
+    }
+
+    .footer-status-bar {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 8px !important;
+      border-radius: var(--radius-card-sm) !important;
+      padding: 14px 18px !important;
+    }
+
+    .footer-status-divider {
+      display: none !important;
+    }
+
+    .footer-main-grid {
+      grid-template-columns: 1fr !important;
+      gap: 28px !important;
+    }
+
+    .footer-colophon-bar {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 16px !important;
+    }
+
+    /* Filter Bar */
+    .credentials-filter-bar {
+      gap: 6px !important;
+      margin-bottom: var(--space-5) !important;
+    }
+
+    .filter-btn {
+      padding: 6px 12px !important;
+      font-size: 11px !important;
+    }
+
+    /* Generic Button sizing */
+    .btn {
+      padding: 9px 16px;
+      font-size: 12px;
+    }
   }
 
-  .brand-glyph {
-    width: 32px !important;
-    height: 32px !important;
-    min-width: 32px !important;
-    font-size: 13px !important;
-    flex-shrink: 0;
-  }
-
-  .brand-logo {
-    gap: 10px !important;
-    max-width: calc(100% - 56px) !important;
-    overflow: hidden !important;
-    display: flex !important;
-    align-items: center !important;
-  }
-
-  .brand-logo span,
-  .brand-name {
-    font-size: clamp(0.88rem, 3.6vw, 1.02rem) !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-  }
-
-  .desktop-nav {
-    display: none !important;
-  }
-
-  .nav-menu {
-    display: none !important;
-  }
-
-  .header-actions {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: flex-end !important;
-    flex-shrink: 0 !important;
-  }
-
-  .hamburger-btn {
-    display: inline-flex !important;
-    width: 42px !important;
-    height: 42px !important;
-    border-radius: var(--radius-pill) !important;
-    flex-shrink: 0 !important;
-  }
-
-  .mobile-nav-dropdown-wrapper {
-    top: 76px !important;
-    left: 12px !important;
-    right: 12px !important;
-    z-index: 1100 !important;
-  }
-
-  /* All Multi-Column Grids -> Single Column */
-  .arch-grid-2,
-  .arch-grid-3,
-  .arch-grid-split,
-  .contact-grid,
-  .ecosystem-details-grid,
-  .home-hero-grid,
-  .home-about-card,
-  .about-split-grid,
-  .timeline-row,
-  .contact-layout-grid,
-  .contact-inputs-row,
-  .project-problem-solution-grid {
-    grid-template-columns: 1fr !important;
-    gap: var(--space-5) !important;
-  }
-
-  .home-about-card {
-    padding: clamp(18px, 4.5vw, 32px) !important;
-    grid-template-columns: 1fr !important;
-    gap: 24px !important;
-  }
-
-  .home-projects-grid {
-    grid-template-columns: 1fr !important;
-    gap: 20px !important;
-  }
-
-  .home-credentials-grid {
-    grid-template-columns: 1fr !important;
-    gap: 16px !important;
-  }
-
-  .hero-3d-sculpture-card {
-    max-width: 100% !important;
-    height: auto !important;
-    min-height: 350px !important;
-    padding: 24px 14px 18px 14px !important;
-  }
-
-  .hero-3d-footer {
-    position: relative !important;
-    bottom: auto !important;
-    left: auto !important;
-    right: auto !important;
-    margin-top: 14px !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    gap: 6px !important;
-  }
-
-  /* Cards & Frames Internal Padding */
-  .arch-frame {
-    padding: 16px 14px !important;
-    border-radius: var(--radius-card-sm) !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    width: 100% !important;
-    overflow: hidden !important;
-    box-sizing: border-box !important;
-  }
-
-  .engineering-steps-grid,
-  .engineering-resilience-grid {
-    grid-template-columns: 1fr !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-  }
-
-  .engineering-steps-grid>*,
-  .engineering-resilience-grid>* {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-  }
-
-  .arch-frame-header {
-    flex-wrap: wrap !important;
-    gap: 8px !important;
-    align-items: flex-start !important;
-    margin-bottom: var(--space-4) !important;
-  }
-
-  .arch-tag {
-    font-size: 11px !important;
-    word-break: break-word !important;
-  }
-
-  .project-card {
-    padding: 16px 14px !important;
-    gap: var(--space-4) !important;
-    border-radius: var(--radius-md) !important;
-  }
-
-  .project-architecture-box {
-    padding: 12px 12px !important;
-  }
-
-  .project-title {
-    font-size: 1.25rem !important;
-  }
-
-  .credential-card {
-    padding: 16px 14px !important;
-    gap: var(--space-3) !important;
-  }
-
-  .credential-grid {
-    grid-template-columns: 1fr !important;
-    gap: var(--space-4) !important;
-  }
-
-  .credential-footer {
-    flex-direction: column !important;
-    align-items: stretch !important;
-    gap: 10px !important;
-  }
-
-  .credential-footer .btn {
-    width: 100% !important;
-    justify-content: center !important;
-  }
-
-  .contact-form-pane {
-    padding: 16px 14px !important;
-    border-radius: var(--radius-md) !important;
-  }
-
-  /* Hero Section */
-  .hero-wrapper {
-    min-height: auto !important;
-    padding-top: var(--space-6) !important;
-    padding-bottom: var(--space-8) !important;
-  }
-
-  .hero-status-pill {
-    padding: 5px 14px !important;
-    font-size: 11px !important;
-  }
-
-  .hero-title {
-    font-size: clamp(1.85rem, 6.2vw, 2.6rem) !important;
-  }
-
-  .hero-title span {
-    font-size: clamp(1.05rem, 3.8vw, 1.35rem) !important;
-    margin-top: 6px !important;
-  }
-
-  .hero-lead {
-    font-size: 0.9375rem !important;
-    line-height: 1.6 !important;
-  }
-
-  .hero-actions {
-    gap: 8px !important;
-    margin-top: 4px !important;
-  }
-
-  .hero-actions .btn {
-    padding: 8px 14px !important;
-    font-size: 11.5px !important;
-  }
-
-  .hero-telemetry-strip {
-    grid-template-columns: 1fr !important;
-    gap: 8px !important;
-    margin-top: var(--space-5) !important;
-    padding-top: var(--space-5) !important;
-  }
-
-  .telemetry-item {
-    padding: 10px 14px !important;
-  }
-
-  .telemetry-value {
-    font-size: 0.8125rem !important;
-    word-break: break-word !important;
-  }
-
-  /* Ecosystem Architecture */
-  .ecosystem-flow-pane {
-    padding: 14px 12px !important;
-  }
-
-  .flow-stepper {
-    flex-direction: column !important;
-    align-items: stretch !important;
-    gap: 6px !important;
-  }
-
-  .step-chip {
-    width: 100% !important;
-    padding: 8px 10px !important;
-    font-size: 11px !important;
-  }
-
-  .ecosystem-nav-tabs {
-    display: flex !important;
-    gap: 8px !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    max-width: 100% !important;
-    width: 100% !important;
-    padding: 6px 4px 14px 4px !important;
-    -webkit-overflow-scrolling: touch !important;
-    scrollbar-width: thin;
-  }
-
-  .app-tab-btn {
-    display: inline-flex !important;
-    flex: 0 0 auto !important;
-    flex-shrink: 0 !important;
-    min-width: max-content !important;
-    white-space: nowrap !important;
-    padding: 7px 14px !important;
-    font-size: 11.5px !important;
-  }
-
-  .payload-inspector {
-    padding: 12px 10px !important;
-    font-size: 11px !important;
-  }
-
-  /* Code Snippets & Pre Blocks */
-  pre {
-    max-width: 100% !important;
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch;
-    font-size: 11.5px !important;
-    padding: 8px 0 !important;
-  }
-
-  /* Timeline */
-  .timeline-container::before {
-    left: 8px !important;
-  }
-
-  .timeline-node {
-    padding-left: 28px !important;
-    padding-bottom: var(--space-6) !important;
-  }
-
-  .timeline-marker {
-    left: 0px !important;
-    width: 17px !important;
-    height: 17px !important;
-  }
-
-  .timeline-card {
-    padding: 14px 12px !important;
-  }
-
-  /* Contact Section */
-  .channel-card {
-    padding: 11px 12px !important;
-    gap: 10px !important;
-  }
-
-  .channel-icon {
-    width: 36px !important;
-    height: 36px !important;
-    min-width: 36px !important;
-  }
-
-  .channel-label {
-    font-size: 10px !important;
-  }
-
-  .channel-value {
-    font-size: clamp(0.78rem, 3vw, 0.85rem) !important;
-    word-break: break-all !important;
-  }
-
-  .form-input,
-  .form-textarea {
-    padding: 10px 12px !important;
-    font-size: 13px !important;
-  }
-
-  /* Footer Responsive Console */
-  .site-footer {
-    padding-top: var(--space-8) !important;
-    padding-bottom: var(--space-8) !important;
-  }
-
-  .footer-status-bar {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 8px !important;
-    border-radius: var(--radius-card-sm) !important;
-    padding: 14px 18px !important;
-  }
-
-  .footer-status-divider {
-    display: none !important;
-  }
-
-  .footer-main-grid {
-    grid-template-columns: 1fr !important;
-    gap: 28px !important;
-  }
-
-  .footer-colophon-bar {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 16px !important;
-  }
-
-  /* Filter Bar */
-  .credentials-filter-bar {
-    gap: 6px !important;
-    margin-bottom: var(--space-5) !important;
-  }
-
-  .filter-btn {
-    padding: 6px 12px !important;
-    font-size: 11px !important;
-  }
-
-  /* Generic Button sizing */
-  .btn {
-    padding: 9px 16px;
-    font-size: 12px;
-  }
-}
-
-/* -------------------------------------------------------
+  /* -------------------------------------------------------
    COMPACT SMARTPHONES (<= 440px)
    ------------------------------------------------------- */
-@media (max-width: 440px) {
-  .hero-actions {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 8px !important;
-    width: 100% !important;
+  @media (max-width: 440px) {
+    .hero-actions {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 8px !important;
+      width: 100% !important;
+    }
+
+    .hero-actions .btn {
+      flex: 1 1 calc(50% - 5px) !important;
+      min-width: 135px !important;
+      padding: 8px 10px !important;
+      font-size: 11px !important;
+      justify-content: center !important;
+      text-align: center !important;
+    }
+
+    .project-kicker {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 4px !important;
+    }
+
+    .badge {
+      font-size: 10px !important;
+      padding: 2px 8px !important;
+    }
   }
 
-  .hero-actions .btn {
-    flex: 1 1 calc(50% - 5px) !important;
-    min-width: 135px !important;
-    padding: 8px 10px !important;
-    font-size: 11px !important;
-    justify-content: center !important;
-    text-align: center !important;
-  }
-
-  .project-kicker {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 4px !important;
-  }
-
-  .badge {
-    font-size: 10px !important;
-    padding: 2px 8px !important;
-  }
-}
-
-/* -------------------------------------------------------
+  /* -------------------------------------------------------
    ULTRAWIDE SCREENS (>= 1920px)
    ------------------------------------------------------- */
-@media (min-width: 1920px) {
-  :root {
-    --max-width-content: 1440px;
-  }
+  @media (min-width: 1920px) {
+    :root {
+      --max-width-content: 1440px;
+    }
 
-  body {
-    font-size: 1.0625rem;
+    body {
+      font-size: 1.0625rem;
+    }
   }
-}
