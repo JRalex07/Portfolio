@@ -51,15 +51,30 @@
   <meta name="theme-color" content="#ffffff" />
   <meta name="color-scheme" content="light" />
 
-  <!-- Web Application Manifest -->
+  <!-- Web Application Manifest & AI Discovery -->
   <link rel="manifest" href="/site.webmanifest" />
+  <link rel="help" type="text/plain" href="/llms.txt" title="LLM Context Manifest" />
 
   <!-- Google Fonts Preconnect & Optimized Loading -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
     rel="stylesheet" />
+
+  <!-- Speculation Rules API for Instant Navigation & Zero-Latency Page Loads -->
+  <script type="speculationrules">
+  {
+    "prerender": [
+      {
+        "source": "list",
+        "urls": ["/about", "/projects", "/certifications", "/contact"]
+      }
+    ]
+  }
+  </script>
 
   <!-- Favicon Vector SVG -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

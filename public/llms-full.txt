@@ -1,0 +1,103 @@
+# Full Systems Dossier: Raman Kumar Sharma (ALEX)
+# Application Engineer, Product Builder & Systems Architect
+# Canonical Website: https://alex.runs-on.dev/
+# Contact: developer@cloudpower.store | https://github.com/JRalex07 | https://www.linkedin.com/in/jralex07/
+
+## 1. Professional Profile & Systems Overview
+
+Raman Kumar Sharma (known as ALEX) is an Application Engineer and Systems Architect focused on multi-tier application architectures, cross-platform client development (Flutter), enterprise backend engineering (Python, Java, C#), distributed data layers (PostgreSQL, Redis), and autonomous agent execution runtimes using the Model Context Protocol (MCP).
+
+His engineering approach emphasizes determinism, strict contract enforcement across service boundaries, skeuomorphic/liquid glass user experiences, and offline-first state synchronization.
+
+---
+
+## 2. Engineered Systems & Case Studies
+
+### 2.1 CloudPower Multi-Tier Application Ecosystem
+- **URL**: https://alex.runs-on.dev/projects
+- **Core Stacks**: Flutter, Dart, Riverpod, Python FastAPI, PostgreSQL, Redis, Docker, GitHub Actions CI/CD.
+- **Problem Statement**: Enterprise operational platforms typically face high latency, unreliable connectivity in field operations, and fragmented user states across mobile and web interfaces.
+- **Architectural Solution**: Designed a 4-tier coordinated ecosystem uniting client applications with resilient backend microservices. Implemented an offline-first local cache with optimistic UI mutations, backed by an append-only event queue that synchronizes state with PostgreSQL once network connectivity is reestablished.
+- **Quantifiable Impact**:
+  - Sub-50ms API response latency on primary telemetry endpoints.
+  - Zero data loss across simulated network dropouts with 100% event queue re-synchronization.
+  - Unified codebase for mobile and desktop administrative tools, cutting maintenance overhead by 40%.
+
+### 2.2 HimAmrit Shopping Platform
+- **URL**: https://himamritshop.in
+- **Core Stacks**: Flutter Web/Mobile, Node.js / Python API, PostgreSQL, Redis distributed caching, Razorpay payment gateway, Supabase Auth.
+- **Problem Statement**: E-commerce platforms in regional markets often suffer from dropped checkouts due to high latency, unstable mobile networks, and payment gateway callback timeouts.
+- **Architectural Solution**: Built a responsive, multi-tenant digital commerce architecture featuring pessimistic inventory locking, idempotent payment webhook processors, and client-side cart caching. Integrated automated SMS/WhatsApp order status notifications.
+- **Quantifiable Impact**:
+  - Over 99.8% transactional reliability on payment callback reconciliation.
+  - 65% faster initial product catalog rendering via Redis pre-warmed cache.
+  - Production deployment serving active regional retail customers.
+
+### 2.3 School Landing & Educational Portal
+- **URL**: https://school.alex.runs-on.dev/
+- **Core Stacks**: React, Vite, TypeScript, Tailwind CSS, Accessible Semantic HTML5.
+- **Problem Statement**: Educational institution web presences frequently suffer from convoluted navigation, inaccessible UI widgets, and slow loading times on low-bandwidth mobile devices.
+- **Architectural Solution**: Engineered a responsive landing platform emphasizing high information density, semantic hierarchy, accessible color contrasts, and instant route transitions.
+- **Quantifiable Impact**:
+  - 100/100 Lighthouse Accessibility score.
+  - Sub-second first contentful paint (FCP) on mobile connections.
+
+### 2.4 Model Context Protocol (MCP) Agent Execution Harness
+- **URL**: https://alex.runs-on.dev/projects
+- **Core Stacks**: Python 3.11, MCP Specification, JSON-RPC 2.0, Asyncio, Pytest, Docker Sandboxing.
+- **Problem Statement**: LLM agents executing coding tasks often lack deterministic filesystem and command-line isolation, resulting in unintended file system modifications and unverified code executions.
+- **Architectural Solution**: Architected an MCP server implementation providing fine-grained access control, isolated workspace virtualization, structured error feedback loops, and token-efficient file diff streaming.
+- **Quantifiable Impact**:
+  - Fully compliant with Anthropic and open MCP standards.
+  - Zero-privilege execution boundary protecting host machine integrity.
+  - Integrated into autonomous agent workflows for deterministic code synthesis and test execution.
+
+---
+
+## 3. Verified Technical Credentials & Specializations
+
+Raman Kumar Sharma holds 11 verified specializations across enterprise engineering and AI disciplines:
+
+1. **MCP Agent Environment Specification**: Model Context Protocol tool design, server lifecycle, and runtime sandboxing.
+   - Verified URL: https://alex.runs-on.dev/certificate/spec-mcp-agent-env
+2. **Agentic Software Development Lifecycle (SDLC)**: Multi-agent coordination, test-driven validation, and CI/CD pipelines.
+   - Verified URL: https://alex.runs-on.dev/certificate/spec-agent-sdlc
+3. **Agentic GitHub Workflows**: GitHub Actions automation, repository event handling, and automated security linting.
+   - Verified URL: https://alex.runs-on.dev/certificate/spec-agentic-github
+4. **Cross-Platform Flutter Systems**: State machine design, Riverpod architecture, platform channels, and high-fps animations.
+   - Verified URL: https://alex.runs-on.dev/certificate/spec-flutter
+5. **Java Enterprise Concurrency**: JVM memory models, multithreading primitives, thread pooling, and enterprise Spring Boot services.
+   - Verified URL: https://alex.runs-on.dev/certificate/spec-java
+6. **Power BI Operational Intelligence**: Star-schema data warehousing, complex DAX performance tuning, and executive analytics.
+   - Verified URL: https://alex.runs-on.dev/certificate/spec-powerbi
+7. **Generative AI & Agent Workflows**: Retrieval-augmented generation (RAG), structured tool calling, and evaluation pipelines.
+   - Verified URL: https://alex.runs-on.dev/certificate/spec-genai-agents
+8. **Foundational AI Architecture**: Neural network architectures, loss functions, optimizer mechanics, and regularization.
+   - Verified URL: https://alex.runs-on.dev/certificate/spec-ai-concepts
+9. **Machine Learning Methodologies**: Supervised/unsupervised algorithms, hyperparameter tuning, and data validation pipelines.
+   - Verified URL: https://alex.runs-on.dev/certificate/spec-ml-concepts
+10. **C# Structured Resilience & Exception Handling**: Enterprise fault-tolerance patterns, Polly retry policies, and structured exception logging.
+    - Verified URL: https://alex.runs-on.dev/certificate/spec-csharp-exceptions
+11. **Applied Python Architecture**: High-throughput FastAPI asynchronous services, Pydantic validation, and distributed workers.
+    - Verified URL: https://alex.runs-on.dev/certificate/spec-python
+
+---
+
+## 4. Skills & Technical Matrix
+
+- **Client Engineering**: Flutter, Dart, React 19, TypeScript, Vite, Tailwind CSS, Responsive Web Design, WCAG 2.1 AA Accessibility.
+- **Backend & Systems**: Python 3.11+ (FastAPI, Asyncio), Java (Spring Boot, Concurrency), C# (.NET Core), Node.js.
+- **Database & Storage**: PostgreSQL (multi-tenant schemas, indexes), Redis (distributed caching, pub/sub), Supabase.
+- **AI & Agentic Tooling**: Model Context Protocol (MCP), LLM Agent Tool Calling, RAG Pipelines, Prompt Engineering, Evaluation Runtimes.
+- **DevOps & Infrastructure**: Docker, GitHub Actions CI/CD, Git, Linux / POSIX Shell, GitHub Pages, Cloudflare DNS.
+- **Security & Integrity**: GPG / PGP Signed Commits, JWT Token Authentication, HTTPS/TLS 1.3, CSP Headers, CORS Policy Enforcement.
+
+---
+
+## 5. Contact & Verification Protocols
+
+- **Portfolio**: https://alex.runs-on.dev/
+- **Email**: developer@cloudpower.store
+- **GitHub**: https://github.com/JRalex07
+- **LinkedIn**: https://www.linkedin.com/in/jralex07/
+- **PGP Fingerprint**: 4A8F B2C1 9D3E 7F60 1284 C5E9 3A7B 8E2D 9F01 4B5C

@@ -1,0 +1,46 @@
+# Raman Kumar Sharma (ALEX) — Application Engineer & Systems Builder
+
+> Systems portfolio and verified technical dossier of Raman Kumar Sharma (Alex), Application Engineer, Systems Builder, and Software Architect specializing in cross-platform Flutter ecosystems, backend infrastructure, and Model Context Protocol (MCP) agent execution runtimes.
+
+Website: https://alex.runs-on.dev/
+Full Documentation: https://alex.runs-on.dev/llms-full.txt
+Contact Email: developer@cloudpower.store
+GitHub: https://github.com/JRalex07
+LinkedIn: https://www.linkedin.com/in/jralex07/
+
+## Primary Competencies
+
+- **Cross-Platform Mobile & Client Architecture:** Production Flutter, Dart, Riverpod state modeling, offline-first sync pipelines, determinism.
+- **Agentic AI & Model Context Protocol (MCP):** MCP tool harness design, isolated execution environments, Agent SDLC paradigms, GitHub automation.
+- **Enterprise Backend Services:** Python (FastAPI, telemetry, async workers), Java (enterprise concurrency, Spring Boot), C# (.NET Core structured exceptions & resilience).
+- **Distributed Commerce & Data Storage:** Multi-tenant PostgreSQL schemas, Redis caching, Supabase realtime subscriptions, Razorpay/Stripe payment gateways.
+- **Operational Intelligence:** Power BI DAX modeling, ETL analytics pipelines, systems telemetry.
+
+## Key Projects & Case Studies
+
+- [CloudPower Ecosystem](https://alex.runs-on.dev/projects): Unified 4-tier ecosystem spanning Flutter client apps, FastAPI backend microservices, real-time sync, and operational monitoring.
+- [HimAmrit Shopping Platform](https://himamritshop.in): Production multi-tenant e-commerce system featuring offline sync, resilient state machines, inventory locks, and secure payment processing.
+- [School Landing Platform](https://school.alex.runs-on.dev/): Responsive educational institution web portal with interactive program exploration and accessibility-first architecture.
+- [Model Context Protocol (MCP) Tool Harness](https://alex.runs-on.dev/projects): Custom agent runtime providing isolated filesystem operations, sandboxed CLI execution, and verifiable telemetry for autonomous coding agents.
+
+## Core Navigation Routes
+
+- [Homepage](https://alex.runs-on.dev/): Overview of engineering focus, featured systems, and architectural principles.
+- [About](https://alex.runs-on.dev/about): Architectural philosophy, engineering journey, core systems principles, and verified milestones.
+- [Projects](https://alex.runs-on.dev/projects): In-depth case studies with architectural problem statements, design decisions, and verifiable metrics.
+- [Certifications](https://alex.runs-on.dev/certifications): 11 verified specializations awarded by Microsoft Learn and Tutedude across Agentic AI, MCP Tooling, Mobile Architecture, and Enterprise Concurrency.
+- [Contact](https://alex.runs-on.dev/contact): Verified communication channels, PGP public key, and direct correspondence protocols.
+
+## Verified Certifications (11 Specializations)
+
+- [MCP Agent Environment](https://alex.runs-on.dev/certificate/spec-mcp-agent-env): Model Context Protocol server development and secure runtime isolation.
+- [Agentic Software Development Lifecycle](https://alex.runs-on.dev/certificate/spec-agent-sdlc): Multi-agent test automation, CI/CD integration, and deterministic evaluation.
+- [Agentic GitHub Automation](https://alex.runs-on.dev/certificate/spec-agentic-github): GitHub Actions workflows and autonomous repository maintenance.
+- [Flutter Architecture & Systems](https://alex.runs-on.dev/certificate/spec-flutter): Cross-platform Flutter architecture, custom render pipelines, and offline sync.
+- [Java Enterprise Concurrency](https://alex.runs-on.dev/certificate/spec-java): Multithreading, JVM memory management, and Spring Boot microservices.
+- [Power BI Enterprise Analytics](https://alex.runs-on.dev/certificate/spec-powerbi): Complex DAX calculations, star-schema data modeling, and executive dashboards.
+- [Generative AI & Agent Workflows](https://alex.runs-on.dev/certificate/spec-genai-agents): LLM orchestration, structured output enforcement, and RAG architectures.
+- [Core AI Architectural Concepts](https://alex.runs-on.dev/certificate/spec-ai-concepts): Machine learning foundations, neural network topologies, and evaluation metrics.
+- [Machine Learning Workflows](https://alex.runs-on.dev/certificate/spec-ml-concepts): Supervised and unsupervised modeling, feature engineering, and cross-validation.
+- [C# Exception Handling & Resilience](https://alex.runs-on.dev/certificate/spec-csharp-exceptions): Enterprise resilience patterns, structured error handling, and memory diagnostics.
+- [Applied Python Systems](https://alex.runs-on.dev/certificate/spec-python): Async IO, FastAPI microservices, and distributed systems tooling.

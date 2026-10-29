@@ -24,7 +24,7 @@ export const personalInfo: PersonalInfo = {
   tagline: "Engineering resilient applications, multi-service ecosystems, and agent execution environments.",
   summary: [
     "I design and build software systems where multi-platform clients, backend workflows, and intelligent execution environments intersect.",
-    "My focus centers on structured application architecture—from client-side mobile engineering with Flutter to backend services in Python, Java, and C#, through to cutting-edge Agentic AI integration utilizing the Model Context Protocol (MCP) and agent SDLC paradigms.",
+    "My focus centers on structured application architecture—from client-side mobile engineering with Flutter to backend services in Python, Java, and C#, through to production-grade Agentic AI integration utilizing the Model Context Protocol (MCP) and agent SDLC paradigms.",
     "Rather than treating software as isolated screens, I view applications as coordinated ecosystems where data contracts, state machines, and operational pipelines must remain dependable under real-world conditions."
   ],
   focusAreas: [

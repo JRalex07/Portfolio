@@ -68,8 +68,27 @@ if (fs.existsSync(robotsPath)) {
   const robots = fs.readFileSync(robotsPath, 'utf8');
   assert(robots.includes('User-agent: *') && robots.includes('Allow: /'), 'Allows general web crawlers on /');
   assert(robots.includes('User-agent: OAI-SearchBot') && robots.includes('Allow: /'), 'Explicitly allows OAI-SearchBot for ChatGPT Search');
+  assert(robots.includes('User-agent: PerplexityBot') && robots.includes('Allow: /'), 'Explicitly allows PerplexityBot for AI search');
+  assert(robots.includes('User-agent: ClaudeBot') && robots.includes('Allow: /'), 'Explicitly allows ClaudeBot for assistant discovery');
+  assert(robots.includes('User-agent: Applebot-Extended') && robots.includes('Allow: /'), 'Explicitly allows Applebot-Extended for Apple Intelligence');
   assert(robots.includes('User-agent: GPTBot') && robots.includes('Disallow: /'), 'Separate policy for GPTBot model training (Disallow: /)');
   assert(robots.includes('Sitemap: https://alex.runs-on.dev/sitemap.xml'), 'References canonical sitemap https://alex.runs-on.dev/sitemap.xml');
+}
+
+// 2b. Validate AI Discovery Files (llms.txt & llms-full.txt)
+console.log('\n--- 2b. AI Discovery Files (llms.txt & llms-full.txt) ---');
+const llmsPath = path.resolve(DIST_DIR, 'llms.txt');
+assert(fs.existsSync(llmsPath), 'llms.txt exists in dist/');
+if (fs.existsSync(llmsPath)) {
+  const llmsContent = fs.readFileSync(llmsPath, 'utf8');
+  assert(llmsContent.includes('Raman Kumar Sharma'), 'llms.txt contains primary entity name');
+  assert(llmsContent.includes('https://alex.runs-on.dev/'), 'llms.txt contains canonical website link');
+}
+const llmsFullPath = path.resolve(DIST_DIR, 'llms-full.txt');
+assert(fs.existsSync(llmsFullPath), 'llms-full.txt exists in dist/');
+if (fs.existsSync(llmsFullPath)) {
+  const llmsFullContent = fs.readFileSync(llmsFullPath, 'utf8');
+  assert(llmsFullContent.includes('CloudPower Multi-Tier Application Ecosystem'), 'llms-full.txt contains full systems case studies');
 }
 
 // 3. Validate sitemap.xml

@@ -1021,6 +1021,21 @@ export async function prerender() {
     console.log('  ✓ Synced site.webmanifest to dist/');
   }
 
+  // Ensure llms.txt and llms-full.txt exist in dist for AI agent discoverability
+  const llmsPublic = path.resolve(ROOT_DIR, 'public/llms.txt');
+  const llmsDest = path.resolve(DIST_DIR, 'llms.txt');
+  if (fs.existsSync(llmsPublic)) {
+    fs.copyFileSync(llmsPublic, llmsDest);
+    console.log('  ✓ Synced llms.txt to dist/');
+  }
+
+  const llmsFullPublic = path.resolve(ROOT_DIR, 'public/llms-full.txt');
+  const llmsFullDest = path.resolve(DIST_DIR, 'llms-full.txt');
+  if (fs.existsSync(llmsFullPublic)) {
+    fs.copyFileSync(llmsFullPublic, llmsFullDest);
+    console.log('  ✓ Synced llms-full.txt to dist/');
+  }
+
   // Clean up cache
   if (fs.existsSync(CACHE_DIR)) {
     fs.rmSync(CACHE_DIR, { recursive: true, force: true });

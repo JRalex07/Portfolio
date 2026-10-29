@@ -1,20 +1,36 @@
 # robots.txt for https://alex.runs-on.dev/
 # Production Search Engine, AI Search & Web Crawler Directives
 
-# 1. General Web Crawlers (Googlebot, Bingbot, Applebot, DuckDuckBot, etc.)
+# 1. General Web Crawlers (Googlebot, Bingbot, Applebot, DuckDuckBot, Yandex, etc.)
 User-agent: *
 Allow: /
 Disallow: /404.html
 
-# 2. OpenAI SearchBot (Permitted for ChatGPT Search real-time discovery & citations)
-# Documentation: https://developers.openai.com/api/docs/bots
+# 2. AI Search & Real-Time Discovery Engines (Permitted for AI Assistant Citations & Answers)
 User-agent: OAI-SearchBot
 Allow: /
 
-# 3. OpenAI Model Training Crawler (Separated policy from real-time AI Search)
-# Model training crawler is disallowed to distinguish AI search from dataset training.
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# 3. AI Bulk Model-Training Crawlers (Separated from Real-Time Search & Retrieval)
 User-agent: GPTBot
 Disallow: /
 
-# 4. Canonical XML Sitemap
+User-agent: CCBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+# 4. Canonical XML Sitemap & LLM Discovery Files
 Sitemap: https://alex.runs-on.dev/sitemap.xml
+# AI agent context manifests:
+# https://alex.runs-on.dev/llms.txt
+# https://alex.runs-on.dev/llms-full.txt
