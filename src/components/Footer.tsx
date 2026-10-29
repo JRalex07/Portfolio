@@ -118,23 +118,29 @@ export const Footer: React.FC = () => {
             </p>
 
             {/* PGP Security & Architecture Identity Tag */}
-            <div className="footer-pgp-card" onClick={handleCopyPgp} role="button" tabIndex={0} title="Click to copy verified fingerprint">
-              <div className="footer-pgp-left">
-                <ShieldCheck size={14} className="text-emerald" />
+            <button
+              type="button"
+              className="footer-pgp-card"
+              onClick={handleCopyPgp}
+              title="Click to copy verified PGP fingerprint"
+              aria-label="Copy verified PGP Key ID: 4A7F 92B1 C08D E35F"
+            >
+              <span className="footer-pgp-left">
+                <ShieldCheck size={14} className="text-emerald" aria-hidden="true" />
                 <span className="footer-pgp-text">KEY ID: 4A7F 92B1 C08D E35F</span>
-              </div>
-              <span className="footer-pgp-action">
+              </span>
+              <span className="footer-pgp-badge" aria-live="polite">
                 {copiedPgp ? (
-                  <span className="text-emerald font-semibold" style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
-                    <Check size={12} /> Copied
+                  <span className="text-emerald font-semibold" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                    <Check size={12} aria-hidden="true" /> Copied!
                   </span>
                 ) : (
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
-                    <Copy size={12} /> Copy
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                    <Copy size={12} aria-hidden="true" /> Copy
                   </span>
                 )}
               </span>
-            </div>
+            </button>
           </div>
 
           {/* Column 2: Live Deployments & Key Production Systems */}

@@ -38,6 +38,7 @@ export const HeroProfileCard: React.FC = () => {
       {/* Top Telemetry / Status Badge */}
       <div className="hero-3d-badge">
         <span
+          aria-hidden="true"
           style={{
             width: '7px',
             height: '7px',

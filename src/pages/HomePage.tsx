@@ -120,6 +120,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 }}
               >
                 <span
+                  aria-hidden="true"
                   style={{
                     width: '8px',
                     height: '8px',
@@ -128,7 +129,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                     boxShadow: '0 0 8px rgba(2, 132, 199, 0.5)',
                   }}
                 />
-                <span style={{ fontSize: '11.5px', fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-mono)', letterSpacing: '0.04em' }}>
+                <span style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-mono)', letterSpacing: '0.04em' }}>
                   SYSTEMS & COMMERCE ARCHITECT
                 </span>
               </div>
@@ -180,43 +181,26 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 <button
                   type="button"
                   onClick={() => onNavigate('/projects', 'projects')}
-                  className="btn btn-primary"
-                  style={{
-                    borderRadius: '9999px',
-                    padding: '13px 28px',
-                    fontSize: '14px',
-                    fontWeight: 700,
-                  }}
+                  className="btn btn-primary btn-lg"
                 >
-                  Explore Projects <ArrowRight size={16} />
+                  Explore Projects <ArrowRight size={16} aria-hidden="true" />
                 </button>
 
                 <button
                   type="button"
                   onClick={() => onNavigate('/certifications', 'certifications')}
-                  className="btn btn-secondary"
-                  style={{
-                    borderRadius: '9999px',
-                    padding: '13px 26px',
-                    fontSize: '14px',
-                    fontWeight: 650,
-                  }}
+                  className="btn btn-secondary btn-lg"
                 >
-                  <ShieldCheck size={16} color="#0284c7" /> 11 Verified Credentials
+                  <ShieldCheck size={16} color="#0284c7" aria-hidden="true" /> 11 Verified Credentials
                 </button>
 
                 <a
                   href="https://cloudpower.store"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-secondary"
-                  style={{
-                    borderRadius: '9999px',
-                    padding: '13px 22px',
-                    fontSize: '13px',
-                  }}
+                  className="btn btn-secondary btn-md"
                 >
-                  <Globe size={14} /> cloudpower.store <ExternalLink size={12} />
+                  <Globe size={14} aria-hidden="true" /> cloudpower.store <ExternalLink size={12} aria-hidden="true" />
                 </a>
               </div>
             </motion.div>
@@ -254,8 +238,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             }}
           >
             <div>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', color: 'var(--accent-teal)', fontWeight: 700, letterSpacing: '0.06em' }}>
-                ABOUT THE ARCHITECT
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--accent-teal)', fontWeight: 700, letterSpacing: '0.03em' }}>
+                About the Architect
               </span>
               <h2
                 style={{
@@ -269,7 +253,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               >
                 Engineering with Formal Invariants & Clean Separation of Concerns
               </h2>
-              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7, fontSize: '0.96rem' }}>
+              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7, fontSize: 'var(--text-sm)' }}>
                 I specialize in translating complex commercial requirements into decoupled, highly observable systems.
                 From architecting offline-first mobile synchronization in Flutter to implementing Model Context Protocol (MCP)
                 execution guardrails and blazing fast React storefronts, my work is built to be deterministic, observable, and production-ready.
@@ -278,15 +262,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 <button
                   type="button"
                   onClick={() => onNavigate('/about', 'about')}
-                  className="btn btn-secondary"
-                  style={{
-                    borderRadius: '9999px',
-                    padding: '8px 20px',
-                    fontSize: '13px',
-                    fontWeight: 650,
-                  }}
+                  className="btn btn-secondary btn-md"
                 >
-                  Read Full Philosophy & System Journey <ChevronRight size={14} />
+                  Read Full Philosophy & System Journey <ChevronRight size={14} aria-hidden="true" />
                 </button>
               </div>
             </div>
@@ -329,11 +307,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '32px', flexWrap: 'wrap', gap: '16px' }}
+            style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '32px', flexWrap: 'wrap', gap: '20px' }}
           >
-            <div>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', color: 'var(--accent-teal)', fontWeight: 700, letterSpacing: '0.06em' }}>
-                PORTFOLIO SPOTLIGHT
+            <div style={{ maxWidth: '680px' }}>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--accent-teal)', fontWeight: 700, letterSpacing: '0.03em' }}>
+                Portfolio Spotlight
               </span>
               <h2
                 style={{
@@ -351,10 +329,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             <button
               type="button"
               onClick={() => onNavigate('/projects', 'projects')}
-              className="btn btn-primary"
-              style={{ borderRadius: '9999px', padding: '10px 22px', fontSize: '13px' }}
+              className="btn btn-secondary btn-md"
             >
-              View All {projects.length} Projects <ArrowRight size={14} />
+              View All {projects.length} Projects <ArrowRight size={14} aria-hidden="true" />
             </button>
           </motion.div>
 
@@ -372,7 +349,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   padding: '32px',
                   display: 'flex',
                   flexDirection: 'column',
-                  justifyContent: 'space-between',
                   gap: '20px',
                   position: 'relative',
                   background: '#ffffff',
@@ -385,18 +361,18 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                     <span
                       style={{
                         fontFamily: 'var(--font-mono)',
-                        fontSize: '11px',
+                        fontSize: 'var(--text-xs)',
                         color: 'var(--accent-teal)',
                         background: '#e0f2fe',
                         border: '1px solid #bae6fd',
-                        padding: '3px 10px',
-                        borderRadius: '9999px',
+                        padding: '4px 10px',
+                        borderRadius: 'var(--radius-pill)',
                         fontWeight: 700,
                       }}
                     >
                       {proj.category}
                     </span>
-                    <span style={{ fontSize: '11px', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+                    <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
                       {proj.badge}
                     </span>
                   </div>
@@ -405,9 +381,34 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                     {proj.title}
                   </h3>
 
-                  <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                  <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                     {proj.subtitle}
                   </p>
+
+                  {/* Live Link Buttons — Direct functional grouping with project summary */}
+                  <div style={{ display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap', paddingTop: '4px' }}>
+                    {proj.liveUrl && (
+                      <a
+                        href={proj.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn btn-primary btn-sm"
+                      >
+                        <Globe size={13} aria-hidden="true" /> Live Store <ExternalLink size={11} aria-hidden="true" />
+                      </a>
+                    )}
+
+                    {proj.secondaryUrl && (
+                      <a
+                        href={proj.secondaryUrl.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn btn-secondary btn-sm"
+                      >
+                        Documentation <ExternalLink size={11} aria-hidden="true" />
+                      </a>
+                    )}
+                  </div>
 
                   {/* Architecture Highlights */}
                   <div
@@ -419,22 +420,23 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                       display: 'flex',
                       flexDirection: 'column',
                       gap: '8px',
+                      marginTop: '6px',
                     }}
                   >
-                    <span style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: 'var(--accent-teal)', fontWeight: 700 }}>
+                    <span style={{ fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)', color: 'var(--accent-teal)', fontWeight: 700 }}>
                       KEY SYSTEM HIGHLIGHTS
                     </span>
-                    <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                    <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '6px', margin: 0, padding: 0 }}>
                       {proj.keyFeatures.slice(0, 3).map((feat, i) => (
-                        <li key={i} style={{ fontSize: '12px', color: 'var(--text-secondary)', display: 'flex', gap: '8px' }}>
-                          <span style={{ color: 'var(--accent-teal)' }}>•</span> {feat}
+                        <li key={i} style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)', display: 'flex', gap: '8px' }}>
+                          <span style={{ color: 'var(--accent-teal)' }} aria-hidden="true">•</span> {feat}
                         </li>
                       ))}
                     </ul>
                   </div>
 
                   {/* Tech stack tags */}
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', paddingTop: '4px' }}>
                     {proj.technologies.slice(0, 6).map((tech) => (
                       <span
                         key={tech}
@@ -442,7 +444,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                           background: '#ffffff',
                           border: '1px solid var(--border-subtle)',
                           color: 'var(--text-secondary)',
-                          fontSize: '11px',
+                          fontSize: 'var(--text-xs)',
                           padding: '4px 10px',
                           borderRadius: 'var(--radius-pill)',
                           fontFamily: 'var(--font-mono)',
@@ -452,33 +454,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                       </span>
                     ))}
                   </div>
-                </div>
-
-                {/* Live Link Buttons */}
-                <div style={{ display: 'flex', gap: '10px', paddingTop: '16px', borderTop: '1px solid var(--border-subtle)' }}>
-                  {proj.liveUrl && (
-                    <a
-                      href={proj.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-primary"
-                      style={{ borderRadius: '9999px', padding: '8px 18px', fontSize: '12px', fontWeight: 700 }}
-                    >
-                      <Globe size={13} /> Live Store <ExternalLink size={11} />
-                    </a>
-                  )}
-
-                  {proj.secondaryUrl && (
-                    <a
-                      href={proj.secondaryUrl.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-secondary"
-                      style={{ borderRadius: '9999px', padding: '8px 16px', fontSize: '12px' }}
-                    >
-                      Documentation <ExternalLink size={11} />
-                    </a>
-                  )}
                 </div>
               </motion.div>
             ))}
@@ -508,15 +483,15 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             }}
           >
             <div>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', color: 'var(--accent-teal)', fontWeight: 700, letterSpacing: '0.06em' }}>
-                TECHNICAL CAPABILITY
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--accent-teal)', fontWeight: 700, letterSpacing: '0.03em' }}>
+                Technical Capabilities
               </span>
               <h2 style={{ fontSize: '1.8rem', fontFamily: 'var(--font-heading)', fontWeight: 800, color: 'var(--text-primary)', marginTop: '4px' }}>
                 Production Stacks & Architectural Protocols
               </h2>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))', gap: '16px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))', gap: '16px' }}>
               {[
                 { title: 'Mobile Client Engineering', stack: ['Flutter', 'Dart', 'BLoC Pattern', 'SQLite Cache', 'Background Geolocator'] },
                 { title: 'Web & Distributed Commerce', stack: ['React', 'TypeScript', 'Vite', 'RESTful Endpoints', 'WebSocket Sync'] },
@@ -529,16 +504,16 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                     background: '#f8f7f4',
                     border: '1px solid var(--border-subtle)',
                     borderRadius: 'var(--radius-card-sm)',
-                    padding: '20px',
+                    padding: '24px',
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: '12px',
+                    gap: '14px',
                   }}
                 >
-                  <span style={{ fontSize: '13px', fontWeight: 750, color: 'var(--text-primary)', fontFamily: 'var(--font-heading)' }}>
+                  <span style={{ fontSize: 'var(--text-sm)', fontWeight: 750, color: 'var(--text-primary)', fontFamily: 'var(--font-heading)' }}>
                     {domain.title}
                   </span>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                     {domain.stack.map((t) => (
                       <span
                         key={t}
@@ -546,10 +521,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                           background: '#e0f2fe',
                           border: '1px solid #bae6fd',
                           color: 'var(--accent-teal)',
-                          fontSize: '11px',
-                          padding: '4px 10px',
+                          fontSize: 'var(--text-xs)',
+                          padding: '6px 12px',
                           borderRadius: 'var(--radius-pill)',
                           fontFamily: 'var(--font-mono)',
+                          fontWeight: 600,
                         }}
                       >
                         {t}
@@ -571,11 +547,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '32px', flexWrap: 'wrap', gap: '16px' }}
+            style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '32px', flexWrap: 'wrap', gap: '20px' }}
           >
-            <div>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', color: 'var(--accent-teal)', fontWeight: 700, letterSpacing: '0.06em' }}>
-                VERIFIED CREDENTIALS
+            <div style={{ maxWidth: '680px' }}>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--accent-teal)', fontWeight: 700, letterSpacing: '0.03em' }}>
+                Verified Credentials
               </span>
               <h2
                 style={{
@@ -588,7 +564,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               >
                 Specializations & Continuous Competency
               </h2>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.94rem', marginTop: '6px' }}>
+              <p style={{ color: 'var(--text-secondary)', fontSize: 'var(--text-sm)', marginTop: '6px' }}>
                 Directly explore verified specializations from Microsoft Learn and Tutedude with authentic credentials and curriculum records.
               </p>
             </div>
@@ -596,10 +572,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             <button
               type="button"
               onClick={() => onNavigate('/certifications', 'certifications')}
-              className="btn btn-primary"
-              style={{ borderRadius: '9999px', padding: '10px 22px', fontSize: '13px' }}
+              className="btn btn-secondary btn-md"
             >
-              Browse All 11 Certifications <ArrowRight size={14} />
+              View All {specializations.length} Certifications <ArrowRight size={14} aria-hidden="true" />
             </button>
           </motion.div>
 
@@ -619,27 +594,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               </motion.div>
             ))}
           </div>
-
-          {/* Prominent View All Certifications Navigation Link */}
-          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '36px' }}>
-            <button
-              type="button"
-              onClick={() => onNavigate('/certifications', 'certifications')}
-              className="btn btn-secondary"
-              style={{
-                borderRadius: '9999px',
-                padding: '12px 30px',
-                fontSize: '13.5px',
-                fontWeight: 700,
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                boxShadow: 'var(--shadow-xs)',
-              }}
-            >
-              View All 11 Verified Certifications <ArrowRight size={15} />
-            </button>
-          </div>
         </div>
       </section>
 
@@ -654,7 +608,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           >
             <div
               style={{
-                borderRadius: '36px',
+                borderRadius: 'var(--radius-card-lg)',
                 background: '#ffffff',
                 border: '1px solid var(--border-subtle)',
                 boxShadow: 'var(--shadow-md)',
@@ -669,17 +623,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               <span
                 style={{
                   fontFamily: 'var(--font-mono)',
-                  fontSize: '11px',
+                  fontSize: 'var(--text-xs)',
                   color: 'var(--accent-teal)',
                   fontWeight: 700,
-                  letterSpacing: '0.08em',
+                  letterSpacing: '0.04em',
                   background: '#e0f2fe',
                   padding: '4px 14px',
-                  borderRadius: '9999px',
+                  borderRadius: 'var(--radius-pill)',
                   border: '1px solid #bae6fd',
                 }}
               >
-                START AN ARCHITECTURAL DIALOGUE
+                Start an Architectural Dialogue
               </span>
 
               <h2
@@ -695,17 +649,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 Ready to engineer resilient commerce or autonomous agent systems?
               </h2>
 
-              <p style={{ color: 'var(--text-secondary)', maxWidth: '580px', fontSize: '1rem', lineHeight: 1.6 }}>
+              <p style={{ color: 'var(--text-secondary)', maxWidth: '580px', fontSize: 'var(--text-base)', lineHeight: 1.6 }}>
                 Whether you are discussing distributed systems, contract engineering, or high-throughput commercial applications, let's connect.
               </p>
 
               <button
                 type="button"
                 onClick={() => onNavigate('/contact', 'contact')}
-                className="btn btn-primary"
-                style={{ borderRadius: '9999px', padding: '14px 34px', fontSize: '15px', fontWeight: 700, marginTop: '8px' }}
+                className="btn btn-primary btn-lg"
+                style={{ marginTop: '8px' }}
               >
-                Open Direct Contact Channels <ArrowRight size={16} />
+                Open Direct Contact Channels <ArrowRight size={16} aria-hidden="true" />
               </button>
             </div>
           </motion.div>
